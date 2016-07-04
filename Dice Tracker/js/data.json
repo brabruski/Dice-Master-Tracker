@@ -1,0 +1,103 @@
+﻿[
+  {
+    "name": "Wolverine",
+    "cost": 6,
+    "energy": "Fist",
+    "colour": "Yellow",
+    "image": "images/dice/wolverine_1.jpg",
+    "description": "When attacking alone Wolverine cannot be blocked.",
+    "series": "Avengers vs X-men",
+    "affiliation": "Marvel"
+
+  },
+  {
+    "name": "Storm",
+    "cost": 5,
+    "energy": "Mask",
+    "colour": "Clear Blue",
+    "image": "images/dice/storm_1.jpg",
+    "description": "When fielded, reroll up to 2 opposing characters.",
+    "series": "Uncanny X-men",
+    "affiliation": "Marvel"
+  },
+  {
+    "name": "Beast",
+    "cost": 2,
+    "energy": "Mask",
+    "colour": "Light Blue",
+    "image": "images/dice/beast_1.jpg",
+    "description": "When blocking, draw a dice and place in prep area",
+    "series": "Avengers vs X-men",
+    "affiliation": "Marvel"
+  },
+  {
+    "name": "Gambit",
+    "cost": 3,
+    "energy": "Mask",
+    "colour": "Brown",
+    "image": "images/dice/gambit_1.jpg",
+    "description": "When fielded, draw and roll one die.",
+    "series": "Avengers vs X-men",
+    "affiliation": "Marvel"
+  },
+  {
+    "name": "Deadman",
+    "cost": 5,
+    "energy": "Shield",
+    "colour": "White",
+    "image": "images/dice/deadman_1.jpg",
+    "description": "Choose a character. They may not attack or block while Deadman is Active",
+    "series": "Justice League",
+    "affiliation": "DC"
+  },
+  {
+    "name": "Constantine",
+    "cost": 2,
+    "energy": "Shield",
+    "colour": "Clear Yellow",
+    "image": "images/dice/constantine_1.jpg",
+    "description": "Choose a character before opponent draws, if it's correct draw then the text is ignored for the turn.",
+    "series": "Justice League",
+    "affiliation": "DC"
+  },
+  {
+    "name": "Iron Man",
+    "cost": 4,
+    "energy": "Lightning",
+    "colour": "Red",
+    "image": "images/dice/ironman_1.jpg",
+    "description": "Iron Man gains +1A for each active opposing villain.",
+    "series": "Uncanny X-men",
+    "affiliation": "Marvel"
+  },
+  {
+    "name": "Green Lantern",
+    "cost": 6,
+    "energy": "Mask",
+    "colour": "Green",
+    "image": "images/dice/greenlantern_1.jpg",
+    "description": "When attacking, other attackers gain +2A & +2D until the end of the turn.",
+    "series": "War of Light",
+    "affiliation": "DC"
+  },
+  {
+    "name": "Catwoman",
+    "cost": 4,
+    "energy": "Fist",
+    "colour": "Light Grey",
+    "image": "images/dice/catwoman_1.jpg",
+    "description": "Name a hero, draw random dice and if it matches, field this turn",
+    "series": "Justice League",
+    "affiliation": "DC"
+  },
+  {
+    "name": "Scarlet Witch",
+    "cost": 4,
+    "energy": "Lightning",
+    "colour": "Pink",
+    "image": "images/dice/scarletwitch_1.jpg",
+    "description": "When Scarlet Witch is Active, you may reroll any dice one more time during the roll & reroll phase.",
+    "series": "Uncanny X-men",
+    "affiliation": "Marvel"
+  }
+]

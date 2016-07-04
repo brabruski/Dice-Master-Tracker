@@ -1,0 +1,38 @@
+﻿<section class="dicePage">
+    <div class="search">
+        <h1>Dice Masters Dice Tracker</h1>
+        <label>search: </label>
+        <input ng-model="query" placeholder="Search for a Dice" autofocus />
+        <label class="formgroup">
+            by:
+            <select ng-model="diceOrder">
+                <option value="name">Name</option>
+                <option value="cost">Dice Cost</option>
+                <option value="energy">Energy Type</option>
+                <option value="affiliation">Affiliation</option>
+            </select>
+        </label>
+        <label class="formgroup">
+            <input type="radio" ng-model="direction" name="direction" checked />
+            ascending
+        </label>
+        <label class="formgroup">
+            <input type="radio" ng-model="direction" name="direction" value="reverse" />
+            descending
+        </label>
+    </div>
+    <ul class="dicelist">
+        <li ng-animate="'animate'" class="diceobj cf" ng-repeat="die in dice | filter:query | orderBy: diceOrder:direction">
+            <a href="#/details/{{ dice.indexOf(die) }}">
+                <img ng-src="{{die.image}}" alt="Card for {{die.name}}" />
+                <div class="info">
+                    <h2>{{die.name}}</h2>
+                    <h3><b>Energy Cost:</b> {{die.cost}}</h3>
+                      <h3><b>Energy Type:</b> {{die.energy}}</h3>
+                   
+                </div>
+            </a>
+        </li>
+    </ul>
+
+</section>

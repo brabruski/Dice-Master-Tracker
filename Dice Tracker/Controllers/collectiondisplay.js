@@ -8,14 +8,16 @@ logApp.controller('ListController', ['$scope', '$rootScope', '$firebaseAuth', '$
         auth.$onAuth(function (authUser) {
             if (authUser) {
                 var collectionRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/collection');
-                var collectionInfo = $firebaseArray(collectionRef);
+                $scope.dice = $firebaseArray(collectionRef);
 
-                $scope.dice = collectionInfo;
-                $scope.diceOrder = 'name';
+                $scope.dice.$loaded().then(function() {
+                    $scope.diceOrder = 'name';
 
-                $scope.deleteCard = function (key) {
-                    collectionInfo.$remove(key);
-                };
+                    $scope.deleteCard = function (key) {
+                        $scope.dice.$remove(key);
+                    };
+                });
+                
             }
         });
 
@@ -30,22 +32,23 @@ logApp.controller('DetailsController', ['$scope', '$rootScope', '$firebaseAuth',
         auth.$onAuth(function (authUser) {
             if (authUser) {
                 var collectionRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/collection');
-                var collectionInfo = $firebaseArray(collectionRef);
+                $scope.dice = $firebaseArray(collectionRef);
 
-                $scope.dice = collectionInfo;
-                $scope.whichItem = $routeParams.itemId;
-                
-                if ($routeParams.itemId > 0) {
-                    $scope.prevItem = Number($routeParams.itemId) - 1;
-                } else {
-                    $scope.prevItem = $scope.dice.length - 1;
-                }
+                $scope.dice.$loaded().then(function() {
+                    $scope.whichItem = $routeParams.itemId;
 
-                if ($routeParams.itemId < $scope.dice.length - 1) {
-                    $scope.nextItem = Number($routeParams.itemId) + 1;
-                } else {
-                    $scope.nextItem = 0;
-                }
+                    if ($routeParams.itemId > 0) {
+                        $scope.prevItem = Number($routeParams.itemId) - 1;
+                    } else {
+                        $scope.prevItem = $scope.dice.length - 1;
+                    }
+
+                    if ($routeParams.itemId < $scope.dice.length - 1) {
+                        $scope.nextItem = Number($routeParams.itemId) + 1;
+                    } else {
+                        $scope.nextItem = 0;
+                    }
+                });
             }
         });
 

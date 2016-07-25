@@ -323,61 +323,55 @@ fieldset {
 }
 
 
-.userlist li.expanded .btn-love {
+.dicelist li.expanded .btn-love {
   background-color: #C61C6F;
 }
 
-.userlist .buttons {
+.dicelist .buttons {
   display: block;
   float: left;
   text-align: left;
   margin-right: 5px;
 }
 
-.userlist .info {
+.dicelist .info {
   display: block;
   float: left;
   text-align: left;
 }
 
 @media all and (max-width: 600px) {
-  .userlist li {
+  .dicelist li {
     width: 100%;
   }
 
-  .userlist  .info  {
+  .dicelist  .info  {
     width: 70%;
   }
 }
 
-ul.awardslist {
+ul.dicelist {
   margin-top:5px;
 }
 
-ul.awardslist li {
+ul.dicelist li {
   width: auto;
   padding: 5px 5px 0 10px;
   margin: 2px;
   background-color: #797979;
-  color: white;
+  color: black;
   font-weight: normal;
   border-radius: 4px;
   font-family: Lato, 'Helvetica Nueue', Helvetica, Arial, sans-serif;
 }
 
-ul.awardslist li:hover {
+ul.dicelist li:hover {
   background-color: #F5974E;
 }
 
-ul.awardslist li .btn-delete {
-  background-color: transparent;
-  background-size: 15px 15px;
-  background-position: center 40%;
-  margin:0;
-  border: none;
-}
 
-ul.awardslist li .award {
+
+ul.dicelist li .award {
   padding-right: 15px;
 }
 
@@ -492,22 +486,9 @@ nav li a:hover {
 
 }
 
-.meetings .meeting .btn {
-  margin-right: 4px;
-  padding: 1px 8px;
-}
-
-.meetings .meeting .text {
-  display: inline-block;
-  vertical-align: bottom;
-}
-
-.meetings .meeting .text a{
-  text-decoration: none;
-}
-
 .tooltip {
   position: relative;
+  opacity: 1;
 }
 
 .tooltip span {
@@ -547,37 +528,6 @@ nav li a:hover {
           transform: translateY(0px);
 }
 
-.badge {
-  display: inline-block;
-  min-width: 10px;
-  padding: 3px 7px;
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 1;
-  color: #fff;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: baseline;
-  background-color: #777;
-  border-radius: 10px;
-}
-.badge:empty {
-  display: none;
-}
-
-.checkinslist { margin-top: 20px; }
-.checkinslist h1 { color: #2D8BCF; }
-.checkin h2 {
-  margin: 0;
-  padding: 0;
-}
-.checkin .btn {
-  padding: 0;
-  margin: 0 3px;
-}
-
-.checkinslist h3 { color: #657B83; }
-
 input.ng-invalid.ng-touched {
   border: 1px solid #DA3637;
 }
@@ -610,7 +560,6 @@ input.ng-valid.ng-touched {
     cursor: pointer;
     border: 1px solid transparent;
     border-radius: 4px;
-    background: #C61C6F;
     color: white;
     background-color: #2D8BCF;
     background-size: 18px 18px;
@@ -635,23 +584,7 @@ input.ng-valid.ng-touched {
 
 .btn-list { background-image: url(../images/icons/icon_list.png); }
 .btn-checkin { background-color: #859835; background-image: url(../images/icons/icon_checkmark.png); }
-.btn-delete { background-color: #C94C24; background-image: url(../images/icons/icon_trash.png); }
-.btn-love { background-image: url(../images/icons/icon_heart.png); }
+.btn-delete { background-color: #C94C24; background-image: url('../images/icons/icon_trash.png'); padding: 0; margin: 0 3px;}
+.btn-love { background-image: url(../images/icons/icon_heart.png); padding: 0; margin: 0 3px;}
 .btn-email { background-image: url(../images/icons/icon_email.png); }
 .btn-meeting { background-image:  url(../images/icons/icon_meeting.png); }
-
-.btn-pick {
-  background: #2D8BCF url(../images/icons/icon_dice.png) 5px center no-repeat;
-  background-size: 20px 20px;
-  padding: 5px 5px 5px 30px;
-  font-size: .8em;
-  margin: 0 auto;
-}
-
-.btn-reset {
-  background: #CB4B19 url(../images/icons/icon_reset.png)  5px center no-repeat;
-  background-size: 20px 20px;
-  padding: 5px 5px 5px 50px;
-}
-
-

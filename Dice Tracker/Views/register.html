@@ -8,6 +8,8 @@
             <p class="error validationerror" ng-show="registerform.fname.$invalid && registerform.fname.$touched">First Name Required</p>
             <input type="text" name="lname" placeholder="Last Name" ng-model="user.lname" ng-required="true" />
             <p class="error validationerror" ng-show="registerform.lname.$invalid && registerform.lname.$touched">Last Name Required</p>
+            <input type="text" name="displayname" placeholder="Display Name" ng-model="user.displayname" ng-required="true" />
+            <p class="error validationerror" ng-show="registerform.displayname.$invalid && registerform.displayname.$touched">Display Name Required</p>
             <input type="email" name="email" placeholder="Email" ng-model="user.email" ng-required="true" />
             <p class="error validationerror" ng-show="registerform.email.$invalid && registerform.email.$touched">Email Address Required</p>
             <input type="password" id="pw1" name="password" placeholder="Password" ng-model="user.password" ng-required="true" />

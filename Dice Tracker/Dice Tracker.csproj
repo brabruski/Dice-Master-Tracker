@@ -173,9 +173,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Controllers\collectiondisplay.js" />
-    <Content Include="Controllers\collectionnew.js" />
+    <Content Include="Controllers\carddetails.js" />
+    <Content Include="Controllers\cardlist.js" />
+    <Content Include="Controllers\cardedit.js" />
+    <Content Include="Controllers\newcard.js" />
+    <Content Include="Controllers\deckdetails.js" />
+    <Content Include="Controllers\decklist.js" />
     <Content Include="Controllers\home.js" />
+    <Content Include="Controllers\newdeck.js" />
     <Content Include="Controllers\registration.js" />
     <Content Include="Controllers\landing.js" />
     <Content Include="css\bootstrap-theme.css" />
@@ -209,10 +214,14 @@
     <Content Include="js\app.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
-    <Content Include="js\services\authentication.js" />
-    <Content Include="partials\addnew.html" />
-    <Content Include="partials\details.html" />
-    <Content Include="partials\list.html" />
+    <Content Include="Services\authentication.js" />
+    <Content Include="Views\adddeck.html" />
+    <Content Include="Views\addnew.html" />
+    <Content Include="Views\cardlist.html" />
+    <Content Include="Views\deckdetails.html" />
+    <Content Include="Views\decklist.html" />
+    <Content Include="Views\carddetails.html" />
+    <Content Include="Views\edit.html" />
     <Content Include="js\data.json" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />

@@ -40,6 +40,7 @@
                         $scope.carddescription = '';
                         $scope.cardcolour = '';
                         $scope.dicequantity = '1';
+                        $scope.successMessage = "Card Added Successfully!";
                     }
                     );
                 };

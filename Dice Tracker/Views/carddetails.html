@@ -1,0 +1,26 @@
+﻿<div class="search">
+    <h1>Dice Masters Dice Tracker</h1>
+</div>
+<section class="diceinfo">
+
+    <div class="diceobj cf" ng-model="dice">
+        <a href="#/details/{{ prevItem }}" class="btn btn-left">&lt;</a>
+        <a href="#/details/{{ nextItem }}" class="btn btn-left">&gt;</a>
+        <!--  <img ng-src="{{dice[whichItem].image}}" alt="Card of {{dice[whichItem].name}}"> -->
+        <h1>{{dice[whichItem].name}}</h1>
+        <h3>({{dice[whichItem].affiliation}})</h3>
+        <div class="info">
+            <p>{{dice[whichItem].description}}
+        </div>
+        <ul class="listdetails">
+            <li><b>Energy Cost:</b> {{dice[whichItem].cost}} </li>
+            <li><b>Energy type:</b> {{dice[whichItem].energy}}</li>
+            <li><b>Dice Colour:</b> {{dice[whichItem].colour}}</li>
+            <li><b>Card Series:</b> {{dice[whichItem].series}}</li>
+         </ul>
+    </div>
+
+    <a href="#/collection" class="btn">&laquo; Back to Card List</a>
+    <a href="#/edit/{{ dice.indexOf(dice[whichItem]) }}" class="btn">Edit Card</a>
+
+</section>

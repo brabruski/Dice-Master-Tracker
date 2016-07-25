@@ -49,6 +49,7 @@
                             regUser: regUser.uid,
                             fname: user.fname,
                             lname: user.lname,
+                            dname: user.displayname,
                             email: user.email
                         });
                     authObj.login(user);

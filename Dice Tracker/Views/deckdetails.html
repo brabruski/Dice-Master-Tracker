@@ -1,0 +1,29 @@
+﻿<div class="search">
+    <h1>Dice Masters Dice Tracker</h1>
+</div>
+<section class="diceinfo">
+
+    <div class="diceobj cf" ng-model="decks">
+        <a href="#/deckdetails/{{ prevItem }}" class="btn btn-left">&lt;</a>
+        <a href="#/deckdetails/{{ nextItem }}" class="btn btn-left">&gt;</a>
+        <h1>{{decks[whichItem].deckname}}</h1>
+        <div class="info">
+            <p>{{decks[whichItem].deckdescription}}
+        </div>
+        <a href="#/decks" class="btn">&laquo; Back to Deck List</a>
+        <a href="#/decks" class="btn">&laquo; Edit Deck</a>
+    </div>
+
+    <ul class="dicelist">
+        <li ng-animate="'animate'" class="diceobj cf" ng-repeat="(key, die) in dice">
+            <div class="info">
+                <a href="#/details/{{ dice.indexOf(die) }}">    <h2>{{die.name}}</h2></a>
+                <button class="btn btn-delete tooltip" ng-click="removeCard(key)">
+                    <span>Remove Card from this Deck</span>
+                </button>
+            </div>
+
+        </li>
+    </ul>
+
+</section>

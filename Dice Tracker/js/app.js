@@ -36,8 +36,17 @@ logApp.config(['$routeProvider', function ($routeProvider) {
         }
     }).
     when('/collection', {
-        templateUrl: 'partials/list.html',
-        controller: 'ListController',
+        templateUrl: 'Views/cardlist.html',
+        controller: 'CardListController',
+        resolve: {
+            currentAuth: function (Authentication) {
+                return Authentication.requireAuth();
+            }
+        }
+    }).
+    when('/decks', {
+        templateUrl: 'Views/decklist.html',
+        controller: 'DeckListController',
         resolve: {
             currentAuth: function (Authentication) {
                 return Authentication.requireAuth();
@@ -45,8 +54,17 @@ logApp.config(['$routeProvider', function ($routeProvider) {
         }
     }).
     when('/details/:itemId', {
-        templateUrl: 'partials/details.html',
-        controller: 'DetailsController',
+        templateUrl: 'Views/carddetails.html',
+        controller: 'CardDetailsController',
+        resolve: {
+            currentAuth: function (Authentication) {
+                return Authentication.requireAuth();
+            }
+        }
+    }).
+    when('/deckdetails/:deckId', {
+        templateUrl: 'Views/deckdetails.html',
+        controller: 'DeckDetailsController',
         resolve: {
             currentAuth: function (Authentication) {
                 return Authentication.requireAuth();
@@ -54,7 +72,7 @@ logApp.config(['$routeProvider', function ($routeProvider) {
         }
     }).
     when('/addcollection', {
-        templateUrl: 'partials/addnew.html',
+        templateUrl: 'Views/addnew.html',
         controller: 'AddController',
         resolve: {
             currentAuth: function (Authentication) {
@@ -62,6 +80,24 @@ logApp.config(['$routeProvider', function ($routeProvider) {
             }
         }
     }).
+    when('/adddeck', {
+        templateUrl: 'Views/adddeck.html',
+        controller: 'AddDeckController',
+        resolve: {
+            currentAuth: function (Authentication) {
+                return Authentication.requireAuth();
+            }
+        }
+    }).
+        when('/edit/:itemId', {
+            templateUrl: 'Views/edit.html',
+            controller: 'EditController',
+            resolve: {
+                currentAuth: function (Authentication) {
+                    return Authentication.requireAuth();
+                }
+            }
+        }).
    otherwise({
        redirectTo: '/home'
    });

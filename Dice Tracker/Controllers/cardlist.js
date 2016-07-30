@@ -40,7 +40,7 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                         name: cardName.name,
                         date: Firebase.ServerValue.TIMESTAMP
                     };
-
+                    debugger;
                     $scope.deckContents.$loaded().then(function () {
                         //creat array of existing items in selected deck
                         var deckCardContent = [];
@@ -50,20 +50,24 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                             console.log(deckContentInfo[j].name);
                         };
 
-                        //temp statements until for loop issue is resolved
-                        deckContentInfo.$add(contentsData);
-                        $scope.successMessage = "Card Added Successfully!";
-
+                        
                         //check if card is already added
-                        /*                        for (i = 0; i < deckCardContent.length; i++) {
-                                                    if (contentsData.name === deckCardContent[i]) {
-                                                        $scope.successMessage = "Card Already Added!";
-                                                    } else {
-                                                        deckContentInfo.$add(contentsData);
-                                                        $scope.successMessage = "Card Added Successfully!";
-                                                    }
-                                                };
-                        */
+                        $scope.successMessage = "Card Already Added!";
+                        var isAdded = false;
+
+                        for (i = 0; i < deckCardContent.length; i++) {
+                            if (contentsData.name === deckCardContent[i]) {
+                                isAdded = true;
+                                break;
+                            }
+                        };
+
+                        if (!isAdded) {
+                            $scope.successMessage = "Card Added Successfully!";
+                            deckContentInfo.$add(contentsData);
+                        } 
+                        
+
                     });
                 };
 

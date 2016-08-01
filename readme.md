@@ -26,7 +26,7 @@ If the latest release does not work with this repository use instead the version
 ```shell
 # Angular - To install latest formal release
 npm install angular
-*Designed on v1.5.8
+#Designed on v1.5.8
 
 # AngularJS Animations - To install latest formal release *Designed on v1.5.8
 npm install angular-animate

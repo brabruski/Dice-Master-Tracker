@@ -1,6 +1,6 @@
-Dice Master Tracker is an App that allows user to keep track of their Dice Master collection as well as create decks for playing based on their current collection.
+Dice Master Tracker is an App that allows user to keep track of their Dice Masters collection. This App allows users to add new dice & cards, edit existing dice cards as well as create playable decks for gaming based on their current collection.
 
-> This repository is a Web App based off of the AngularJS v1.x Framework and utilises Firebase for Data Storage. This app showcases my capabilities in using Javascript Frameworks, User Experience and Front End Design.
+> This repository is a Web App based off of the AngularJS v1.x Framework and utilises Firebase for Data Storage. This App showcases my capabilities in using Javascript Frameworks, User Experience and Front End Design.
 
 ## Dependencies
 
@@ -38,7 +38,7 @@ npm install angular-route
 
 # Material Design Icons - To install latest formal release
 npm install mdi
-> see [Material Design Icons - Getting started](https://materialdesignicons.com/getting-started) for alternative installation options under the Angular Material Section.
+> see **[Material Design Icons - Getting started](https://materialdesignicons.com/getting-started)** for alternative installation options under the Angular Material Section.
 ```
 
 Other Dependencies used through a CDN

@@ -1,7 +1,9 @@
 ﻿<section class="dicePage">
     <div class="search">
         <h1>Dice Masters Cards</h1>
-        <label>search: </label>
+        <label class="formgroup">
+            Collection Quantity: <span class="badge">{{ howManyCards }} </span>
+        </label>
         <input ng-model="query" placeholder="Search for a Dice" autofocus />
         <label class="formgroup">
             by:
@@ -20,19 +22,18 @@
             <input type="radio" ng-model="direction" name="direction" value="reverse" />
             descending
         </label>
-        <label class="formgroup">
-            Collection Quantity: <span class="badge">{{ howManyCards }} </span>
-        </label>
         <a ng-href="#/addcollection" class="btn">Add a Card</a>
 
     </div>
-    <p class="greenSuccess">{{ successMessage }}</p>
     <ul class="dicelist">
         <li ng-animate="'animate'" class="diceobj cf" ng-class="die.currentState" ng-repeat="(key, die) in dice | filter:query | orderBy: diceOrder:direction">
             <div class="info">
-                <a href="#/details/{{ dice.indexOf(die) }}">    <h2>{{die.name}}</h2></a>
+                <a href="#/details/{{ dice.indexOf(die) }}"><h2>{{die.name}}</h2></a>
                 <h3><b>Energy Cost:</b> {{die.cost}}</h3>
                 <h3><b>Energy Type:</b> {{die.energy}}</h3>
+
+                <p class="greenSuccess" ng-show="die.success">{{ successMessage }}</p>
+
                 <p>Key: {{key}}</p>
                 <button class="btn btn-love tooltip" ng-click="showAddToDeck(die)">
                     <span>Add to Deck</span>
@@ -47,7 +48,7 @@
                         </button>
                     </form>
                 </div>
-                <button class="btn btn-delete tooltip" ng-click="deleteCard(key)">
+                <button class="btn btn-delete tooltip" ng-really-click="deleteCard(key)">
                     <span>Delete Card</span>
                 </button>
             </div>

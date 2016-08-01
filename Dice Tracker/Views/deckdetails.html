@@ -15,9 +15,9 @@
     </div>
 
     <ul class="dicelist">
-        <li ng-animate="'animate'" class="diceobj cf" ng-repeat="(key, die) in dice">
+        <li ng-animate="'animate'" class="diceobj cf" ng-repeat="(key, die) in deckDice">
             <div class="info">
-                <a href="#/details/{{ dice.indexOf(die) }}">    <h2>{{die.name}}</h2></a>
+                <a href="#/details/{{ deckDice.indexOf(die) }}"><h2>{{die.name}}</h2></a>
                 <button class="btn btn-delete tooltip" ng-click="removeCard(key)">
                     <span>Remove Card from this Deck</span>
                 </button>

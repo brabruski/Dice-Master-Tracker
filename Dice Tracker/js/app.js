@@ -1,6 +1,4 @@
-﻿/// <reference path="C:\Users\Logo_Production\Dropbox\Programming\Study\Dice Tracker\Dice Tracker\partials/list.html" />
-/// <reference path="C:\Users\Logo_Production\Dropbox\Programming\Study\Dice Tracker\Dice Tracker\partials/list.html" />
-var logApp = angular.module('diceApp', ['ngRoute', 'ngAnimate', 'firebase']).constant('FIREBASE_URL', 'https://dicetracker18052016.firebaseio.com/');
+﻿var logApp = angular.module('diceApp', ['ngRoute', 'ngAnimate', 'firebase']).constant('FIREBASE_URL', 'https://dicetracker18052016.firebaseio.com/');
 
 //If something doesn't resolve in the route (logApp.config.when) then run this.
 logApp.run(['$rootScope', '$location', function ($rootScope, $location) {
@@ -91,7 +89,7 @@ logApp.config(['$routeProvider', function ($routeProvider) {
     }).
         when('/edit/:itemId', {
             templateUrl: 'Views/edit.html',
-            controller: 'EditController',
+            controller: 'EditCardController',
             resolve: {
                 currentAuth: function (Authentication) {
                     return Authentication.requireAuth();

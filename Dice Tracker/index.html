@@ -1,34 +1,57 @@
 ﻿<!DOCTYPE html>
+
+<!--Still to do
+    Add ID onto card objects to be used in code for tracking and routing
+    Check ID's when adding cards & decks and make new cards have +1 on highest id value
+    Use id to browse and link between items (Deck Details / Card Details)
+    Add image links to cards
+    Edit Existing Cards option
+    Add ng-material / ng-animate and Style entire app
+    Allow new cards to be able to be specified as Action Cards or Hero/Villain cards upon creation
+    Allow only 2 action cards per deck
+    Add dice quantity per deck and show how many dice left to be used in deck
+    Allow changing of dice quantities under deck details
+-->
+
 <html lang="en" ng-app="diceApp">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dice Master Dice Tracker</title>
-    <script src="Scripts/angular.min.js"></script>
-    <script src="Scripts/angular-route.min.js"></script>
-    <script src="Scripts/angular-animate.min.js"></script>
+
+    <!--Frameworks-->
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-route/angular-route.min.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+    <link href="node_modules/angular-material/angular-material.min.css" rel="stylesheet" />
+    <script src="node_modules/angular-material/angular-material.min.js"></script>
 
     <!-- Firebase -->
     <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
-    <!-- AngularFire -->
     <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
 
+    <!--Factories-->
     <script src="js/app.js"></script>
-    <script src="Services/authentication.js"></script>
-    <script src="Controllers/registration.js"></script>
-    <script src="Controllers/landing.js"></script>
-    <script src="Controllers/home.js"></script>
-    <script src="Controllers/cardlist.js"></script>
-    <script src="Controllers/newcard.js"></script>
-    <script src="Controllers/cardedit.js"></script>
-    <script src="Controllers/carddetails.js"></script>
-    <script src="Controllers/decklist.js"></script>
-    <script src="Controllers/newdeck.js"></script>
-    <script src="Controllers/deckdetails.js"></script>
+    <script src="Services/authentication.fac.js"></script>
+    <script src="Services/click_confirmation.fac.js"></script>
 
+    <!--Controllers-->
+    <script src="Controllers/registration.ctr.js"></script>
+    <script src="Controllers/landing.ctr.js"></script>
+    <script src="Controllers/home.ctr.js"></script>
+    <script src="Controllers/cardlist.ctr.js"></script>
+    <script src="Controllers/newcard.ctr.js"></script>
+    <script src="Controllers/cardedit.ctr.js"></script>
+    <script src="Controllers/carddetails.ctr.js"></script>
+    <script src="Controllers/decklist.ctr.js"></script>
+    <script src="Controllers/newdeck.ctr.js"></script>
+    <script src="Controllers/deckdetails.ctr.js"></script>
+
+    <!--Style Sources-->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/dicemain.css" rel="stylesheet" />
+
 </head>
 <body>
     <header>
@@ -39,7 +62,6 @@
         <div class="row">
             <div class="page col-xs-10 col-xs-offset-1">
                 <main class="cf" ng-view>
-
                 </main>
             </div>
         </div>

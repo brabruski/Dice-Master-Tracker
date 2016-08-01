@@ -13,17 +13,20 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                 var deckRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/decks');
                 var deckInfo = $firebaseArray(deckRef);
 
+                //initialising the filters
                 $scope.dice = collectionInfo;
                 $scope.decks = deckInfo;
                 $scope.diceOrder = 'name';
 
+                //remove card from database
                 $scope.deleteCard = function (key) {
                     collectionInfo.$remove(key);
                 };
 
+                //show the add to deck components
                 $scope.showAddToDeck = function (currentCard) {
                     currentCard.show = !currentCard.show;
-                    if (currentCard.currentState == 'expanded') {
+                    if (currentCard.currentState === 'expanded') {
                         currentCard.currentState = '';
                     } else {
                         currentCard.currentState = 'expanded';
@@ -40,19 +43,21 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                         name: cardName.name,
                         date: Firebase.ServerValue.TIMESTAMP
                     };
-                    debugger;
+
                     $scope.deckContents.$loaded().then(function () {
                         //creat array of existing items in selected deck
                         var deckCardContent = [];
                         for (j = 0; j < $scope.deckContents.length; j++) {
                             deckCardContent[j] = $scope.deckContents[j].name;
-                            console.log(deckCardContent[j]);
-                            console.log(deckContentInfo[j].name);
-                        };
+                        }
 
-                        
+                        //set all success attributes to false
+                        for (k = 0; k < $scope.dice.length; k++) {
+                            $scope.dice[k].success = false;
+                        }
+
                         //check if card is already added
-                        $scope.successMessage = "Card Already Added!";
+                        $scope.successMessage = 'Card Already Exists in the "' + deckName.deckname + '" Deck!';
                         var isAdded = false;
 
                         for (i = 0; i < deckCardContent.length; i++) {
@@ -60,13 +65,14 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                                 isAdded = true;
                                 break;
                             }
-                        };
+                        }
 
                         if (!isAdded) {
-                            $scope.successMessage = "Card Added Successfully!";
+                            $scope.successMessage = 'Card Added Successfully to ' + deckName.deckname + '!';
                             deckContentInfo.$add(contentsData);
-                        } 
-                        
+                        }
+                        $scope.dice.success = false;
+                        cardName.success = true;
 
                     });
                 };

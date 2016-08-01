@@ -38,9 +38,9 @@ npm install angular-route
 
 # Material Design Icons - To install latest formal release
 npm install mdi
-> see **[Material Design Icons - Getting started](https://materialdesignicons.com/getting-started)** for alternative installation options under the Angular Material Section.
+see [Material Design Icons](https://materialdesignicons.com/getting-started) for alternative installation options under the Angular Material Section.
 ```
 
-Other Dependencies used through a CDN
+## Other Dependencies used through a CDN
 * **[Firebase](https://firebase.google.com)**
 * **AngularFire**

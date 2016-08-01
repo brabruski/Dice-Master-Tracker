@@ -26,19 +26,23 @@ If the latest release does not work with this repository use instead the version
 ```shell
 # Angular - To install latest formal release
 npm install angular
-#Designed on v1.5.8
+# Designed on v1.5.8
 
-# AngularJS Animations - To install latest formal release *Designed on v1.5.8
+# AngularJS Animations - To install latest formal release 
 npm install angular-animate
+# Designed on v1.5.8
 
-# Angular Material Design - To install latest formal release *Designed on v1.1.0-rc.5
+# Angular Material Design - To install latest formal release
 npm install angular-material
+# Designed on v1.1.0-rc.5
 
-# AngularJS ngRoute - To install latest formal release *Designed on v1.5.8
+# AngularJS ngRoute - To install latest formal release
 npm install angular-route
+# Designed on v1.5.8
 
 # Material Design Icons - To install latest formal release
 npm install mdi
+
 ```
 > see [Material Design Icons - Getting Started](https://materialdesignicons.com/getting-started) for alternative installation options under the Angular Material Section.
 

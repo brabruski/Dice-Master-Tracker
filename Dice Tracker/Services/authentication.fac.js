@@ -54,7 +54,7 @@
                         });
                     authObj.login(user);
 
-                    $rootScope.message = "Hi " + user.fname;
+                    $rootScope.message = "Hi " + user.displayname;
                 }).catch(function (error) {
                     $rootScope.message = error.message;
                 });

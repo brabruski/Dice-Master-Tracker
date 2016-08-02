@@ -725,13 +725,14 @@
     <Content Include="node_modules\bootstrap\js\transition.js" />
     <Content Include="Services\authentication.fac.js" />
     <Content Include="Services\click_confirmation.fac.js" />
+    <Content Include="Services\collection.fac.js" />
     <Content Include="Views\adddeck.html" />
     <Content Include="Views\addnew.html" />
     <Content Include="Views\cardlist.html" />
     <Content Include="Views\deckdetails.html" />
     <Content Include="Views\decklist.html" />
     <Content Include="Views\carddetails.html" />
-    <Content Include="Views\edit.html" />
+    <Content Include="Views\cardedit.html" />
     <Content Include="js\data.json" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />

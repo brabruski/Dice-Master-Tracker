@@ -20,7 +20,7 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
 
                 //remove card from database
                 $scope.deleteCard = function (key) {
-                    collectionInfo.$remove(key);
+                    collectionInfo.$remove(key + 1);
                 };
 
                 //show the add to deck components

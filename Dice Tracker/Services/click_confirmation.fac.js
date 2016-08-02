@@ -4,7 +4,7 @@ logApp.directive('ngReallyClick', [function () {
         restrict: 'A',
         link: function (scope, element, attrs) {
             element.bind('click', function () {
-                var message = "Are You Sure You Would Like to Delete this Item?";
+                var message = "Are You Sure You Would Like to Delete this Item? ";
                 if (message && confirm(message)) {
                     scope.$apply(attrs.ngReallyClick);
                 }

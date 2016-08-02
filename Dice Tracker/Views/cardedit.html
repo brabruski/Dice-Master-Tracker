@@ -1,9 +1,10 @@
 ﻿<div class="card meetings cf">
     <div class="textintro">
-        <h1>Add To Your Collection</h1>
-        <p>Enter in all the details of the Card and respective Dice and hit 'Save'</p>
+        <h1>Edit Card Details</h1>
+        <p>Update this Card's details and hit 'Save'</p>
+        <p class="greenSuccess"> {{ successMessage }}</p>
     </div>
-    <form class="formgroup addmeeting cf" ng-model="dice" name="editform" ng-submit="editCard()" novalidate>
+    <form class="formgroup addmeeting cf" ng-model="dice" name="editcard" ng-submit="editCard()" novalidate>
         <div class="inputwrapper">
             <input type="text" name="cardname" placeholder="Card Name." ng-model="cardname" ng-required="true" />
             <input type="text" name="cardcost" placeholder="Dice Cost." ng-model="cardcost" ng-required="true" />

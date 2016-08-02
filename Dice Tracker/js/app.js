@@ -88,7 +88,7 @@ logApp.config(['$routeProvider', function ($routeProvider) {
         }
     }).
         when('/edit/:itemId', {
-            templateUrl: 'Views/edit.html',
+            templateUrl: 'Views/cardedit.html',
             controller: 'EditCardController',
             resolve: {
                 currentAuth: function (Authentication) {

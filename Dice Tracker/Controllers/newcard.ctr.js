@@ -19,8 +19,21 @@
                 $scope.dicequantity = '1';
 
                 $scope.addCard = function () {
+                    var cardIds = [];
+                    for (var i = 0; i < collectionInfo.length; i++) {
+                        cardIds.push(collectionInfo[i].id);
+                    }
+                    var topId = 0;
+                    for (var j = 0; j < cardIds.length; j++) {
+                        if (cardIds[j] > topId) {
+                            topId = cardIds[j];
+                        }
+                    }
+                    topId++;
+
                     //$add firebase method for adding to database
                     collectionInfo.$add({
+                        id: topId,
                         name: $scope.cardname,
                         cost: $scope.cardcost,
                         energy: $scope.cardenergy,

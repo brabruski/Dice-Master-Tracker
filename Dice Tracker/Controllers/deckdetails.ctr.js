@@ -11,18 +11,18 @@ logApp.controller('DeckDetailsController', ['$scope', '$rootScope', '$firebaseAu
 
                 var collectionRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/collection');
                 var collectionInfo = $firebaseArray(collectionRef);
-                
+
                 $scope.decks = deckInfo;
                 $scope.whichItem = $routeParams.deckId;
-                
+
                 $scope.decks.$loaded().then(function () {
                     var currentDeck = $scope.decks[$scope.whichItem].$id;
                     $scope.deckDice = [];
                     //load cards stored under deck
                     var deckContentRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/decks/' + currentDeck + '/contents');
                     var deckContentInfo = $firebaseArray(deckContentRef);
-                    $scope.diceList = deckContentInfo;
 
+                    $scope.diceList = deckContentInfo;
                     $scope.diceList.$loaded().then(function () {
 
                         for (var i = 0; i < collectionInfo.length; i++) {

@@ -17,6 +17,7 @@
                 $scope.cardenergy = 'Fist';
                 $scope.cardaffiliation = 'Marvel';
                 $scope.dicequantity = '1';
+                $scope.cardtype = 'Hero / Villain'
 
                 $scope.addCard = function () {
                     var cardIds = [];
@@ -39,8 +40,10 @@
                         energy: $scope.cardenergy,
                         image: $scope.cardimage,
                         affiliation: $scope.cardaffiliation,
+                        cardtype: $scope.cardtype,
                         description: $scope.carddescription,
                         colour: $scope.cardcolour,
+                        rarity: $scope.rarity,
                         series: $scope.cardseries,
                         quantity: $scope.dicequantity,
                         date: Firebase.ServerValue.TIMESTAMP
@@ -52,6 +55,7 @@
                         $scope.cardseries = '';
                         $scope.carddescription = '';
                         $scope.cardcolour = '';
+                        rarity: 'Common',
                         $scope.dicequantity = '1';
                         $scope.successMessage = "Card Added Successfully!";
                     }

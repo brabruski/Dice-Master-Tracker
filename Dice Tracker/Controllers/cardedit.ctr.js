@@ -24,8 +24,10 @@
                     $scope.cardenergy = collectionInfo[$scope.whichItem].energy;
                     $scope.cardimage = "None";
                     $scope.cardaffiliation = collectionInfo[$scope.whichItem].affiliation;
+                    $scope.cardtype = collectionInfo[$scope.whichItem].cardtype;
                     $scope.carddescription = collectionInfo[$scope.whichItem].description;
                     $scope.cardcolour = collectionInfo[$scope.whichItem].colour;
+                    $scope.rarity = collectionInfo[$scope.whichItem].rarity;
                     $scope.cardseries = collectionInfo[$scope.whichItem].series;
                     $scope.dicequantity = collectionInfo[$scope.whichItem].quantity;
                 });
@@ -38,8 +40,10 @@
                         energy: $scope.cardenergy,
                         image: $scope.cardimage,
                         affiliation: $scope.cardaffiliation,
+                        cardtype: $scope.cardtype,
                         description: $scope.carddescription,
                         colour: $scope.cardcolour,
+                        rarity: $scope.rarity,
                         series: $scope.cardseries,
                         quantity: $scope.dicequantity,
                         id: collectionInfo[$scope.whichItem].id,

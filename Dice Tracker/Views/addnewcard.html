@@ -15,6 +15,7 @@
                     <option value="Lightning">Lightning</option>
                     <option value="Mask">Mask</option>
                     <option value="Shield">Shield</option>
+                    <option value="Generic">Generic</option>
                 </select>
             </label>
             <label class="formgroup">
@@ -24,10 +25,13 @@
                     <option value="Marvel">Marvel</option>
                 </select>
             </label>
-            <input type="text" name="carddescription" placeholder="Description." ng-model="carddescription" ng-required="true" />
-            <input type="text" name="cardcolour" placeholder="Dice Colour." ng-model="cardcolour" ng-required="true" />
-            <input type="text" name="cardseries" placeholder="Card Series. E.g. Avengers vs X-men" ng-model="cardseries" ng-required="true" />
-            <input type="text" name="cardimage" placeholder="Upload an Image" ng-model="cardimage" />
+            <label class="formgroup">
+                Card Type
+                <select ng-model="cardtype">
+                    <option value="Action">Action Card</option>
+                    <option value="Hero / Villain">Hero / Villain</option>
+                </select>
+            </label>
             <label class="formgroup">
                 Quantity of Dice
                 <select ng-model="dicequantity">
@@ -38,6 +42,20 @@
                     <option value="5">5</option>
                 </select>
             </label>  
+            <input type="text" name="carddescription" placeholder="Description." ng-model="carddescription" ng-required="true" />
+            <input type="text" name="cardcolour" placeholder="Dice Colour." ng-model="cardcolour" ng-required="true" />
+            <label class="formgroup">
+                Rarity
+                <select ng-model="rarity">
+                    <option value="Common">Common (Grey Stripe)</option>
+                    <option value="Uncommon">Uncommon (Green Stripe)</option>
+                    <option value="Rare">Rare (Yellow Stripe)</option>
+                    <option value="Super Rare">Super Rare (Red Stripe)</option>
+                </select>
+            </label>
+            <input type="text" name="cardseries" placeholder="Card Series. E.g. Avengers vs X-men" ng-model="cardseries" ng-required="true" />
+            <input type="text" name="cardimage" placeholder="Upload an Image" ng-model="cardimage" />
+            
         </div>
         <button type="submit" class="btn" ng-disabled="addform.$invalid">Save</button>
         <a ng-href="#/collection" class="btn">Back to Collection</a>

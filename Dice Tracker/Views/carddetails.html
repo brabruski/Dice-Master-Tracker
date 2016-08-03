@@ -8,6 +8,7 @@
         <a href="#/details/{{ nextItem }}" class="btn btn-left">&gt;</a>
         <!--  <img ng-src="{{dice[whichItem].image}}" alt="Card of {{dice[whichItem].name}}"> -->
         <h1>{{dice[whichItem].name}}</h1>
+        <h2>{{dice[whichItem].cardtype}}</h2>
         <h3>({{dice[whichItem].affiliation}})</h3>
         <div class="info">
             <p>{{dice[whichItem].description}}
@@ -16,7 +17,9 @@
             <li><b>Energy Cost:</b> {{dice[whichItem].cost}} </li>
             <li><b>Energy type:</b> {{dice[whichItem].energy}}</li>
             <li><b>Dice Colour:</b> {{dice[whichItem].colour}}</li>
+            <li><b>Card Rarity:</b> {{dice[whichItem].rarity}}</li>
             <li><b>Card Series:</b> {{dice[whichItem].series}}</li>
+            <li><b>Dice Quantity:</b> {{dice[whichItem].quantity}}</li>
          </ul>
     </div>
 

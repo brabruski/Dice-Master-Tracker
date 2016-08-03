@@ -70,7 +70,7 @@ logApp.config(['$routeProvider', function ($routeProvider) {
         }
     }).
     when('/addcollection', {
-        templateUrl: 'Views/addnew.html',
+        templateUrl: 'Views/addnewcard.html',
         controller: 'AddController',
         resolve: {
             currentAuth: function (Authentication) {
@@ -79,7 +79,7 @@ logApp.config(['$routeProvider', function ($routeProvider) {
         }
     }).
     when('/adddeck', {
-        templateUrl: 'Views/adddeck.html',
+        templateUrl: 'Views/addnewdeck.html',
         controller: 'AddDeckController',
         resolve: {
             currentAuth: function (Authentication) {

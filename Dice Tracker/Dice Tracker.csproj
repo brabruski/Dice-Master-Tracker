@@ -726,8 +726,8 @@
     <Content Include="Services\authentication.fac.js" />
     <Content Include="Services\click_confirmation.fac.js" />
     <Content Include="Services\collection.fac.js" />
-    <Content Include="Views\adddeck.html" />
-    <Content Include="Views\addnew.html" />
+    <Content Include="Views\addnewdeck.html" />
+    <Content Include="Views\addnewcard.html" />
     <Content Include="Views\cardlist.html" />
     <Content Include="Views\deckdetails.html" />
     <Content Include="Views\decklist.html" />

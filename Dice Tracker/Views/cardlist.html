@@ -12,6 +12,7 @@
                 <option value="cost">Dice Cost</option>
                 <option value="energy">Energy Type</option>
                 <option value="affiliation">Affiliation</option>
+                <option value="cardtype">Card Type</option>
             </select>
         </label>
         <label class="formgroup">
@@ -34,7 +35,7 @@
 
                 <p class="greenSuccess" ng-show="die.success">{{ successMessage }}</p>
 
-                <p>Key: {{key}}</p>
+                <p>Card Type: {{die.cardtype}}</p>
                 <button class="btn btn-love tooltip" ng-click="showAddToDeck(die)">
                     <span>Add to Deck</span>
                 </button>

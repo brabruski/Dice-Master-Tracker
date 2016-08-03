@@ -1,0 +1,78 @@
+﻿<div class="card meetings cf">
+    <div class="textintro">
+        <h1>Edit Card Details</h1>
+        <p>Update this Card's details and hit 'Save'</p>
+        <p class="greenSuccess"> {{ successMessage }}</p>
+    </div>
+    <form class="formgroup addmeeting cf" ng-model="dice" name="editcard" ng-submit="editCard()" novalidate>
+        <div class="inputwrapper">
+            <label class="formgroup">
+                Card Name
+                <input type="text" name="cardname" placeholder="Card Name." ng-model="cardname" ng-required="true" />
+            </label>
+            <label class="formgroup">
+                Card Cost
+                <input type="text" name="cardcost" placeholder="Dice Cost." ng-model="cardcost" ng-required="true" />
+            </label>
+            <label class="formgroup">
+                Energy Type
+                <select ng-model="cardenergy">
+                    <option value="Fist">Fist</option>
+                    <option value="Lightning">Lightning</option>
+                    <option value="Mask">Mask</option>
+                    <option value="Shield">Shield</option>
+                    <option value="Generic">Generic</option>
+                </select>
+            </label>
+            <label class="formgroup">
+                Affiliation
+                <select ng-model="cardaffiliation">
+                    <option value="DC">DC</option>
+                    <option value="Marvel">Marvel</option>
+                </select>
+            </label>
+            <label class="formgroup">
+                Card Type
+                <select ng-model="cardtype">
+                    <option value="Action">Action Card</option>
+                    <option value="Hero / Villain">Hero / Villain</option>
+                </select>
+            </label>
+            <label class="formgroup">
+                Quantity of Dice
+                <select ng-model="dicequantity">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </label>
+            <label class="formgroup">
+                Description
+                <input type="text" name="carddescription" placeholder="Description." ng-model="carddescription" ng-required="true" />
+            </label>
+            <label class="formgroup">
+                Dice Colour
+                <input type="text" name="cardcolour" placeholder="Dice Colour." ng-model="cardcolour" ng-required="true" />
+            </label>
+            <label class="formgroup">
+                Rarity
+                <select ng-model="rarity">
+                    <option value="Common">Common (Grey Stripe)</option>
+                    <option value="Uncommon">Uncommon (Green Stripe)</option>
+                    <option value="Rare">Rare (Yellow Stripe)</option>
+                    <option value="Super Rare">Super Rare (Red Stripe)</option>
+                </select>
+            </label>
+            <label class="formgroup">
+                Card Series
+                <input type="text" name="cardseries" placeholder="Card Series. E.g. Avengers vs X-men" ng-model="cardseries" ng-required="true" />
+            </label>
+            <input type="text" name="cardimage" placeholder="Upload an Image" ng-model="cardimage" />
+        </div>
+        <button type="submit" class="btn" ng-disabled="editform.$invalid">Save</button>
+        <a ng-href="#/collection" class="btn">Back to Collection</a>
+    </form>
+
+</div>

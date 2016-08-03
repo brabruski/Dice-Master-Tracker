@@ -17,17 +17,33 @@
                 $scope.cardenergy = 'Fist';
                 $scope.cardaffiliation = 'Marvel';
                 $scope.dicequantity = '1';
+                $scope.cardtype = 'Hero / Villain'
 
                 $scope.addCard = function () {
+                    var cardIds = [];
+                    for (var i = 0; i < collectionInfo.length; i++) {
+                        cardIds.push(collectionInfo[i].id);
+                    }
+                    var topId = 0;
+                    for (var j = 0; j < cardIds.length; j++) {
+                        if (cardIds[j] > topId) {
+                            topId = cardIds[j];
+                        }
+                    }
+                    topId++;
+
                     //$add firebase method for adding to database
                     collectionInfo.$add({
+                        id: topId,
                         name: $scope.cardname,
                         cost: $scope.cardcost,
                         energy: $scope.cardenergy,
                         image: $scope.cardimage,
                         affiliation: $scope.cardaffiliation,
+                        cardtype: $scope.cardtype,
                         description: $scope.carddescription,
                         colour: $scope.cardcolour,
+                        rarity: $scope.rarity,
                         series: $scope.cardseries,
                         quantity: $scope.dicequantity,
                         date: Firebase.ServerValue.TIMESTAMP
@@ -39,6 +55,7 @@
                         $scope.cardseries = '';
                         $scope.carddescription = '';
                         $scope.cardcolour = '';
+                        rarity: 'Common',
                         $scope.dicequantity = '1';
                         $scope.successMessage = "Card Added Successfully!";
                     }

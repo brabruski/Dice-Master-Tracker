@@ -15,13 +15,27 @@ logApp.controller('AddDeckController', ['$scope', '$rootScope', '$location', '$f
                 var deckInfo = $firebaseArray(deckRef);
 
                 $scope.addDeck = function () {
+                    //check existing ids
+                    var deckIds = [];
+                    for (var i = 0; i < deckInfo.length; i++) {
+                        deckIds.push(deckInfo[i].id);                        
+                    }
+                    var highId = 0;
+                    for (var j = 0; j < deckIds.length; j++) {
+                        if (deckIds[j] > highId) {
+                            highId = deckIds[j];
+                        }
+                    }
+                    highId++;
+
                     //$add firebase method for adding to database
                     deckInfo.$add({
+                        id: highId,
                         deckname: $scope.deckname,
                         deckdescription: $scope.deckdescription,
                         date: Firebase.ServerValue.TIMESTAMP
                     }).then(function () {
-                       $location.path('/decks/')
+                        $location.path('/decks/');
                     }
                     );
                 };

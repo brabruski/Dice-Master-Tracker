@@ -6,6 +6,7 @@
     <div class="diceobj cf" ng-model="dice">
         <a href="#/details/{{ prevItem }}" class="btn btn-left">&lt;</a>
         <a href="#/details/{{ nextItem }}" class="btn btn-left">&gt;</a>
+        <a href="#/collection" class="btn">&laquo; Back to Card List</a>
         <!--  <img ng-src="{{dice[whichItem].image}}" alt="Card of {{dice[whichItem].name}}"> -->
         <h1>{{dice[whichItem].name}}</h1>
         <h2>{{dice[whichItem].cardtype}}</h2>
@@ -23,7 +24,7 @@
          </ul>
     </div>
 
-    <a href="#/collection" class="btn">&laquo; Back to Card List</a>
+    
     <a href="#/edit/{{ dice.indexOf(dice[whichItem]) }}" class="btn">Edit Card</a>
 
 </section>

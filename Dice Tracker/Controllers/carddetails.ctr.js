@@ -26,7 +26,7 @@
                     } else {
                         $scope.nextItem = 0;
                     }
-                }) //end loaded function
+                }); //end loaded function
             }
         });
 

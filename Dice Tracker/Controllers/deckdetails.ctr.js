@@ -18,25 +18,41 @@ logApp.controller('DeckDetailsController', ['$scope', '$rootScope', '$firebaseAu
                 $scope.decks.$loaded().then(function () {
                     var currentDeck = $scope.decks[$scope.whichItem].$id;
                     $scope.deckDice = [];
+                    var heroCards = [];
+                    var actionCards = [];
+
                     //load cards stored under deck
                     var deckContentRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/decks/' + currentDeck + '/contents');
                     var deckContentInfo = $firebaseArray(deckContentRef);
 
-                    $scope.diceList = deckContentInfo;
-                    $scope.diceList.$loaded().then(function () {
+                    deckContentInfo.$loaded().then(function () {
 
                         for (var i = 0; i < collectionInfo.length; i++) {
-                            for (var j = 0; j < $scope.diceList.length; j++) {
-                                if (collectionInfo[i].name === $scope.diceList[j].name) {
+                            for (var j = 0; j < deckContentInfo.length; j++) {
+                                if (collectionInfo[i].id === deckContentInfo[j].id) {
                                     $scope.deckDice.push(collectionInfo[i]);
+                                } //end if Loop                                
+                            }// end for loop
+                        }//end for loop
+
+                        for (i = 0; i < collectionInfo.length; i++) {
+                            for (j = 0; j < $scope.deckDice.length; j++) {
+                                if (collectionInfo[i].name === $scope.deckDice[j].name) {
+                                    //set indexOf to get correct key value for card detail navigation
+                                    $scope.deckDice[j].navKey = collectionInfo.indexOf(collectionInfo[i]);
                                 }
                             }
                         }
 
-                        //remove card from deck
-                        $scope.removeCard = function (key) {
-                            deckContentInfo.$remove(key);
-                        };
+                        for (i = 0; i < $scope.deckDice.length; i++) {
+                            //Check for Action or Hero Cards
+                            if ($scope.deckDice[i].cardtype === "Action") {
+                                actionCards.push($scope.deckDice[i].id);
+                            } else {
+                                heroCards.push($scope.deckDice[i].id);
+
+                            }
+                        }
 
                         //create an anon function which works after database has loaded
                         if ($routeParams.deckId > 0) {
@@ -50,11 +66,44 @@ logApp.controller('DeckDetailsController', ['$scope', '$rootScope', '$firebaseAu
                         } else {
                             $scope.nextItem = 0;
                         }
+
+                        //watch for changes made to collection
+                        $scope.howManyHeroes = heroCards.length;
+                        $scope.howManyActions = actionCards.length;
+                        $scope.$watch('howManyHeroes', function () {
+                            $scope.howManyHeroes = heroCards.length;
+                        });
+
+                        $scope.$watch('howManyActions', function () {
+                            $scope.howManyActions = actionCards.length;
+                        });
+
+                        //remove card from deck
+                        $scope.removeItem = function (key) {
+                            for (j = 0; j < heroCards.length; j++) {
+                                if ($scope.deckDice[key].id === heroCards[j]) {
+                                    heroCards.splice(j, 1);
+                                }
+                            }
+                            for (j = 0; j < actionCards.length; j++) {
+                                if ($scope.deckDice[key].id === actionCards[j]) {
+                                    actionCards.splice(j, 1);
+                                }
+                            }
+
+                            for (i = 0; i < deckContentInfo.length; i++) {
+                                if ($scope.deckDice[key].id === deckContentInfo[i].id) {
+                                    deckContentInfo.$remove(i);
+                                }
+                            }
+                            $scope.deckDice.splice(key, 1);
+
+                        }; //End Remove funtion
+
                     }); //end $scope.diceList.$loaded function
 
                 }); //end $scope.decks.$loaded function
 
-            }
-        });
-
-    }]);
+            } // End auth If Statement
+        }); //End Authorisation Function
+    }]); //End controller Statement

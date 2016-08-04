@@ -32,18 +32,16 @@
                 <a href="#/details/{{ dice.indexOf(die) }}"><h2>{{die.name}}</h2></a>
                 <h3><b>Energy Cost:</b> {{die.cost}}</h3>
                 <h3><b>Energy Type:</b> {{die.energy}}</h3>
-
-                <p class="greenSuccess" ng-show="die.success">{{ successMessage }}</p>
-
                 <p>Card Type: {{die.cardtype}}</p>
-                <button class="btn btn-love tooltip" ng-click="showAddToDeck(die)">
+                <p class="greenSuccess" ng-show="die.success">{{ successMessage }}</p>
+                <button class="btn btn-love tooltip" ng-click="showAddTo(die)">
                     <span>Add to Deck</span>
                 </button>
                 <div class="showform" ng-show="die.show">
                     <form class="cf" ng-submit="addtoDeck(die, deckSelected)" novalidate>
                         Choose the Deck You Would Like To Add To:
                         <select name="deckName" ng-options="deck.deckname for deck in decks track by deck.deckname" ng-model="deckSelected"></select>
-                        <button type="submit" ng-click="showAddToDeck(die)" class="btn tooltip" ng-disabled="myForm.$invalid">
+                        <button type="submit" ng-click="showAddTo(die)" class="btn tooltip" ng-disabled="myForm.$invalid">
                             +
                             <span>Add to Deck</span>
                         </button>

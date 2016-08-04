@@ -20,16 +20,16 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
 
                 //remove card from database
                 $scope.deleteCard = function (key) {
-                    collectionInfo.$remove(key + 1);
+                    collectionInfo.$remove(key);
                 };
 
                 //show the add to deck components
-                $scope.showAddToDeck = function (currentCard) {
-                    currentCard.show = !currentCard.show;
-                    if (currentCard.currentState === 'expanded') {
-                        currentCard.currentState = '';
+                $scope.showAddTo = function (currentItem) {
+                    currentItem.show = !currentItem.show;
+                    if (currentItem.currentState === 'expanded') {
+                        currentItem.currentState = '';
                     } else {
-                        currentCard.currentState = 'expanded';
+                        currentItem.currentState = 'expanded';
                     }
                 };
 
@@ -41,6 +41,7 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
 
                     var contentsData = {
                         name: cardName.name,
+                        id: cardName.id,
                         date: Firebase.ServerValue.TIMESTAMP
                     };
 
@@ -78,11 +79,11 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                 };
 
                 collectionInfo.$loaded().then(function (data) {
-                    $rootScope.howManyCards = collectionInfo.length;
+                    $scope.howManyCards = collectionInfo.length;
                 });    //count how many cards in collection
 
-                collectionInfo.$watch(function (data) {
-                    $rootScope.howManyCards = collectionInfo.length;
+                $scope.$watch('howManyCards', function () {
+                    $scope.howManyCards = collectionInfo.length;
                 }); //watch for changes made to collection
 
             }

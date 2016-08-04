@@ -1,24 +1,45 @@
 ﻿<div class="search">
     <h1>Dice Masters Dice Tracker</h1>
+    <label class="formgroup">
+        <input type="radio" ng-model="query" name="query" checked />
+        Show All
+    </label>
+    <label class="formgroup">
+        <input type="radio" ng-model="query" name="query" value="Hero / Villain"/>
+        Hero / Villain Cards
+    </label>
+    <label class="formgroup">
+        <input type="radio" ng-model="query" name="query" value="Action"/>
+        Action Cards
+    </label>
 </div>
-<section class="diceinfo">
 
+<section class="diceinfo">
     <div class="diceobj cf" ng-model="decks">
         <a href="#/deckdetails/{{ prevItem }}" class="btn btn-left">&lt;</a>
         <a href="#/deckdetails/{{ nextItem }}" class="btn btn-left">&gt;</a>
-        <h1>{{decks[whichItem].deckname}}</h1>
-        <div class="info">
-            <p>{{decks[whichItem].deckdescription}}
-        </div>
         <a href="#/decks" class="btn">&laquo; Back to Deck List</a>
-        <a href="#/decks" class="btn">&laquo; Edit Deck</a>
+        <h1>{{decks[whichItem].deckname}}</h1>
+        <label class="formgroup">
+            Hero / Villain Cards in Deck: <span class="badge">{{ howManyHeroes }} / 8 </span>
+            Action Cards in Deck: <span class="badge">{{ howManyActions }} / 2 </span>
+        </label>
+        <div class="info">
+            <p>{{decks[whichItem].deckdescription}}</p>
+        </div>
     </div>
 
     <ul class="dicelist">
-        <li ng-animate="'animate'" class="diceobj cf" ng-repeat="(key, die) in deckDice">
+        <li ng-animate="'animate'" class="diceobj cf" ng-repeat="(key, die) in deckDice | filter:query">
             <div class="info">
-                <a href="#/details/{{ deckDice.indexOf(die) }}"><h2>{{die.name}}</h2></a>
-                <button class="btn btn-delete tooltip" ng-click="removeCard(key)">
+                <a href="#/details/{{ die.navKey }}"><h2>{{die.name}}</h2></a>
+                <p>{{ die.description }}</p>
+                <b>Dice Quantity:</b> {{die.quantity}}
+                <b>Dice Colour:</b> {{die.colour}}
+                <b>Key:</b> {{key}}
+                <b>Nav:</b> {{die.navKey}}
+                <b>Id:</b> {{die.id}}
+                <button class="btn btn-delete tooltip" ng-click="removeItem(key)">
                     <span>Remove Card from this Deck</span>
                 </button>
             </div>

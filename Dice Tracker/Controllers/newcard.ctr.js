@@ -17,7 +17,7 @@
                 $scope.cardenergy = 'Fist';
                 $scope.cardaffiliation = 'Marvel';
                 $scope.dicequantity = '1';
-                $scope.cardtype = 'Hero / Villain'
+                $scope.cardtype = 'Hero / Villain';
 
                 $scope.addCard = function () {
                     var cardIds = [];

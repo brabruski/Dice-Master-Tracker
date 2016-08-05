@@ -68,14 +68,15 @@ logApp.controller('DeckDetailsController', ['$scope', '$rootScope', '$firebaseAu
                         }
 
                         //watch for changes made to collection
-                        $scope.howManyHeroes = heroCards.length;
-                        $scope.howManyActions = actionCards.length;
-                        $scope.$watch('howManyHeroes', function () {
-                            $scope.howManyHeroes = heroCards.length;
+                        $rootScope.howManyHeroes = heroCards.length;
+                        $rootScope.howManyActions = actionCards.length;
+
+                        $rootScope.$watch('howManyHeroes', function () {
+                            $rootScope.howManyHeroes = heroCards.length;
                         });
 
-                        $scope.$watch('howManyActions', function () {
-                            $scope.howManyActions = actionCards.length;
+                        $rootScope.$watch('howManyActions', function () {
+                            $rootScope.howManyActions = actionCards.length;
                         });
 
                         //remove card from deck

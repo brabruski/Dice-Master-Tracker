@@ -15,8 +15,13 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
 
                 //initialising the filters
                 $scope.dice = collectionInfo;
-                $scope.decks = deckInfo;
                 $scope.diceOrder = 'name';
+
+                //Set default Selected option after deck database has downloaded fully
+                deckInfo.$loaded().then(function (data) {
+                    $scope.decks = deckInfo;
+                    $scope.deckSelected = $scope.decks[0];
+                });
 
                 //remove card from database
                 $scope.deleteCard = function (key) {

@@ -588,3 +588,12 @@ input.ng-valid.ng-touched {
 .btn-love { background-image: url(../images/icons/icon_heart.png); padding: 0; margin: 0 3px;}
 .btn-email { background-image: url(../images/icons/icon_email.png); }
 .btn-meeting { background-image:  url(../images/icons/icon_meeting.png); }
+
+/*Badge Classes*/
+
+.badgeGreen {
+    background-color: green;
+    }
+.badgeRed {
+    background-color: red;
+}

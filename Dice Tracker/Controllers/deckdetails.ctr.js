@@ -67,18 +67,6 @@ logApp.controller('DeckDetailsController', ['$scope', '$rootScope', '$firebaseAu
                             $scope.nextItem = 0;
                         }
 
-                        //watch for changes made to collection
-                        $rootScope.howManyHeroes = heroCards.length;
-                        $rootScope.howManyActions = actionCards.length;
-
-                        $rootScope.$watch('howManyHeroes', function () {
-                            $rootScope.howManyHeroes = heroCards.length;
-                        });
-
-                        $rootScope.$watch('howManyActions', function () {
-                            $rootScope.howManyActions = actionCards.length;
-                        });
-
                         //remove card from deck
                         $scope.removeItem = function (key) {
                             for (j = 0; j < heroCards.length; j++) {
@@ -101,9 +89,23 @@ logApp.controller('DeckDetailsController', ['$scope', '$rootScope', '$firebaseAu
 
                         }; //End Remove funtion
 
+                        //watch for changes made to collection
+                        $scope.howManyHeroes = heroCards.length;
+                        $scope.howManyActions = actionCards.length;
+                        $scope.$watch('howManyHeroes', function () {
+                            $scope.howManyHeroes = heroCards.length;
+                        });
+
+                        $scope.$watch('howManyActions', function () {
+                            $scope.howManyActions = actionCards.length;
+                        });
+
                     }); //end $scope.diceList.$loaded function
 
                 }); //end $scope.decks.$loaded function
+
+
+                
 
             } // End auth If Statement
         }); //End Authorisation Function

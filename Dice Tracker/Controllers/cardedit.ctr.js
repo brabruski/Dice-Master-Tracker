@@ -1,5 +1,5 @@
-﻿logApp.controller('EditCardController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL', '$routeParams',
-    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, FIREBASE_URL, $routeParams) {
+﻿logApp.controller('EditCardController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL', '$routeParams', 'DBServices',
+    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, FIREBASE_URL, $routeParams, DBServices) {
         //$rootScope taken from authentication service to gain User ID. $firebaseArray for writing to database
 
         //get details about logged in user to get data assigned to that user
@@ -11,31 +11,32 @@
             //create url for user using hash key
             if (authUser) {
                 //where to store new object when required if firebase sees Authenticated user
-                var collectionRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/collection');
-                var collectionInfo = $firebaseArray(collectionRef);
+                var collectionDetails = DBServices.cardCollection();
 
-                $scope.dice = collectionInfo;
+                $scope.dice = collectionDetails;
                 $scope.whichItem = $routeParams.itemId;
 
                 //display existing information
                 $scope.dice.$loaded().then(function () {
-                    $scope.cardname = collectionInfo[$scope.whichItem].name;
-                    $scope.cardcost = collectionInfo[$scope.whichItem].cost;
-                    $scope.cardenergy = collectionInfo[$scope.whichItem].energy;
+                    $scope.cardname = collectionDetails[$scope.whichItem].name;
+                    $scope.cardversion = collectionDetails[$scope.whichItem].cardversion;
+                    $scope.cardcost = collectionDetails[$scope.whichItem].cost;
+                    $scope.cardenergy = collectionDetails[$scope.whichItem].energy;
                     $scope.cardimage = "None";
-                    $scope.cardaffiliation = collectionInfo[$scope.whichItem].affiliation;
-                    $scope.cardtype = collectionInfo[$scope.whichItem].cardtype;
-                    $scope.carddescription = collectionInfo[$scope.whichItem].description;
-                    $scope.cardcolour = collectionInfo[$scope.whichItem].colour;
-                    $scope.rarity = collectionInfo[$scope.whichItem].rarity;
-                    $scope.cardseries = collectionInfo[$scope.whichItem].series;
-                    $scope.dicequantity = collectionInfo[$scope.whichItem].quantity;
+                    $scope.cardaffiliation = collectionDetails[$scope.whichItem].affiliation;
+                    $scope.cardtype = collectionDetails[$scope.whichItem].cardtype;
+                    $scope.carddescription = collectionDetails[$scope.whichItem].description;
+                    $scope.cardcolour = collectionDetails[$scope.whichItem].colour;
+                    $scope.rarity = collectionDetails[$scope.whichItem].rarity;
+                    $scope.cardseries = collectionDetails[$scope.whichItem].series;
+                    $scope.dicequantity = collectionDetails[$scope.whichItem].quantity;
                 });
 
                 $scope.editCard = function () {
                     //$save firebase method for saving existing to database
                     var cardSave = {
                         name: $scope.cardname,
+                        cardversion:  $scope.cardversion,
                         cost: $scope.cardcost,
                         energy: $scope.cardenergy,
                         image: $scope.cardimage,
@@ -46,12 +47,12 @@
                         rarity: $scope.rarity,
                         series: $scope.cardseries,
                         quantity: $scope.dicequantity,
-                        id: collectionInfo[$scope.whichItem].id,
+                        id: collectionDetails[$scope.whichItem].id,
                         date: Firebase.ServerValue.TIMESTAMP
                     };
 
-                    collectionInfo.$remove(collectionInfo[$scope.whichItem]).then(function () {
-                        collectionInfo.$add(cardSave).then(function () {
+                    collectionDetails.$remove(collectionDetails[$scope.whichItem]).then(function () {
+                        collectionDetails.$add(cardSave).then(function () {
                             $scope.successMessage = "Card Updated Successfully!";
                         });
                     });

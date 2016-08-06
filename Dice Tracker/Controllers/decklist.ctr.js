@@ -1,19 +1,16 @@
 ﻿/*Declare Scope etc. so on minification it doesn't get converted*/
-logApp.controller('DeckListController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
-    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
+logApp.controller('DeckListController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL', 'DBServices',
+    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, FIREBASE_URL, DBServices) {
 
         var ref = new Firebase(FIREBASE_URL);
         var auth = $firebaseAuth(ref);
 
         auth.$onAuth(function (authUser) {
             if (authUser) {
-                var deckRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/decks');
-                var deckInfo = $firebaseArray(deckRef);
-
-                $scope.decks = deckInfo;
+                $scope.decks = DBServices.deckCollection();
 
                 $scope.deleteDeck = function (key) {
-                    deckInfo.$remove(key);
+                    DBServices.deckCollection().$remove(key);
                 };
             }
         });

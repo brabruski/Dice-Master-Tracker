@@ -1,17 +1,24 @@
-﻿logApp.controller('CardDetailsController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL', '$routeParams',
-    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, FIREBASE_URL, $routeParams) {
+﻿logApp.controller('CardDetailsController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL', '$routeParams', 'DBServices',
+    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, FIREBASE_URL, $routeParams, DBServices) {
 
         var ref = new Firebase(FIREBASE_URL);
         var auth = $firebaseAuth(ref);
 
         auth.$onAuth(function (authUser) {
             if (authUser) {
-                var collectionRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/collection');
-                var collectionInfo = $firebaseArray(collectionRef);
+                var collectionDetails = DBServices.cardCollection();
 
-               
-                $scope.dice = collectionInfo;
+                $scope.dice = collectionDetails;
                 $scope.whichItem = $routeParams.itemId;
+
+                //Hide card version headings if they are action cards
+                $scope.hideActionVersion = function (typeOfCard) {
+                    if (typeOfCard === 'Action') {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                };
 
                 //create an anon function which works after database has loaded
                 $scope.dice.$loaded().then(function () {

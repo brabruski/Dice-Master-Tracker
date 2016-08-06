@@ -7,17 +7,6 @@
     <form class="formgroup addmeeting cf" name="addform" ng-submit="addCard()" novalidate>
         <div class="inputwrapper">
             <input type="text" name="cardname" placeholder="Card Name." ng-model="cardname" ng-required="true" />
-            <input type="text" name="cardcost" placeholder="Dice Cost." ng-model="cardcost" ng-required="true" />
-            <label class="formgroup">
-                Energy Type
-                <select ng-model="cardenergy">
-                    <option value="Fist">Fist</option>
-                    <option value="Lightning">Lightning</option>
-                    <option value="Mask">Mask</option>
-                    <option value="Shield">Shield</option>
-                    <option value="Generic">Generic</option>
-                </select>
-            </label>
             <label class="formgroup">
                 Affiliation
                 <select ng-model="cardaffiliation">
@@ -32,6 +21,20 @@
                     <option value="Hero / Villain">Hero / Villain</option>
                 </select>
             </label>
+            <input type="text" ng-hide="isAction" name="cardversion" placeholder="Card Version. E.g. Name: Hulk, Version: Green Goliath" ng-model="cardversion" ng-required="true" />
+            <input type="text" name="cardcost" placeholder="Dice Cost." ng-model="cardcost" ng-required="true" />
+            <label class="formgroup">
+                Energy Type
+                <select ng-model="cardenergy">
+                    <option value="Fist">Fist</option>
+                    <option value="Lightning">Lightning</option>
+                    <option value="Mask">Mask</option>
+                    <option value="Shield">Shield</option>
+                    <option value="Generic">Generic</option>
+                </select>
+            </label>
+
+
             <label class="formgroup">
                 Quantity of Dice
                 <select ng-model="dicequantity">
@@ -41,7 +44,7 @@
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
-            </label>  
+            </label>
             <input type="text" name="carddescription" placeholder="Description." ng-model="carddescription" ng-required="true" />
             <input type="text" name="cardcolour" placeholder="Dice Colour." ng-model="cardcolour" ng-required="true" />
             <label class="formgroup">
@@ -55,10 +58,12 @@
             </label>
             <input type="text" name="cardseries" placeholder="Card Series. E.g. Avengers vs X-men" ng-model="cardseries" ng-required="true" />
             <input type="text" name="cardimage" placeholder="Upload an Image" ng-model="cardimage" />
-            
+
         </div>
-        <button type="submit" class="btn" ng-disabled="addform.$invalid">Save</button>
-        <a ng-href="#/collection" class="btn">Back to Collection</a>
+        <div>
+            <button type="submit" class="btn" ng-disabled="addform.$invalid">Save</button>
+            <a ng-href="#/collection" class="btn">Back to Collection</a>
+        </div>
     </form>
 
 </div>

@@ -1,5 +1,5 @@
-logApp.controller('AddDeckController', ['$scope', '$rootScope', '$location', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
-    function ($scope, $rootScope, $location, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
+logApp.controller('AddDeckController', ['$scope', '$rootScope', '$location', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL', 'DBServices',
+    function ($scope, $rootScope, $location, $firebaseAuth, $firebaseArray, FIREBASE_URL, DBServices) {
         //$rootScope taken from authentication service to gain User ID. $firebaseArray for writing to database
 
         //get details about logged in user to get data assigned to that user
@@ -11,14 +11,13 @@ logApp.controller('AddDeckController', ['$scope', '$rootScope', '$location', '$f
             //create url for user using hash key
             if (authUser) {
                 //where to store new object when required if firebase sees Authenticated user
-                var deckRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/decks');
-                var deckInfo = $firebaseArray(deckRef);
+                var deckDetails = DBServices.deckCollection();
 
                 $scope.addDeck = function () {
                     //check existing ids
                     var deckIds = [];
-                    for (var i = 0; i < deckInfo.length; i++) {
-                        deckIds.push(deckInfo[i].id);                        
+                    for (var i = 0; i < deckDetails.length; i++) {
+                        deckIds.push(deckDetails[i].id);                        
                     }
                     var highId = 0;
                     for (var j = 0; j < deckIds.length; j++) {
@@ -29,7 +28,7 @@ logApp.controller('AddDeckController', ['$scope', '$rootScope', '$location', '$f
                     highId++;
 
                     //$add firebase method for adding to database
-                    deckInfo.$add({
+                    deckDetails.$add({
                         id: highId,
                         deckname: $scope.deckname,
                         deckdescription: $scope.deckdescription,

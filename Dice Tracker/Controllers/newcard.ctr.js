@@ -1,5 +1,5 @@
-﻿logApp.controller('AddController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
-    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
+﻿logApp.controller('AddController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL', 'DBServices',
+    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, FIREBASE_URL, DBServices) {
         //$rootScope taken from authentication service to gain User ID. $firebaseArray for writing to database
 
         //get details about logged in user to get data assigned to that user
@@ -10,19 +10,30 @@
         auth.$onAuth(function (authUser) {
             //create url for user using hash key
             if (authUser) {
-                //where to store new object when required if firebase sees Authenticated user
-                var collectionRef = new Firebase(FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/collection');
-                var collectionInfo = $firebaseArray(collectionRef);
 
+                var collectionDetails = DBServices.cardCollection();
+
+                //Initialise selection options
                 $scope.cardenergy = 'Fist';
                 $scope.cardaffiliation = 'Marvel';
                 $scope.dicequantity = '1';
                 $scope.cardtype = 'Hero / Villain';
+                $scope.rarity = 'Common';
+
+                $scope.$watch('cardtype', function () {
+                    if ($scope.cardtype === 'Action') {
+                        $scope.isAction = true;
+                        $scope.cardversion = "Action";
+                    } else {
+                        $scope.isAction = false;
+                        $scope.cardversion = "";
+                    }
+                }); //watch for if it's action card or not
 
                 $scope.addCard = function () {
                     var cardIds = [];
-                    for (var i = 0; i < collectionInfo.length; i++) {
-                        cardIds.push(collectionInfo[i].id);
+                    for (var i = 0; i < collectionDetails.length; i++) {
+                        cardIds.push(collectionDetails[i].id);
                     }
                     var topId = 0;
                     for (var j = 0; j < cardIds.length; j++) {
@@ -33,9 +44,10 @@
                     topId++;
 
                     //$add firebase method for adding to database
-                    collectionInfo.$add({
+                    collectionDetails.$add({
                         id: topId,
                         name: $scope.cardname,
+                        cardversion: $scope.cardversion,
                         cost: $scope.cardcost,
                         energy: $scope.cardenergy,
                         image: $scope.cardimage,
@@ -50,6 +62,7 @@
                     }).then(function () {
                         //after submitting, clears the fields
                         $scope.cardname = '';
+                        $scope.cardversion = '';
                         $scope.cardcost = '';
                         $scope.cardimage = '';
                         $scope.cardseries = '';
@@ -62,7 +75,7 @@
                     );
                 };
 
-                
+
             }
         });
     }]);

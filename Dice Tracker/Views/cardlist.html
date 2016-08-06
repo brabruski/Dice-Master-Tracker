@@ -2,7 +2,7 @@
     <div class="search">
         <h1>Dice Masters Cards</h1>
         <label class="formgroup">
-            Collection Quantity: <span class="badge">{{ howManyCards }} </span>
+            Cards in Collection: <span class="badge">{{ howManyCards }} </span>
         </label>
         <input ng-model="query" placeholder="Search for a Dice" autofocus />
         <label class="formgroup">
@@ -30,6 +30,7 @@
         <li ng-animate="'animate'" class="diceobj cf" ng-class="die.currentState" ng-repeat="(key, die) in dice | filter:query | orderBy: diceOrder:direction">
             <div class="info">
                 <a href="#/details/{{ dice.indexOf(die) }}"><h2>{{die.name}}</h2></a>
+                <h2 ng-hide="hideActionVersion(die.cardtype)">({{ die.cardversion }})</h2>
                 <h3><b>Energy Cost:</b> {{die.cost}}</h3>
                 <h3><b>Energy Type:</b> {{die.energy}}</h3>
                 <p>Card Type: {{die.cardtype}}</p>

@@ -9,6 +9,7 @@
         <a href="#/collection" class="btn">&laquo; Back to Card List</a>
         <!--  <img ng-src="{{dice[whichItem].image}}" alt="Card of {{dice[whichItem].name}}"> -->
         <h1>{{dice[whichItem].name}}</h1>
+        <h2 ng-hide="hideActionVersion(dice[whichItem].cardtype)">({{ dice[whichItem].cardversion }})</h2>
         <h2>{{dice[whichItem].cardtype}}</h2>
         <h3>({{dice[whichItem].affiliation}})</h3>
         <div class="info">

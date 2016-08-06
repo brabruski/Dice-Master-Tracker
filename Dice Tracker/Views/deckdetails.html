@@ -5,11 +5,11 @@
         Show All
     </label>
     <label class="formgroup">
-        <input type="radio" ng-model="query" name="query" value="Hero / Villain"/>
+        <input type="radio" ng-model="query" name="query" value="Hero / Villain" />
         Hero / Villain Cards
     </label>
     <label class="formgroup">
-        <input type="radio" ng-model="query" name="query" value="Action"/>
+        <input type="radio" ng-model="query" name="query" value="Action" />
         Action Cards
     </label>
 </div>
@@ -23,6 +23,7 @@
         <label class="formgroup">
             Hero / Villain Cards in Deck: <span class="badge">{{ howManyHeroes }} / 8 </span>
             Action Cards in Deck: <span class="badge">{{ howManyActions }} / 2 </span>
+            Total Hero Dice: <span class="badge">{{ howManyHeroDice }} / 20 </span>
         </label>
     </div>
 
@@ -32,12 +33,28 @@
                 <a href="#/details/{{ die.navKey }}"><h2>{{die.name}}</h2></a>
                 <h2 ng-hide="hideActionVersion(die.cardtype)">({{ die.cardversion }})</h2>
                 <p>{{ die.description }}</p>
-                <b>Dice Quantity:</b> {{die.quantity}}
+                <div ng-hide="hideActionVersion(die.cardtype)"><b>Dice Quantity:</b> {{die.quantity}}</div>
                 <b>Dice Colour:</b> {{die.colour}}
                 <b>Dice Quantity:</b> {{die.diceQuantity}}
+                <p class="greenSuccess" ng-show="die.success">{{ successQuantityMessage }}</p>
                 <button class="btn btn-delete tooltip" ng-click="removeItem(key)">
                     <span>Remove Card from this Deck</span>
                 </button>
+                <button class="btn btn-love tooltip" ng-hide="hideActionVersion(die.cardtype)" ng-click="showAddTo(die)">
+                    <span>Increase the Dice Amount for this Card in This Deck</span>
+                </button>
+
+                <div class="showform" ng-show="die.show">
+                    <form name="incrementDiceQuantity" ng-submit="submitNewQuantity(die, die.diceQuantity)" novalidate>
+                        <b>Dice Quantity in Deck: </b><input type="number" ng-model="die.diceQuantity" name="quantity" ng-value="{{die.diceQuantity}}" min="0" max="5">
+                        <p class="error validationerror" ng-show="incrementDiceQuantity.$invalid">Please input a number between 0 &amp; 5</p>
+                        <button type="submit" ng-click="showAddTo(die)" class="btn tooltip" ng-disabled="myForm.$invalid">
+                            +
+                            <span>Add to Deck</span>
+                        </button>
+                    </form>
+                </div>
+
             </div>
 
         </li>

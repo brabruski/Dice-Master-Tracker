@@ -39,7 +39,7 @@
                     <span>Add to Deck</span>
                 </button>
                 <div class="showform" ng-show="die.show">
-                    <form class="cf" ng-submit="addtoDeck(die, deckSelected)" novalidate>
+                    <form class="cf" ng-submit="addToDeck(die, deckSelected)" novalidate>
                         Choose the Deck You Would Like To Add To:
                         <select name="deckName" ng-options="deck.deckname for deck in decks track by deck.deckname" ng-model="deckSelected"></select>
                         <button type="submit" ng-click="showAddTo(die)" class="btn tooltip" ng-disabled="myForm.$invalid">

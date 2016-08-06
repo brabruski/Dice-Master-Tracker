@@ -21,7 +21,7 @@
             <li><b>Dice Colour:</b> {{dice[whichItem].colour}}</li>
             <li><b>Card Rarity:</b> {{dice[whichItem].rarity}}</li>
             <li><b>Card Series:</b> {{dice[whichItem].series}}</li>
-            <li><b>Dice Quantity:</b> {{dice[whichItem].quantity}}</li>
+            <li ng-hide="hideActionVersion(dice[whichItem].cardtype)"><b>Dice Quantity:</b> {{dice[whichItem].quantity}}</li>
          </ul>
     </div>
 

@@ -45,7 +45,7 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                 };
 
                 //create link to contents of each deck
-                $scope.addtoDeck = function (cardName, deckName) {
+                $scope.addToDeck = function (cardName, deckName) {
                     var currentDeck = deckName.$id;
                     var deckContentDetails = DBServices.deckCollectionContents(currentDeck);
                     $scope.deckContents = deckContentDetails;
@@ -92,8 +92,8 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                         $scope.dice.success = false;
                         cardName.success = true;
 
-                    });
-                };
+                    }); //end deckContents.loaded
+                }; //end $scope.addToDeck
 
                 collectionDetails.$loaded().then(function (data) {
                     $scope.howManyCards = collectionDetails.length;

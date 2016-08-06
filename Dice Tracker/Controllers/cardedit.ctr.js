@@ -30,6 +30,19 @@
                     $scope.rarity = collectionDetails[$scope.whichItem].rarity;
                     $scope.cardseries = collectionDetails[$scope.whichItem].series;
                     $scope.dicequantity = collectionDetails[$scope.whichItem].quantity;
+
+                    $scope.$watch('cardtype', function () {
+                        if ($scope.cardtype === 'Action') {
+                            $scope.isAction = true;
+                            $scope.cardversion = "Action";
+                            $scope.dicequantity = 3;
+                        } else {
+                            $scope.isAction = false;
+                            $scope.cardversion = "";
+                            $scope.dicequantity = collectionDetails[$scope.whichItem].quantity;
+                        }
+                    }); //watch for if it's action card or not
+
                 });
 
                 $scope.editCard = function () {

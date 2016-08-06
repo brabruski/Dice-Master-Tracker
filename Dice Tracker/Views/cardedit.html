@@ -10,7 +10,7 @@
                 Card Name
                 <input type="text" name="cardname" placeholder="Card Name." ng-model="cardname" ng-required="true" />
             </label>
-            <label class="formgroup">
+            <label class="formgroup" ng-hide="isAction">
                 Card Version
                 <input type="text" name="cardversion" placeholder="Card Version. E.g. Name: Hulk, Version: Green Goliath" ng-model="cardversion" ng-required="true" />
             </label>
@@ -42,7 +42,7 @@
                     <option value="Hero / Villain">Hero / Villain</option>
                 </select>
             </label>
-            <label class="formgroup">
+            <label class="formgroup" ng-hide="isAction">
                 Quantity of Dice
                 <select ng-model="dicequantity">
                     <option value="1">1</option>

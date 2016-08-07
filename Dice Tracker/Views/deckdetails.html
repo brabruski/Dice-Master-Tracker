@@ -21,7 +21,7 @@
         <a href="#/decks" class="btn">&laquo; Back to Deck List</a>
         <h1>{{decks[whichItem].deckname}}</h1>
         <label class="formgroup">
-            Hero / Villain Cards in Deck: <span class="badge">{{ howManyHeroes }} / 8 </span>
+            Hero / Villain Cards in Deck: <span ng-class="badgeColour" class="badge">{{ howManyHeroes }} / 8 </span>
             Action Cards in Deck: <span class="badge">{{ howManyActions }} / 2 </span>
             Total Hero Dice: <span class="badge">{{ howManyHeroDice }} / 20 </span>
         </label>
@@ -33,9 +33,8 @@
                 <a href="#/details/{{ die.navKey }}"><h2>{{die.name}}</h2></a>
                 <h2 ng-hide="hideActionVersion(die.cardtype)">({{ die.cardversion }})</h2>
                 <p>{{ die.description }}</p>
-                <div ng-hide="hideActionVersion(die.cardtype)"><b>Dice Quantity:</b> {{die.quantity}}</div>
                 <b>Dice Colour:</b> {{die.colour}}
-                <b>Dice Quantity:</b> {{die.diceQuantity}}
+                <div ng-hide="hideActionVersion(die.cardtype)"><b>Dice Quantity:</b> {{die.diceQuantity}}</div>
                 <p class="greenSuccess" ng-show="die.success">{{ successQuantityMessage }}</p>
                 <button class="btn btn-delete tooltip" ng-click="removeItem(key)">
                     <span>Remove Card from this Deck</span>

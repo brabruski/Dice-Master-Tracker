@@ -67,6 +67,7 @@ logApp.controller('DeckDetailsController', ['$scope', '$rootScope', '$firebaseAu
                         }
 
                         var cardTypeCheckAction = function () {
+                            actionCards = [];
                             //Check for Action Cards
                             for (i = 0; i < $scope.deckDice.length; i++) {
                                 if ($scope.deckDice[i].cardtype === "Action") {
@@ -77,6 +78,7 @@ logApp.controller('DeckDetailsController', ['$scope', '$rootScope', '$firebaseAu
                         };
 
                         var cardTypeCheckHero = function () {
+                            heroCards = [];
                             //Check for Hero Cards
                             for (i = 0; i < $scope.deckDice.length; i++) {
                                 if ($scope.deckDice[i].cardtype === "Hero / Villain") {
@@ -85,8 +87,6 @@ logApp.controller('DeckDetailsController', ['$scope', '$rootScope', '$firebaseAu
                             }
                             return heroCards;
                         };
-
-
 
                         //Check how many hero dice altogether
                         var countHeroDice = function () {
@@ -98,6 +98,16 @@ logApp.controller('DeckDetailsController', ['$scope', '$rootScope', '$firebaseAu
                                 }
                             }
                             return diceCount;
+                        };
+
+                        var countActionCard = function () {
+                            var actionCount = actionCards.length;
+                            return actionCount;
+                        };
+
+                        var countHeroCard = function () {
+                            var heroCount = heroCards.length;
+                            return heroCount;
                         };
 
                         //Hide card details if they are action cards
@@ -116,6 +126,17 @@ logApp.controller('DeckDetailsController', ['$scope', '$rootScope', '$firebaseAu
                                 currentItem.currentState = '';
                             } else {
                                 currentItem.currentState = 'expanded';
+                            }
+                        };
+
+                        //add colour class to badges
+                        var badgeColourChange = function (currentAmount, maxAmount) {
+                            if (currentAmount === maxAmount) {
+                                $scope.badgeColour = 'badgeGreen';
+                            } else if (currentAmount > maxAmount) {
+                                $scope.badgeColour =  'badgeRed';
+                            } else {
+                                $scope.badgeColour = '';
                             }
                         };
 
@@ -147,6 +168,7 @@ logApp.controller('DeckDetailsController', ['$scope', '$rootScope', '$firebaseAu
                                                 $scope.successQuantityMessage = 'Quantity Updated Successfully';
                                                 $scope.deckDice.success = false;
                                                 cardName.success = true;
+                                                $scope.howManyHeroDice = countHeroDice();
                                             });
                                         });
                                     }
@@ -171,23 +193,16 @@ logApp.controller('DeckDetailsController', ['$scope', '$rootScope', '$firebaseAu
 
                         //remove card from deck
                         $scope.removeItem = function (key) {
-                            for (j = 0; j < heroCards.length; j++) {
-                                if ($scope.deckDice[key].id === heroCards[j]) {
-                                    heroCards.splice(j, 1);
-                                }
-                            }
-                            for (j = 0; j < actionCards.length; j++) {
-                                if ($scope.deckDice[key].id === actionCards[j]) {
-                                    actionCards.splice(j, 1);
-                                }
-                            }
-
                             for (i = 0; i < deckContentDetails.length; i++) {
                                 if ($scope.deckDice[key].id === deckContentDetails[i].id) {
                                     deckContentDetails.$remove(i);
                                 }
                             }
                             $scope.deckDice.splice(key, 1);
+                            actionCards = cardTypeCheckAction();
+                            heroCards = cardTypeCheckHero();
+                            $scope.howManyActions = countActionCard();
+                            $scope.howManyHeroes = countHeroCard();
 
                         }; //End Remove funtion
 
@@ -195,23 +210,9 @@ logApp.controller('DeckDetailsController', ['$scope', '$rootScope', '$firebaseAu
                         //Run type functions
                         actionCards = cardTypeCheckAction();
                         heroCards = cardTypeCheckHero();
-                                             
-                        $scope.howManyHeroes = heroCards.length;
-                        $scope.howManyActions = actionCards.length;
+                        $scope.howManyHeroes = countHeroCard();
+                        $scope.howManyActions = countActionCard();
                         $scope.howManyHeroDice = countHeroDice();
-
-                        //watch for changes made to collection
-                        $scope.$watch('howManyHeroes', function () {
-                            $scope.howManyHeroes = heroCards.length;
-                        });
-
-                        $scope.$watch('howManyActions', function () {
-                            $scope.howManyActions = actionCards.length;
-                        });
-
-                        $scope.$watch('howManyHeroDice', function () {
-                            $scope.howManyHeroDice = countHeroDice();
-                        });
 
                     }); //end $scope.diceList.$loaded function
 

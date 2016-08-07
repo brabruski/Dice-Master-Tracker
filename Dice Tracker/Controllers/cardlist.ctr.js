@@ -1,8 +1,8 @@
 ﻿/*Declare Scope etc. so on minification it doesn't get converted*/
-logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL', 'DBServices',
-    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, FIREBASE_URL, DBServices) {
+logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'Config', 'DBServices',
+    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, Config, DBServices) {
 
-        var ref = new Firebase(FIREBASE_URL);
+        var ref = new Firebase(Config.FIREBASE_URL);
         var auth = $firebaseAuth(ref);
 
         auth.$onAuth(function (authUser) {

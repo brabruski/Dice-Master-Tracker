@@ -1,4 +1,4 @@
-﻿var logApp = angular.module('diceApp', ['ngRoute', 'ngAnimate', 'firebase']).constant('FIREBASE_URL', 'https://dicetracker18052016.firebaseio.com/');
+﻿var logApp = angular.module('diceApp', ['ngRoute', 'ngAnimate', 'firebase']);
 
 //If something doesn't resolve in the route (logApp.config.when) then run this.
 logApp.run(['$rootScope', '$location', function ($rootScope, $location) {

@@ -1,13 +1,13 @@
 ﻿logApp.factory('Authentication',
-    ['$rootScope', '$firebaseAuth', '$location', '$firebaseObject', 'FIREBASE_URL',
-    function ($rootScope, $firebaseAuth, $location, $firebaseObject, FIREBASE_URL) {
+    ['$rootScope', '$firebaseAuth', '$location', '$firebaseObject', 'Config',
+    function ($rootScope, $firebaseAuth, $location, $firebaseObject, Config) {
 
-        var ref = new Firebase(FIREBASE_URL);
+        var ref = new Firebase(Config.FIREBASE_URL);
         var auth = $firebaseAuth(ref);
 
         auth.$onAuth(function (authUser) {
             if (authUser) {
-                var userRef = new Firebase(FIREBASE_URL + 'users/' + authUser.uid);
+                var userRef = new Firebase(Config.FIREBASE_URL + 'users/' + authUser.uid);
                 var userObj = $firebaseObject(userRef);
                 $rootScope.currentUser = userObj;
             } else {
@@ -42,7 +42,7 @@
                     email: user.email,
                     password: user.password
                 }).then(function (regUser) { //adds any other info onto userID in firebase
-                    var regRef = new Firebase(FIREBASE_URL + 'users')
+                    var regRef = new Firebase(Config.FIREBASE_URL + 'users')
                         .child(regUser.uid)
                         .set({
                             date: Firebase.ServerValue.TIMESTAMP,

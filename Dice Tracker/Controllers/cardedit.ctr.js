@@ -1,9 +1,9 @@
-﻿logApp.controller('EditCardController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL', '$routeParams', 'DBServices',
-    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, FIREBASE_URL, $routeParams, DBServices) {
+﻿logApp.controller('EditCardController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'Config', '$routeParams', 'DBServices',
+    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, Config, $routeParams, DBServices) {
         //$rootScope taken from authentication service to gain User ID. $firebaseArray for writing to database
 
         //get details about logged in user to get data assigned to that user
-        var ref = new Firebase(FIREBASE_URL);
+        var ref = new Firebase(Config.FIREBASE_URL);
         var auth = $firebaseAuth(ref);
 
         //ensures whatever is done, user is authenticated

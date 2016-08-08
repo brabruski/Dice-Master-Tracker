@@ -9,7 +9,7 @@
                 var collectionInfo = $firebaseArray(collectionRef);
                 return collectionInfo;
             },
-            
+
             deckCollection: function () {
                 var deckRef = new Firebase(Config.FIREBASE_URL + 'users/' + $rootScope.currentUser.$id + '/decks');
                 var deckInfo = $firebaseArray(deckRef);
@@ -29,9 +29,8 @@
             },
 
             collectionImages: function () {
-                var contentImgRef = new Firebase(Config.FIREBASE_IMG_URL + 'cardimages/');
-                var contentImgInfo = $firebaseArray(contentImgRef);
-                return contentImgInfo;                
+                var imageStoreInfo = Config.FIREBASE_IMG_URL + 'users/' + $rootScope.currentUser.$id + 'cardimages/';
+                return imageStoreInfo;
             }
 
         };

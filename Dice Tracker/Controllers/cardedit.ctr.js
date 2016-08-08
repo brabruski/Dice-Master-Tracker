@@ -22,7 +22,6 @@
                     $scope.cardversion = collectionDetails[$scope.whichItem].cardversion;
                     $scope.cardcost = collectionDetails[$scope.whichItem].cost;
                     $scope.cardenergy = collectionDetails[$scope.whichItem].energy;
-                    $scope.cardimage = "None";
                     $scope.cardaffiliation = collectionDetails[$scope.whichItem].affiliation;
                     $scope.cardtype = collectionDetails[$scope.whichItem].cardtype;
                     $scope.carddescription = collectionDetails[$scope.whichItem].description;
@@ -38,7 +37,7 @@
                             $scope.dicequantity = 3;
                         } else {
                             $scope.isAction = false;
-                            $scope.cardversion = "";
+                            $scope.cardversion = collectionDetails[$scope.whichItem].cardversion;
                             $scope.dicequantity = collectionDetails[$scope.whichItem].quantity;
                         }
                     }); //watch for if it's action card or not
@@ -52,7 +51,6 @@
                         cardversion:  $scope.cardversion,
                         cost: $scope.cardcost,
                         energy: $scope.cardenergy,
-                        image: $scope.cardimage,
                         affiliation: $scope.cardaffiliation,
                         cardtype: $scope.cardtype,
                         description: $scope.carddescription,

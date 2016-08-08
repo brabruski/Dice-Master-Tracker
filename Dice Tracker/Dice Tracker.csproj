@@ -728,8 +728,6 @@
     <Content Include="Services\click_confirmation.fac.js" />
     <Content Include="Services\collection.fac.js" />
     <Content Include="Services\dbservices.fac.js" />
-    <Content Include="Services\ng-file-upload-shim.min.js" />
-    <Content Include="Services\ng-file-upload.fac.js" />
     <Content Include="Views\addnewdeck.html" />
     <Content Include="Views\addnewcard.html" />
     <Content Include="Views\cardlist.html" />

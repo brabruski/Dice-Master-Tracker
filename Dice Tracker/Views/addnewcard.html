@@ -6,7 +6,43 @@
     </div>
     <form class="formgroup addmeeting cf" name="addform" ng-submit="addCard()" novalidate>
         <div class="inputwrapper">
-            <input type="text" name="cardname" placeholder="Card Name." ng-model="cardname" ng-required="true" />
+            <label class="formgroup">
+                Card Name
+                <input type="text" name="cardname" placeholder="Card Name." ng-model="cardname" ng-required="true" />
+            </label>
+            <label class="formgroup" ng-hide="isAction">
+                Card Version
+                <input type="text" name="cardversion" placeholder="Card Version. E.g. Name: Hulk, Version: Green Goliath" ng-model="cardversion" ng-required="true" />
+            </label>
+            <label class="formgroup">
+                Description
+                <input type="text" name="carddescription" placeholder="Description." ng-model="carddescription" ng-required="true" />
+            </label>
+            <label class="formgroup">
+                Cost to Buy Dice
+                <select ng-model="cardcost">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </label>
+            <label class="formgroup">
+                Energy Type
+                <select ng-model="cardenergy">
+                    <option value="Fist">Fist</option>
+                    <option value="Lightning">Lightning</option>
+                    <option value="Mask">Mask</option>
+                    <option value="Shield">Shield</option>
+                    <option value="Generic">Generic</option>
+                </select>
+            </label>
             <label class="formgroup">
                 Affiliation
                 <select ng-model="cardaffiliation">
@@ -21,22 +57,8 @@
                     <option value="Hero / Villain">Hero / Villain</option>
                 </select>
             </label>
-            <input type="text" ng-hide="isAction" name="cardversion" placeholder="Card Version. E.g. Name: Hulk, Version: Green Goliath" ng-model="cardversion" ng-required="true" />
-            <input type="text" name="cardcost" placeholder="Dice Cost." ng-model="cardcost" ng-required="true" />
-            <label class="formgroup">
-                Energy Type
-                <select ng-model="cardenergy">
-                    <option value="Fist">Fist</option>
-                    <option value="Lightning">Lightning</option>
-                    <option value="Mask">Mask</option>
-                    <option value="Shield">Shield</option>
-                    <option value="Generic">Generic</option>
-                </select>
-            </label>
-
-
             <label class="formgroup" ng-hide="isAction">
-                Quantity of Dice
+                Dice Quantity
                 <select ng-model="dicequantity">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -45,8 +67,10 @@
                     <option value="5">5</option>
                 </select>
             </label>
-            <input type="text" name="carddescription" placeholder="Description." ng-model="carddescription" ng-required="true" />
-            <input type="text" name="cardcolour" placeholder="Dice Colour." ng-model="cardcolour" ng-required="true" />
+            <label class="formgroup">
+                Dice Colour
+                <input type="text" name="cardcolour" placeholder="Dice Colour." ng-model="cardcolour" ng-required="true" />
+            </label>
             <label class="formgroup">
                 Rarity
                 <select ng-model="rarity">
@@ -56,14 +80,14 @@
                     <option value="Super Rare">Super Rare (Red Stripe)</option>
                 </select>
             </label>
-            <input type="text" name="cardseries" placeholder="Card Series. E.g. Avengers vs X-men" ng-model="cardseries" ng-required="true" />
-            <input type="text" name="cardimage" placeholder="Upload an Image" ng-model="cardimage" />
-
+            <label class="formgroup">
+                Card Series
+                <input type="text" name="cardseries" placeholder="Card Series. E.g. Avengers vs X-men" ng-model="cardseries" ng-required="true" />
+            </label>
+            <!--   <input type="text" name="cardimage" placeholder="Upload an Image" ng-model="cardimage" /> -->
         </div>
-        <div>
             <button type="submit" class="btn" ng-disabled="addform.$invalid">Save</button>
             <a ng-href="#/collection" class="btn">Back to Collection</a>
-        </div>
     </form>
 
 </div>

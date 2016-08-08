@@ -12,8 +12,13 @@
             if (authUser) {
 
                 var collectionDetails = DBServices.cardCollection();
+                var collectionImageDetails = DBServices.collectionImages();
+
+                //Methods for uploading image using ng-file-upload directive
+
 
                 //Initialise selection options
+                $scope.cardcost = '1';
                 $scope.cardenergy = 'Fist';
                 $scope.cardaffiliation = 'Marvel';
                 $scope.dicequantity = '1';
@@ -50,7 +55,6 @@
                         cardversion: $scope.cardversion,
                         cost: $scope.cardcost,
                         energy: $scope.cardenergy,
-                        image: $scope.cardimage,
                         affiliation: $scope.cardaffiliation,
                         cardtype: $scope.cardtype,
                         description: $scope.carddescription,
@@ -64,7 +68,6 @@
                         $scope.cardname = '';
                         $scope.cardversion = '';
                         $scope.cardcost = '';
-                        $scope.cardimage = '';
                         $scope.cardseries = '';
                         $scope.carddescription = '';
                         $scope.cardcolour = '';

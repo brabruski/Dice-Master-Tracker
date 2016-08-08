@@ -914,7 +914,6 @@
     <Content Include="node_modules\bootstrap\package.json" />
     <Content Include="node_modules\bootstrap\README.md" />
     <Content Include="node_modules\material-design-icons-2.2.0.zip" />
-    <Content Include="readme.md" />
     <None Include="Scripts\jquery-3.0.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />

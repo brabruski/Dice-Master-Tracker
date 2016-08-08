@@ -24,7 +24,7 @@ You can install these packages locally with `npm`.
 If the latest release does not work with this repository use instead the version number it has been originally designed on. To  specify a specific release for install use, "npm install package&#64;X.Y.Z"
 
 ```shell
-# Angular - To install latest formal release
+# AngularJs - To install latest formal release
 npm install angular
 # Designed on v1.5.8
 
@@ -42,6 +42,9 @@ npm install angular-route
 
 # Material Design Icons - To install latest formal release
 npm install mdi
+
+#Ng-File-Upload
+npm install ng-file-upload
 
 ```
 > see [Material Design Icons - Getting Started](https://materialdesignicons.com/getting-started) for alternative installation options under the Angular Material Section.

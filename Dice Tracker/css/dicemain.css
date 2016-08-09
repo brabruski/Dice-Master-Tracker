@@ -1,13 +1,4 @@
-﻿/* apply a natural box layout model to all elements, but allowing components to change */
-html {
-    box-sizing: border-box;
-}
-
-*, *:before, *:after {
-    box-sizing: inherit;
-}
-
-/*Hide RAW Angular data elements while browser is loading*/
+﻿/*Hide RAW Angular data elements while browser is loading*/
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
 }
@@ -38,46 +29,15 @@ ol, ul {
     list-style: none;
 }
 
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-caption, th, td {
-    text-align: left;
-    font-weight: normal;
-    vertical-align: middle;
-}
-
-a img {
-    border: none;
-}
-
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
-    display: block;
-}
-
-* {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-
 /* Base Styles */
 html {
     background-color: #F7F7F7;
-    min-height: 100%;
-    height: auto;
 }
 
 body {
     font-family: 'Rubik', sans-serif;
     font-size: 1rem;
-    line-height: 160%;
     color: #555459;
-    line-height: 1.5rem;
-    *zoom: 1;
 }
 
 a {
@@ -89,52 +49,12 @@ md-toolbar {
     padding: 1rem;
 }
 
-md-toolbar h1 {
-    text-align: left;
-}
+    md-toolbar h1 {
+        text-align: left;
+    }
 
 /*Tooltips on hovering*/
-.tooltip {
-    position: relative;
-    opacity: 1;
-}
 
-    .tooltip span {
-        background: #FFF;
-        color: #000;
-        font-size: .8em;
-        bottom: 100%;
-        display: block;
-        left: -20px;
-        opacity: 0;
-        padding: 2px 13px;
-        margin-bottom: 5px;
-        pointer-events: none;
-        position: absolute;
-        border-radius: 4px;
-        box-shadow: none;
-        border: 1px solid #C5C5C5;
-        -webkit-transform: translateY(25px);
-        -moz-transform: translateY(25px);
-        -ms-transform: translateY(25px);
-        -o-transform: translateY(25px);
-        transform: translateY(25px);
-        -webkit-transition: all .25s ease-out;
-        -moz-transition: all .25s ease-out;
-        -ms-transition: all .25s ease-out;
-        -o-transition: all .25s ease-out;
-        transition: all .25s ease-out;
-    }
-
-    .tooltip:hover span {
-        opacity: 1;
-        pointer-events: auto;
-        -webkit-transform: translateY(0px);
-        -moz-transform: translateY(0px);
-        -ms-transform: translateY(0px);
-        -o-transform: translateY(0px);
-        transform: translateY(0px);
-    }
 
 /* Input Styling*/
 input.ng-invalid.ng-touched {
@@ -155,27 +75,21 @@ input.ng-valid.ng-touched {
 }
 
 /*buttons*/
-.icwhite {
-    color: white;
+
+.md-button.md-mini.showbtn {
+    color: blue;
+}
+
+.md-button.md-mini.deletebtn {
+    color: red;
+}
+
+.md-button.md-mini.savebtn {
+    color: green;
 }
 
 .btn {
     background-color: orange;
-    color: white;
-}
-
-.savebtn {
-    background-color: green;
-    color: white;
-}
-
-.deletebtn {
-    background-color: red;
-    color: white;
-}
-
-.showbtn {
-    background-color: blue;
     color: white;
 }
 
@@ -185,7 +99,6 @@ input.ng-valid.ng-touched {
 }
 
 /*Badge Classes*/
-
 .badgeGreen {
     background-color: green;
 }

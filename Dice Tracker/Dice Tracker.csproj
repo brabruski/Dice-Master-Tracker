@@ -186,14 +186,10 @@
     <Content Include="Controllers\newdeck.ctr.js" />
     <Content Include="Controllers\registration.ctr.js" />
     <Content Include="Controllers\landing.ctr.js" />
-    <Content Include="css\bootstrap-theme.css" />
-    <Content Include="css\bootstrap-theme.min.css" />
-    <Content Include="css\bootstrap.css" />
-    <Content Include="css\bootstrap.min.css" />
-    <Content Include="css\cover.css" />
     <Content Include="css\dicemain.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\icons\dice-6.svg" />
+    <Content Include="fonts\icons\eye.svg" />
     <Content Include="images\dice\beast_1.jpg" />
     <Content Include="images\dice\catwoman_1.jpg" />
     <Content Include="images\dice\constantine_1.jpg" />
@@ -201,14 +197,16 @@
     <Content Include="images\dice\gambit_1.jpg" />
     <Content Include="images\dice\greenlantern_1.jpg" />
     <Content Include="images\dice\ironman_1.jpg" />
+    <Content Include="images\dice\placeholder_card.png" />
     <Content Include="images\dice\scarletwitch_1.jpg" />
     <Content Include="images\dice\storm_1.jpg" />
     <Content Include="images\dice\wolverine_1.jpg" />
-    <Content Include="images\icons\chevron-double-left.svg" />
-    <Content Include="images\icons\chevron-double-right.svg" />
-    <Content Include="images\icons\delete.svg" />
-    <Content Include="images\icons\plus-circle.svg" />
-    <Content Include="images\icons\spotlight-beam.svg" />
+    <Content Include="fonts\icons\backburger.svg" />
+    <Content Include="fonts\icons\chevron-double-left.svg" />
+    <Content Include="fonts\icons\chevron-double-right.svg" />
+    <Content Include="fonts\icons\delete.svg" />
+    <Content Include="fonts\icons\plus-circle.svg" />
+    <Content Include="fonts\icons\spotlight-beam.svg" />
     <Content Include="index.html" />
     <Content Include="js\app.js" />
     <Content Include="js\bootstrap.js" />
@@ -803,6 +801,7 @@
     <Content Include="Services\app_config.set.js" />
     <Content Include="Services\authentication.fac.js" />
     <Content Include="Services\click_confirmation.fac.js" />
+    <Content Include="Services\Click_Confirmation_Idea.html" />
     <Content Include="Services\collection.fac.js" />
     <Content Include="Services\dbservices.fac.js" />
     <Content Include="Views\addnewdeck.html" />
@@ -981,13 +980,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\angular-animate.min.js.map" />

@@ -1,15 +1,18 @@
-﻿<md-toolbar>
-    <div class="logo">
-        <h1><a ng-href="#/">Dice Masters Tracker</a></h1>
-    </div>
-    <div class="navigation" ng-controller="RegistrationController">
-        <ul>
-            <li><a ng-show="currentUser" ng-href="#/login" ng-click="logout()">Logout</a></li>
-            <li><a ng-show="currentUser" ng-href="#/collection">Cards</a></li>
-            <li><a ng-show="currentUser" ng-href="#/decks">Decks</a></li>
-            <li><a ng-show="currentUser" ng-href="#/profile">Hi {{ currentUser.dname }}</a></li>
-            <li><a ng-hide="currentUser" ng-href="#/login">Login</a></li>
-            <li><a ng-hide="currentUser" ng-href="#/register">Register</a></li>
-        </ul>
-    </div>
-</md-toolbar>
+﻿<div layout="column" ng-controller="RegistrationController">
+    <md-content>
+        <md-toolbar md-scroll-shrink ng-if="true">
+            <div class="md-toolbar-tools">
+                <md-button ng-href="#/" class="left" aria-label="Home">
+                    Dice Masters Tracker
+                </md-button>
+                <span flex></span>
+                <md-button ng-show="currentUser" ng-href="#/profile">Hi {{ currentUser.dname }}</md-button>
+                <md-button ng-show="currentUser" ng-href="#/collection">Cards</md-button>
+                <md-button ng-show="currentUser" ng-href="#/decks">Decks</md-button>
+                <md-button ng-hide="currentUser" ng-href="#/login">Login</md-button>
+                <md-button ng-hide="currentUser" ng-href="#/register">Register</md-button>
+                <md-button ng-show="currentUser" ng-href="#/login" ng-click="logout()">Logout</md-button>
+            </div>
+        </md-toolbar>
+    </md-content>
+</div>

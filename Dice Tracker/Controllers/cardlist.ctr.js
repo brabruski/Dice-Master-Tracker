@@ -12,7 +12,9 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
 
                 //initialising the filters
                 $scope.dice = collectionDetails;
+                $scope.cards = collectionDetails;
                 $scope.diceOrder = 'name';
+                $scope.imagePath = '../images/dice/placeholder_card.png'
 
                 //Set default Selected option after deck database has downloaded fully
                 deckDetails.$loaded().then(function (data) {

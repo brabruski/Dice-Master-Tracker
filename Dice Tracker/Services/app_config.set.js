@@ -7,7 +7,7 @@
 logApp.config(function ($mdThemingProvider) {
     $mdThemingProvider.theme('default')
       .primaryPalette('pink')
-      .accentPalette('orange');
+      .accentPalette('purple');
 });
 
 //Define icons in theme
@@ -15,10 +15,12 @@ logApp.config(function ($mdIconProvider) {
     // Configure URLs for icons specified by [set:]id.
     $mdIconProvider
         .defaultFontSet('fa')                   // This sets our default fontset className.
-        .icon('delete', '../images/icons/delete.svg')
-        .icon('add', '../images/icons/plus-circle.svg')
-        .icon('show', '../images/icons/spotlight-beam.svg')
-        .icon('aleft', '../images/icons/chevron-double-left.svg')
-        .icon('aright', '../images/icons/chevron-double-right.svg')
-        .icon('back', '../images/icons/backburger.svg')
+        .icon('delete', '../fonts/icons/delete.svg', 24)
+        .icon('add', '../fonts/icons/plus-circle.svg', 24)
+        .icon('show', '../fonts/icons/spotlight-beam.svg', 24)
+        .icon('aleft', '../fonts/icons/chevron-double-left.svg', 24)
+        .icon('aright', '../fonts/icons/chevron-double-right.svg', 24)
+        .icon('back', '../fonts/icons/backburger.svg', 24)
+        .icon('dice6', '../fonts/icons/dice-6.svg')
+        .icon('view', '../fonts/icons/eye.svg')
 });

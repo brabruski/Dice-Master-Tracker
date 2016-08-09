@@ -1,11 +1,15 @@
-﻿<div class="branding"><a ng-href="#/">Dice Masters</a></div>
-<div class="navigation" ng-controller="RegistrationController">
-    <ul>
-        <li><a ng-show="currentUser" ng-href="#/login" ng-click="logout()">Logout</a></li>
-        <li><a ng-show="currentUser" ng-href="#/collection">Cards</a></li>
-        <li><a ng-show="currentUser" ng-href="#/decks">Decks</a></li>
-        <li><a ng-show="currentUser" ng-href="#/profile">Hi {{ currentUser.dname }}</a></li>
-        <li><a ng-hide="currentUser" ng-href="#/login">Login</a></li>
-        <li><a ng-hide="currentUser" ng-href="#/register">Register</a></li>
-    </ul>
-</div>
+﻿<md-toolbar>
+    <div class="branding">
+        <h1><a ng-href="#/">Dice Masters Tracker</a></h1>
+    </div>
+    <div class="navigation" ng-controller="RegistrationController">
+        <ul>
+            <li><a ng-show="currentUser" ng-href="#/login" ng-click="logout()">Logout</a></li>
+            <li><a ng-show="currentUser" ng-href="#/collection">Cards</a></li>
+            <li><a ng-show="currentUser" ng-href="#/decks">Decks</a></li>
+            <li><a ng-show="currentUser" ng-href="#/profile">Hi {{ currentUser.dname }}</a></li>
+            <li><a ng-hide="currentUser" ng-href="#/login">Login</a></li>
+            <li><a ng-hide="currentUser" ng-href="#/register">Register</a></li>
+        </ul>
+    </div>
+</md-toolbar>

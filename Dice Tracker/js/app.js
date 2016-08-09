@@ -1,4 +1,4 @@
-﻿var logApp = angular.module('diceApp', ['ngRoute', 'ngAnimate', 'firebase']);
+﻿var logApp = angular.module('diceApp', ['ngRoute', 'ngAnimate', 'ngAria', 'firebase', 'ngFileUpload', 'ngMaterial', 'ngMdIcons']);
 
 //If something doesn't resolve in the route (logApp.config.when) then run this.
 logApp.run(['$rootScope', '$location', function ($rootScope, $location) {

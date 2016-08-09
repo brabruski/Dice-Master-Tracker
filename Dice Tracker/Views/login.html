@@ -1,4 +1,4 @@
-﻿<section class="card login">
+﻿<section class="login">
     <form name="loginform" ng-submit="login()" novalidate>
                <h1>Dice Master Collection Tracker</h1>
                 <p>Log In to Access Your Collection</p>
@@ -10,7 +10,7 @@
                     <p class="error validationerror" ng-show="loginform.password.$invalid && loginform.password.$touched">Enter in a Valid Password</p>
                 </fieldset>
 
-            <button type="submit" class="btn" ng-disabled="loginform.$invalid">Login</button>
+            <md-button type="submit" class="btn" ng-disabled="loginform.$invalid">Login</md-button>
             <p> or <a ng-href="#/register">register</a></p>
     </form>
 </section>

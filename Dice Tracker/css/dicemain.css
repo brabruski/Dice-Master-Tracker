@@ -137,7 +137,6 @@ md-toolbar h1 {
     }
 
 /* Input Styling*/
-
 input.ng-invalid.ng-touched {
     border: 1px solid #DA3637;
 }
@@ -156,8 +155,33 @@ input.ng-valid.ng-touched {
 }
 
 /*buttons*/
+.icwhite {
+    color: white;
+}
+
 .btn {
-    display: inline-block;
+    background-color: orange;
+    color: white;
+}
+
+.savebtn {
+    background-color: green;
+    color: white;
+}
+
+.deletebtn {
+    background-color: red;
+    color: white;
+}
+
+.showbtn {
+    background-color: blue;
+    color: white;
+}
+
+.arrowbtn {
+    background-color: blue;
+    color: white;
 }
 
 /*Badge Classes*/

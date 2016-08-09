@@ -1,7 +1,7 @@
 ﻿<section class="dicePage">
     <div class="search">
         <h1>Dice Masters Decks</h1>
-        <a ng-href="#/adddeck" class="btn">Add a Deck</a>
+        <md-button ng-href="#/adddeck" class="btn">Add a Deck</md-button>
 
     </div>
 
@@ -12,9 +12,10 @@
                     <h2>{{deck.deckname}}</h2>
                 </a>
                 <h3>{{deck.deckdescription}}</h3>
-                <button class="btn btn-delete tooltip" ng-really-click="deleteDeck(key)">
-                    <span>Delete Deck</span>
-                </button>
+                <md-button class="tooltip deletebtn" ng-really-click="deleteDeck(key)">
+                    <md-icon md-svg-icon="delete" class="icwhite"></md-icon>
+                    <span>Delete this Deck</span>
+                </md-button>
             </div>
 
         </li>

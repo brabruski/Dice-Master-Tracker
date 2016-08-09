@@ -16,9 +16,15 @@
 
 <section class="diceinfo">
     <div class="diceobj cf" ng-model="decks">
-        <a href="#/deckdetails/{{ prevItem }}" class="btn btn-left">&lt;</a>
-        <a href="#/deckdetails/{{ nextItem }}" class="btn btn-left">&gt;</a>
-        <a href="#/decks" class="btn">&laquo; Back to Deck List</a>
+        <md-button href="#/deckdetails/{{ prevItem }}" class="arrowbtn">
+            <md-icon md-svg-icon="aleft" class="icwhite"></md-icon>
+        </md-button>
+        <md-button href="#/deckdetails/{{ nextItem }}" class="arrowbtn">
+            <md-icon md-svg-icon="aright" class="icwhite"></md-icon>
+        </md-button>
+        <md-button href="#/decks" class="btn">
+            <md-icon md-svg-icon="back" class="icwhite"></md-icon>Back to Deck List
+        </md-button>
         <h1>{{decks[whichItem].deckname}}</h1>
         <label class="formgroup">
             Hero / Villain Cards in Deck: <span ng-class="badgeColour" class="badge">{{ howManyHeroes }} / 8 </span>
@@ -36,21 +42,23 @@
                 <b>Dice Colour:</b> {{die.colour}}
                 <div ng-hide="hideActionVersion(die.cardtype)"><b>Dice Quantity:</b> {{die.diceQuantity}}</div>
                 <p class="greenSuccess" ng-show="die.success">{{ successQuantityMessage }}</p>
-                <button class="btn btn-delete tooltip" ng-click="removeItem(key)">
+                <md-button class="tooltip deletebtn" ng-click="removeItem(key)">
+                    <md-icon md-svg-icon="delete" class="icwhite"></md-icon>
                     <span>Remove Card from this Deck</span>
-                </button>
-                <button class="btn btn-love tooltip" ng-hide="hideActionVersion(die.cardtype)" ng-click="showAddTo(die)">
+                </md-button>
+                <md-button class="tooltip showbtn" ng-hide="hideActionVersion(die.cardtype)" ng-click="showAddTo(die)">
+                    <md-icon md-svg-icon="show" class="icwhite"></md-icon>
                     <span>Increase the Dice Amount for this Card in This Deck</span>
-                </button>
+                </md-button>
 
                 <div class="showform" ng-show="die.show">
                     <form name="incrementDiceQuantity" ng-submit="submitNewQuantity(die, die.diceQuantity)" novalidate>
                         <b>Dice Quantity in Deck: </b><input type="number" ng-model="die.diceQuantity" name="quantity" ng-value="{{die.diceQuantity}}" min="0" max="5">
                         <p class="error validationerror" ng-show="incrementDiceQuantity.$invalid">Please input a number between 0 &amp; 5</p>
-                        <button type="submit" ng-click="showAddTo(die)" class="btn tooltip" ng-disabled="myForm.$invalid">
-                            +
+                        <md-button type="submit" ng-click="showAddTo(die)" class="tooltip savebtn" ng-disabled="myForm.$invalid">
+                            <md-icon md-svg-icon="add" class="icwhite"></md-icon>Save
                             <span>Add to Deck</span>
-                        </button>
+                        </md-button>
                     </form>
                 </div>
 

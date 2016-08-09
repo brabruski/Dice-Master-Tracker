@@ -1,16 +1,19 @@
-﻿<div class="deck cf">
-    <div class="textintro">
+﻿<div class="deck">
         <h1>Build a New Deck</h1>
         <p>Enter in the Name of your Deck and a Description then click 'Save'</p>
+    <md-button ng-href="#/decks" class="btn">
+        <md-icon md-svg-icon="back" class="icwhite"></md-icon>Back to Deck List
+    </md-button>
         <p class="greenSuccess">{{ successMessage }}</p>
     </div>
     <form class="formgroup addmeeting cf" name="addform" ng-submit="addDeck()" novalidate>
-        <div class="inputwrapper">
-            <input type="text" name="deckname" placeholder="Deck Name." ng-model="deckname" ng-required="true" />
-            <input type="text" name="deckdescription" placeholder="Description." ng-model="deckdescription" ng-required="true" />
-</div>
-        <button type="submit" class="btn" ng-disabled="addform.$invalid">Save</button>
-        <a ng-href="#/decks" class="btn">Back</a>
-    </form>
+    <div class="inputwrapper">
+        <input type="text" name="deckname" placeholder="Deck Name." ng-model="deckname" ng-required="true" />
+        <input type="text" name="deckdescription" placeholder="Description." ng-model="deckdescription" ng-required="true" />
+    </div>
+    <md-button type="submit" class="savebtn" ng-disabled="addform.$invalid">
+        <md-icon md-svg-icon="add" class="icwhite"></md-icon>Save
+    </md-button></form>
+    
+    
 
-</div>

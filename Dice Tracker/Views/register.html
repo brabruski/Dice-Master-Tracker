@@ -1,4 +1,4 @@
-﻿<section class="card register">
+﻿<section class="register">
     <form name="registerform" ng-submit="register()" novalidate>
         <h1>Dice Master Collection Tracker</h1>
         <p>Register to access all features</p>
@@ -19,7 +19,6 @@
             <p class="error validationerror" ng-show="registerform.password2.$invalid && registerform.password2.$touched && registerform.pw2.$error.pwmatch">Passwords don't match</p>
 
         </fieldset>
-        <button type="submit" class="btn" ng-disabled="registerform.$invalid">Register</button>
-        <p> or <a ng-href="#/login">Login</a></p>
+        <md-button type="submit" class="btn" ng-disabled="registerform.$invalid">Register</md-button>
         </form>
 </section>

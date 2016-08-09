@@ -2,6 +2,9 @@
     <div class="textintro">
         <h1>Add To Your Collection</h1>
         <p>Enter in all the details of the Card and respective Dice and hit 'Save'</p>
+        <md-button ng-href="#/collection" class="btn">
+            <md-icon md-svg-icon="back" class="icwhite"></md-icon>Back to Card Collection
+        </md-button>
         <p class="greenSuccess">{{ successMessage }}</p>
     </div>
     <form class="formgroup addmeeting cf" name="addform" ng-submit="addCard()" novalidate>
@@ -86,8 +89,9 @@
             </label>
             <!--   <input type="text" name="cardimage" placeholder="Upload an Image" ng-model="cardimage" /> -->
         </div>
-            <button type="submit" class="btn" ng-disabled="addform.$invalid">Save</button>
-            <a ng-href="#/collection" class="btn">Back to Collection</a>
+        <md-button type="submit" class="savebtn" ng-disabled="addform.$invalid">
+            <md-icon md-svg-icon="add" class="icwhite"></md-icon>Save
+        </md-button>
     </form>
 
 </div>

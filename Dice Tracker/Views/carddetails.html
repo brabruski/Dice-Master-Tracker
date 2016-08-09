@@ -2,11 +2,17 @@
     <h1>Dice Masters Dice Tracker</h1>
 </div>
 <section class="diceinfo">
+    <div class="diceobj" ng-model="dice">
+        <md-button href="#/details/{{ prevItem }}" class="arrowbtn">
+            <md-icon md-svg-icon="aleft" class="icwhite"></md-icon>
+        </md-button>
+        <md-button href="#/details/{{ nextItem }}" class="arrowbtn">
+            <md-icon md-svg-icon="aright" class="icwhite"></md-icon>
+        </md-button>
+        <md-button href="#/collection" class="btn">
+            <md-icon md-svg-icon="back" class="icwhite"></md-icon>Back to Card List
+        </md-button>
 
-    <div class="diceobj cf" ng-model="dice">
-        <a href="#/details/{{ prevItem }}" class="btn btn-left">&lt;</a>
-        <a href="#/details/{{ nextItem }}" class="btn btn-left">&gt;</a>
-        <a href="#/collection" class="btn">&laquo; Back to Card List</a>
         <!--  <img ng-src="{{dice[whichItem].image}}" alt="Card of {{dice[whichItem].name}}"> -->
         <h1>{{dice[whichItem].name}}</h1>
         <h2 ng-hide="hideActionVersion(dice[whichItem].cardtype)">({{ dice[whichItem].cardversion }})</h2>
@@ -22,10 +28,10 @@
             <li><b>Card Rarity:</b> {{dice[whichItem].rarity}}</li>
             <li><b>Card Series:</b> {{dice[whichItem].series}}</li>
             <li ng-hide="hideActionVersion(dice[whichItem].cardtype)"><b>Dice Quantity:</b> {{dice[whichItem].quantity}}</li>
-         </ul>
+        </ul>
     </div>
 
-    
-    <a href="#/edit/{{ dice.indexOf(dice[whichItem]) }}" class="btn">Edit Card</a>
+
+    <md-button href="#/edit/{{ dice.indexOf(dice[whichItem]) }}" class="btn">Edit Card</md-button>
 
 </section>

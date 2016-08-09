@@ -23,37 +23,39 @@
             <input type="radio" ng-model="direction" name="direction" value="reverse" />
             descending
         </label>
-        <a ng-href="#/addcollection" class="btn">Add a Card</a>
+        <md-button ng-href="#/addcollection" class="btn">
+            Add a Card<md-icon md-svg-icon="add" class="icwhite"></md-icon>
+        </md-button>
 
     </div>
-    <ul class="dicelist">
-        <li ng-animate="'animate'" class="diceobj cf" ng-class="die.currentState" ng-repeat="(key, die) in dice | filter:query | orderBy: diceOrder:direction">
-            <div class="info">
-                <a href="#/details/{{ dice.indexOf(die) }}"><h2>{{die.name}}</h2></a>
-                <h2 ng-hide="hideActionVersion(die.cardtype)">({{ die.cardversion }})</h2>
-                <h3><b>Energy Cost:</b> {{die.cost}}</h3>
-                <h3><b>Energy Type:</b> {{die.energy}}</h3>
-                <p>Card Type: {{die.cardtype}}</p>
-                <p class="greenSuccess" ng-show="die.success">{{ successMessage }}</p>
-                <button class="btn btn-love tooltip" ng-click="showAddTo(die)">
-                    <span>Add to Deck</span>
-                </button>
-                <div class="showform" ng-show="die.show">
-                    <form class="cf" ng-submit="addToDeck(die, deckSelected)" novalidate>
-                        Choose the Deck You Would Like To Add To:
-                        <select name="deckName" ng-options="deck.deckname for deck in decks track by deck.deckname" ng-model="deckSelected"></select>
-                        <button type="submit" ng-click="showAddTo(die)" class="btn tooltip" ng-disabled="myForm.$invalid">
-                            +
-                            <span>Add to Deck</span>
-                        </button>
-                    </form>
-                </div>
-                <button class="btn btn-delete tooltip" ng-really-click="deleteCard(key)">
-                    <span>Delete Card</span>
-                </button>
-            </div>
-
-        </li>
-    </ul>
-
+    <md-content>
+        <md-list>
+            <md-list-item ng-animate="'animate'" ng-class="die.currentState" ng-repeat="(key, die) in dice | filter:query | orderBy: diceOrder:direction">
+                    <a href="#/details/{{ dice.indexOf(die) }}"><h2>{{die.name}}</h2></a>
+                    <h2 ng-hide="hideActionVersion(die.cardtype)">({{ die.cardversion }})</h2>
+                    <h3><b>Energy Cost:</b> {{die.cost}}</h3>
+                    <h3><b>Energy Type:</b> {{die.energy}}</h3>
+                    <p>Card Type: {{die.cardtype}}</p>
+                    <p class="greenSuccess" ng-show="die.success">{{ successMessage }}</p>
+                    <md-button class="tooltip deletebtn" ng-really-click="deleteCard(key)">
+                        <md-icon md-svg-icon="delete" class="icwhite"></md-icon>
+                        <span>Delete Card</span>
+                    </md-button>
+                    <md-button class="tooltip showbtn" ng-click="showAddTo(die)">
+                        <md-icon md-svg-icon="show" class="icwhite"></md-icon>
+                        <span>Add to Deck Options</span>
+                    </md-button>
+                    <div class="showform" ng-show="die.show">
+                        <form class="cf" ng-submit="addToDeck(die, deckSelected)" novalidate>
+                            Choose the Deck You Would Like To Add To:
+                            <select name="deckName" ng-options="deck.deckname for deck in decks track by deck.deckname" ng-model="deckSelected"></select>
+                            <md-button type="submit" ng-click="showAddTo(die)" class="tooltip savebtn" ng-disabled="myForm.$invalid">
+                                <md-icon md-svg-icon="add" class="icwhite"></md-icon>Save
+                                <span>Add to Deck</span>
+                            </md-button>
+                        </form>
+                    </div>
+            </md-list-item>
+        </md-list>
+    </md-content>
 </section>

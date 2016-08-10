@@ -17,13 +17,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Dice Master Dice Tracker</title>
 
-    <!--Frameworks-->
+    <!--Frameworks / Directives-->
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="node_modules/angular-route/angular-route.min.js"></script>
     <script src="node_modules/angular-animate/angular-animate.min.js"></script>
     <script src="node_modules/angular-aria/angular-aria.min.js"></script>
     <script src="node_modules/angular-material/angular-material.js"></script>
     <script src="node_modules/angular-material-icons/angular-material-icons.js"></script>
+    <script src="node_modules/angular-messages/angular-messages.min.js"></script>
     <script src="node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
     <script src="node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
 
@@ -58,12 +59,8 @@
 
 </head>
 <body>
-    <div layout="column" flex>
-        <header>
-            <nav class="cf" ng-include="'Views/nav.html'"></nav>
-        </header>
-    </div>
-        <main ng-view ng-cloak>
-        </main>
+    <nav class="cf" ng-include="'Views/nav.html'" ng-cloak></nav>
+    <main ng-view ng-cloak>
+    </main>
 </body>
 </html>

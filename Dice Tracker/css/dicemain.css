@@ -3,32 +3,6 @@
     display: none !important;
 }
 
-/* Reset Styles */
-html, body, div, span, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strong, sub, sup, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font: inherit;
-    font-size: 100%;
-    vertical-align: baseline;
-}
-
-ol, ul {
-    list-style: none;
-}
-
 /* Base Styles */
 html {
     background-color: #F7F7F7;
@@ -36,12 +10,7 @@ html {
 
 body {
     font-family: 'Rubik', sans-serif;
-    font-size: 1rem;
-    color: #555459;
-}
-
-a {
-    text-decoration: none;
+    color: #760048;
 }
 
 /* Navigation Toolbar */
@@ -49,11 +18,6 @@ md-toolbar {
     padding: 1rem;
 }
 
-    md-toolbar h1 {
-        text-align: left;
-    }
-
-/*Tooltips on hovering*/
 
 
 /* Input Styling*/
@@ -66,7 +30,7 @@ input.ng-valid.ng-touched {
 }
 
 .ng-invalid .btn {
-    background: gray;
+    background: purple;
 }
 
 .error {
@@ -107,27 +71,20 @@ input.ng-valid.ng-touched {
     background-color: red;
 }
 
-/*ng-file-upload Progress Bar*/
-.thumb {
-    width: 24px;
-    height: 24px;
-    float: none;
-    position: relative;
-    top: 7px;
-}
-
-form .progress {
-    line-height: 15px;
-}
-
-.progress {
-    display: inline-block;
-    width: 100px;
-    border: 3px groove #CCC;
-}
-
-    .progress div {
-        font-size: smaller;
-        background: orange;
-        width: 0;
-    }
+/*Grid testing*/
+.gridListdemoBasicUsage md-grid-list {
+  margin: 8px; }
+.gridListdemoBasicUsage .gray {
+  background: #f5f5f5; }
+.gridListdemoBasicUsage .green {
+  background: #b9f6ca; }
+.gridListdemoBasicUsage .yellow {
+  background: #ffff8d; }
+.gridListdemoBasicUsage .blue {
+  background: #84ffff; }
+.gridListdemoBasicUsage .purple {
+  background: #b388ff; }
+.gridListdemoBasicUsage .red {
+  background: #ff8a80; }
+.gridListdemoBasicUsage md-grid-tile {
+  transition: all 400ms ease-out 50ms; }

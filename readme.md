@@ -10,7 +10,8 @@ Excluded from this repository are the following dependencies:
 * **[AngularJS Animations](https://docs.angularjs.org/guide/animations)** 
 * **[Angular Route (ngRoute)](https://docs.angularjs.org/api/ngRoute)** 
 * **[Angular Material Icons](https://design.google.com/icons/)** 
-* **[Angular Material](https://material.angularjs.org/latest/)** 
+* **[Angular Material](https://material.angularjs.org/latest/)**
+* **[Angular Messages](https://docs.angularjs.org/api/ngMessages/directive/ngMessages)**
 * **[ng-file-upload](https://github.com/danialfarid/ng-file-upload)** 
 
 > For any further information regarding these dependencies, visit the respective websites above to gain insights, troubleshoot and learn about other features available. 
@@ -46,6 +47,10 @@ npm install angular-route
 # Angular Material Icons - Set of Font Icons that can be used in Web Apps
 npm install angular-material-icons
 # Updated regularly with new Icons
+
+# Angular Messages - ngMessages is a directive that is designed to show and hide messages
+npm install angular-messages
+# Designed on v1.5.8
 
 # Ng-File-Upload - A lightweight Directive that enables file uploading to servers.
 npm install ng-file-upload

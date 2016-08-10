@@ -188,8 +188,10 @@
     <Content Include="Controllers\landing.ctr.js" />
     <Content Include="css\dicemain.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\icons\cards-playing-outline.svg" />
     <Content Include="fonts\icons\dice-6.svg" />
     <Content Include="fonts\icons\eye.svg" />
+    <Content Include="fonts\icons\magnify.svg" />
     <Content Include="images\dice\beast_1.jpg" />
     <Content Include="images\dice\catwoman_1.jpg" />
     <Content Include="images\dice\constantine_1.jpg" />
@@ -689,6 +691,9 @@
     <Content Include="node_modules\angular-material\modules\layouts\angular-material.layouts.css" />
     <Content Include="node_modules\angular-material\modules\layouts\angular-material.layouts.ie_fixes.css" />
     <Content Include="node_modules\angular-material\modules\layouts\angular-material.layouts.min.css" />
+    <Content Include="node_modules\angular-messages\angular-messages.js" />
+    <Content Include="node_modules\angular-messages\angular-messages.min.js" />
+    <Content Include="node_modules\angular-messages\index.js" />
     <Content Include="node_modules\angular-route\angular-route.js" />
     <Content Include="node_modules\angular-route\angular-route.min.js" />
     <Content Include="node_modules\angular-route\index.js" />
@@ -798,12 +803,14 @@
     <Content Include="node_modules\ng-file-upload\src\validate.js" />
     <Content Include="node_modules\ng-file-upload\test\index.html" />
     <Content Include="node_modules\ng-file-upload\test\spec\test.js" />
+    <Content Include="Samples\_angular_material.fac.js" />
     <Content Include="Services\app_config.set.js" />
     <Content Include="Services\authentication.fac.js" />
     <Content Include="Services\click_confirmation.fac.js" />
-    <Content Include="Services\Click_Confirmation_Idea.html" />
     <Content Include="Services\collection.fac.js" />
     <Content Include="Services\dbservices.fac.js" />
+    <Content Include="Samples\_click_confirmation_idea.html" />
+    <Content Include="Samples\_click_confirmation_idea.js" />
     <Content Include="Views\addnewdeck.html" />
     <Content Include="Views\addnewcard.html" />
     <Content Include="Views\cardlist.html" />
@@ -952,6 +959,11 @@
     <Content Include="node_modules\angular-material-icons\package.json" />
     <Content Include="node_modules\angular-material-icons\package.json.bak" />
     <Content Include="node_modules\angular-material-icons\README.md" />
+    <Content Include="node_modules\angular-messages\angular-messages.min.js.map" />
+    <Content Include="node_modules\angular-messages\bower.json" />
+    <Content Include="node_modules\angular-messages\LICENSE.md" />
+    <Content Include="node_modules\angular-messages\package.json" />
+    <Content Include="node_modules\angular-messages\README.md" />
     <None Include="Scripts\jquery-3.0.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -967,6 +979,7 @@
     <Content Include="Views\login.html" />
     <Content Include="Views\nav.html" />
     <Content Include="Views\register.html" />
+    <Content Include="Samples\_sidenav_content.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

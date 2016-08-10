@@ -14,7 +14,7 @@ logApp.config(function ($mdThemingProvider) {
 logApp.config(function ($mdIconProvider) {
     // Configure URLs for icons specified by [set:]id.
     $mdIconProvider
-        .defaultFontSet('fa')                   // This sets our default fontset className.
+        .defaultFontSet('fa')   // This sets our default fontset className.
         .icon('delete', '../fonts/icons/delete.svg', 24)
         .icon('add', '../fonts/icons/plus-circle.svg', 24)
         .icon('show', '../fonts/icons/spotlight-beam.svg', 24)
@@ -22,5 +22,7 @@ logApp.config(function ($mdIconProvider) {
         .icon('aright', '../fonts/icons/chevron-double-right.svg', 24)
         .icon('back', '../fonts/icons/backburger.svg', 24)
         .icon('dice6', '../fonts/icons/dice-6.svg')
-        .icon('view', '../fonts/icons/eye.svg')
+        .icon('view', '../fonts/icons/eye.svg', 24)
+        .icon('search', '../fonts/icons/magnify.svg', 24)
+        .icon('cards', '../fonts/icons/cards-playing-outline.svg', 24)
 });

@@ -1,43 +1,39 @@
-﻿<h1>Your Dice Masters Collection</h1>
-<div layout-padding>
-    <md-autocomplete md-search-text="query" md-items="card in cards | filter: query" md-items-text="card.name" md-min-length="2" placeholder="Search for a Card" md-autoselect="true">
-        <md-item-template>
-            <span md-highlight-text="query" md-highlight-flags="^i">{{ card.name }}</span>
-        </md-item-template>
-        <md-not-found>
-            No Cards matching {{ query }} were found.
-        </md-not-found>
-    </md-autocomplete>
+﻿<div layout="row" layout-align="center center" layout-padding flex>
+    <h1>Your Dice Masters Collection</h1>
+</div>
+<div layout="row" class="md-inline-form" flex="90" layout-align="end center">
+    <md-content layout-padding>
+        <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Search For a Card</label>
+                <md-icon md-svg-icon="search"></md-icon>
+                <input ng-model="query" type="text">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Order Cards By:</label>
+                <md-select name="diceOrder" ng-model="diceOrder" required md-no-asterisk>
+                    <md-option value="name">Name</md-option>
+                    <md-option value="cost">Dice Cost</md-option>
+                    <md-option value="energy">Energy Type</md-option>
+                    <md-option value="affiliation">Affiliation</md-option>
+                    <md-option value="cardtype">Card Type</md-option>
+                </md-select>
+                <md-radio-group ng-model="direction" layout="row">
+                    <md-radio-button name="direction" class="md-primary" checked>Ascending</md-radio-button>
+                    <md-radio-button name="direction" value="reverse">Descending</md-radio-button>
+                </md-radio-group>
+                <md-button ng-href="#/addcollection" class="btn">
+                    <md-tooltip>Add a Card</md-tooltip>
+                    <md-icon md-svg-icon="add" class="icwhite"></md-icon>
+                </md-button>
+            </md-input-container>
+        </div>
 </div>
 
-<label class="formgroup">
-    by:
-    <select ng-model="diceOrder">
-        <option value="name">Name</option>
-        <option value="cost">Dice Cost</option>
-        <option value="energy">Energy Type</option>
-        <option value="affiliation">Affiliation</option>
-        <option value="cardtype">Card Type</option>
-    </select>
-</label>
-<label class="formgroup">
-    <input type="radio" ng-model="direction" name="direction" checked />
-    ascending
-</label>
-<label class="formgroup">
-    <input type="radio" ng-model="direction" name="direction" value="reverse" />
-    descending
-</label>
-<label class="formgroup">
-    Cards in Collection: <span class="badge">{{ howManyCards }} </span>
-</label>
-<md-button ng-href="#/addcollection" class="btn">
-    Add a Card<md-icon md-svg-icon="add" class="icwhite"></md-icon>
-</md-button>
-
-<div layout="row">
-    <md-content>
-        <md-card ng-class="die.currentState" ng-repeat="(key, die) in dice | filter:query | orderBy: diceOrder:direction">
+<!--Dice Card Content-->
+<div layout="row" layout-xs="column">
+    <md-content layout="row" layout-wrap layout-align="center center">
+        <md-card ng-class="die.currentState" ng-repeat="(key, die) in dice | filter:query | orderBy: diceOrder:direction" layout="column" aria-label="{{ die.name }} Card">
             <md-card-header>
                 <md-card-avatar>
                     <img ng-src="{{ imagePath }}" class="md-card-image" alt="Card Image">
@@ -50,23 +46,24 @@
             <md-card-title>
                 <md-card-title-text>
                     <span class="md-headline">{{die.cardtype}}</span>
+                    <span class="md-subhead">({{ die.affiliation }})</span>
                     <span class="md-subhead">Dice Cost: {{ die.cost }}</span>
                     <span class="md-subhead">Energy Type: {{ die.energy }}</span>
                 </md-card-title-text>
             </md-card-title>
             <md-card-content>
-                <p class="greenSuccess" ng-show="die.success">{{ successMessage }}</p>
+                <p ng-show="die.success">{{ successMessage }}</p>
             </md-card-content>
             <md-card-actions layout="row" layout-align="end center">
-                <md-button class="deletebtn md-mini" ng-really-click="deleteCard(key)">
+                <md-button class="deletebtn md-mini" ng-really-click="deleteCard(key)" aria-label="Delete Card">
                     <md-tooltip>Delete Card</md-tooltip>
                     <md-icon md-svg-icon="delete" class="icwhite"></md-icon>
                 </md-button>
-                <md-button href="#/details/{{ dice.indexOf(die) }}" class="showbtn md-mini">
+                <md-button href="#/details/{{ dice.indexOf(die) }}" class="showbtn md-mini" aria-label="Link to more details">
                     <md-tooltip>View Card</md-tooltip>
                     <md-icon md-svg-icon="view" class="icwhite"></md-icon>
                 </md-button>
-                <md-button class="showbtn md-mini" ng-click="showAddTo(die)">
+                <md-button class="showbtn md-mini" ng-click="showAddTo(die)" aria-label="Show Options">
                     <md-tooltip>Add to Deck</md-tooltip>
                     <md-icon md-svg-icon="show" class="icwhite"></md-icon>
                 </md-button>
@@ -75,12 +72,13 @@
                 <form ng-submit="addToDeck(die, deckSelected)" novalidate>
                     Deck To Add To: <br />
                     <select name="deckName" ng-options="deck.deckname for deck in decks track by deck.deckname" ng-model="deckSelected"></select>
-                    <md-button type="submit" ng-click="showAddTo(die)" class="savebtn md-mini" ng-disabled="myForm.$invalid">
+                    <md-button type="submit" ng-click="showAddTo(die)" class="savebtn md-mini" ng-disabled="myForm.$invalid" aria-label="Add Card to Deck">
                         <md-tooltip>Save</md-tooltip>
                         <md-icon md-svg-icon="add" class="icwhite"></md-icon>
                     </md-button>
                 </form>
-            </md-card-content>
+            </md-card-content><!--change-->
         </md-card>
     </md-content>
 </div>
+<!-- End Dice Card Content -->

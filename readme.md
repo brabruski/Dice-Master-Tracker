@@ -9,8 +9,12 @@ Excluded from this repository are the following dependencies:
 * **[AngularJS](https://www.angularjs.org/)**
 * **[AngularJS Animations](https://docs.angularjs.org/guide/animations)** 
 * **[Angular Route (ngRoute)](https://docs.angularjs.org/api/ngRoute)** 
-* **[Material Design Icons](https://materialdesignicons.com/)** 
-* **[Angular Material](https://material.angularjs.org/latest/)** 
+* **[Angular Material Icons](https://design.google.com/icons/)** 
+* **[Angular Material](https://material.angularjs.org/latest/)**
+* **[Angular Messages](https://docs.angularjs.org/api/ngMessages/directive/ngMessages)**
+* **[ng-file-upload](https://github.com/danialfarid/ng-file-upload)** 
+
+> For any further information regarding these dependencies, visit the respective websites above to gain insights, troubleshoot and learn about other features available. 
  
 ## Installing Dependencies
 
@@ -19,33 +23,45 @@ You can install these packages locally with `npm`.
 
 
 ### npm 
-> install all dependencies under the 'node_modules' folder or change style references on index.html to match new destinations
+> install all dependencies under the 'node_modules' folder or change link references on index.html to match your new file destinations
 
-If the latest release does not work with this repository use instead the version number it has been originally designed on. To  specify a specific release for install use, "npm install package&#64;X.Y.Z"
+If the latest release does not work with this repository, you should use the version number it has been originally designed on instead. To  specify a specific release for install use, "npm install package&#64;X.Y.Z"
 
 ```shell
-# Angular - To install latest formal release
+# AngularJS - Framework for creating fast SPA's
 npm install angular
 # Designed on v1.5.8
 
-# AngularJS Animations - To install latest formal release 
+# AngularJS Animations - CSS-based animations for the AngularJS Framework 
 npm install angular-animate
 # Designed on v1.5.8
 
-# Angular Material Design - To install latest formal release
+# Angular Material Design - Framework to allow for quick and professional web app bootstrapping
 npm install angular-material
 # Designed on v1.1.0-rc.5
 
-# AngularJS ngRoute - To install latest formal release
+# AngularJs ngRoute - Provides routing and deeplinking services as well as directives for AngularJS apps.
 npm install angular-route
 # Designed on v1.5.8
 
-# Material Design Icons - To install latest formal release
-npm install mdi
+# Angular Material Icons - Set of Font Icons that can be used in Web Apps
+npm install angular-material-icons
+# Updated regularly with new Icons
+
+# Angular Messages - ngMessages is a directive that is designed to show and hide messages
+npm install angular-messages
+# Designed on v1.5.8
+
+# Ng-File-Upload - A lightweight Directive that enables file uploading to servers.
+npm install ng-file-upload
 
 ```
-> see [Material Design Icons - Getting Started](https://materialdesignicons.com/getting-started) for alternative installation options under the Angular Material Section.
+> see [Angular Material Icons](https://design.google.com/icons/) for the full range of selectors for icons.
+
+> see [ng-file-upload](https://github.com/danialfarid/ng-file-upload) by Danial Farid for any information regarding the ng-file-upload directive for uploading files to a server through AngularJs.
 
 ## Other Dependencies used through a CDN
 * **[Firebase](https://firebase.google.com)**
 * **AngularFire**
+
+> The databased used in this app is Google's Cloud based database service known as Firebase. Angularfire is an API designed for Firebase to be used with AngularJs and comes with a lot of useful methods built in for database functionality. See their website for more development documents.

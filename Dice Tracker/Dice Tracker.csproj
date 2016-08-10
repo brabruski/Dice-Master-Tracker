@@ -189,6 +189,7 @@
     <Content Include="css\dicemain.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\icons\cards-playing-outline.svg" />
+    <Content Include="fonts\icons\close-circle.svg" />
     <Content Include="fonts\icons\dice-6.svg" />
     <Content Include="fonts\icons\eye.svg" />
     <Content Include="fonts\icons\magnify.svg" />
@@ -987,6 +988,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Services\angular_material_functions.fac.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\angular.min.js.map" />

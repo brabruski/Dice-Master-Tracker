@@ -1,6 +1,6 @@
 ﻿/*Declare Scope etc. so on minification it doesn't get converted*/
-logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'Config', 'DBServices',
-    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, Config, DBServices) {
+logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'Config', 'DBServices', '$mdToast', 'MaterialFunc',
+    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, Config, DBServices, $mdToast, MaterialFunc) {
 
         var ref = new Firebase(Config.FIREBASE_URL);
         var auth = $firebaseAuth(ref);
@@ -30,7 +30,7 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                         return false;
                     }
                 };
-                    
+
                 //remove card from database
                 $scope.deleteCard = function (key) {
                     collectionDetails.$remove(key);
@@ -51,7 +51,7 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                     var currentDeck = deckName.$id;
                     var deckContentDetails = DBServices.deckCollectionContents(currentDeck);
                     $scope.deckContents = deckContentDetails;
-                    
+
                     var adjustedQty = 0;
                     if (cardName.cardtype === "Action") {
                         adjustedQty = 3;
@@ -77,7 +77,6 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                         }
 
                         //check if card is already added
-                        $scope.successMessage = 'Card Already Exists in the "' + deckName.deckname + '" Deck!';
                         var isAdded = false;
 
                         for (i = 0; i < deckCardContent.length; i++) {
@@ -88,8 +87,12 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                         }
 
                         if (!isAdded) {
-                            $scope.successMessage = 'Card Added Successfully to ' + deckName.deckname + '!';
+                            var addSuccessMsg = 'Card Added Successfully to ' + deckName.deckname + '!';
                             deckContentDetails.$add(contentsData);
+                            $scope.showSimpleToast(addSuccessMsg);
+                        } else {
+                            var addSuccessMsg = 'Card Already Exists in the "' + deckName.deckname + '" Deck!';
+                            $scope.showSimpleToast(addSuccessMsg);
                         }
                         $scope.dice.success = false;
                         cardName.success = true;
@@ -104,6 +107,32 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                 $scope.$watch('howManyCards', function () {
                     $scope.howManyCards = collectionDetails.length;
                 }); //watch for changes made to collection
+
+                //toast functions
+                var last = {
+                    bottom: true,
+                    top: false,
+                    left: false,
+                    right: true
+                };
+
+                $scope.toastPosition = angular.extend({}, last);
+
+                $scope.getToastPosition = function () {
+                    return Object.keys($scope.toastPosition)
+                      .filter(function (pos) { return $scope.toastPosition[pos]; })
+                      .join(' ');
+                };
+
+                $scope.showSimpleToast = function (message) {
+                    var pinTo = $scope.getToastPosition();
+                    $mdToast.show(
+                      $mdToast.simple()
+                        .textContent(message)
+                        .position(pinTo)
+                        .hideDelay(3000)
+                    );
+                };
 
             } //End checking if user is logged
         });

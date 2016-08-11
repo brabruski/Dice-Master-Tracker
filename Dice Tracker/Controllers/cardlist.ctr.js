@@ -1,6 +1,9 @@
-﻿/*Declare Scope etc. so on minification it doesn't get converted*/
-logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'Config', 'DBServices', '$mdToast', 'MaterialFunc',
-    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, Config, DBServices, $mdToast, MaterialFunc) {
+﻿/// <reference path="C:\Users\Logo_Production\Dropbox\Programming\Study\Dice Tracker\Dice Tracker\Views/addnewcard.html" />
+/// <reference path="C:\Users\Logo_Production\Dropbox\Programming\Study\Dice Tracker\Dice Tracker\Views/addnewcard.html" />
+/// <reference path="C:\Users\Logo_Production\Dropbox\Programming\Study\Dice Tracker\Dice Tracker\Views/addnewcard.html" />
+/*Declare Scope etc. so on minification it doesn't get converted*/
+logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'Config', 'DBServices', '$mdToast', '$mdDialog', '$mdMedia', 'MaterialFunc',
+    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, Config, DBServices, $mdToast, $mdDialog, $mdMedia, MaterialFunc) {
 
         var ref = new Firebase(Config.FIREBASE_URL);
         var auth = $firebaseAuth(ref);
@@ -12,9 +15,8 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
 
                 //initialising the filters
                 $scope.dice = collectionDetails;
-                $scope.cards = collectionDetails;
                 $scope.diceOrder = 'name';
-                $scope.imagePath = '../images/dice/placeholder_card.png'
+                $scope.imagePath = '../images/dice/placeholder_card.png';
 
                 //Set default Selected option after deck database has downloaded fully
                 deckDetails.$loaded().then(function (data) {
@@ -32,8 +34,14 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                 };
 
                 //remove card from database
-                $scope.deleteCard = function (key) {
-                    collectionDetails.$remove(key);
+                var deleteCard = function (idKey) {
+                    var deleteKey = 0;
+                    for (j = 0; j < collectionDetails.length; j++) {
+                        if (idKey === collectionDetails[j].id) {
+                            deleteKey = j;
+                        }
+                    }
+                    collectionDetails.$remove(deleteKey);
                 };
 
                 //show the add to deck components
@@ -85,13 +93,13 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                                 break;
                             }
                         }
-
+                        var addSuccessMsg;
                         if (!isAdded) {
-                            var addSuccessMsg = 'Card Added Successfully to ' + deckName.deckname + '!';
+                            addSuccessMsg = 'Card Added Successfully to ' + deckName.deckname + '!';
                             deckContentDetails.$add(contentsData);
                             $scope.showSimpleToast(addSuccessMsg);
                         } else {
-                            var addSuccessMsg = 'Card Already Exists in the "' + deckName.deckname + '" Deck!';
+                            addSuccessMsg = 'Card Already Exists in the "' + deckName.deckname + '" Deck!';
                             $scope.showSimpleToast(addSuccessMsg);
                         }
                         $scope.dice.success = false;
@@ -107,6 +115,27 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                 $scope.$watch('howManyCards', function () {
                     $scope.howManyCards = collectionDetails.length;
                 }); //watch for changes made to collection
+
+                //Delete Card Modal
+                $scope.deleteCard = function (ev, idKey) {
+                    // Appending dialog to document.body to cover sidenav in docs app
+                    var confirm = $mdDialog.confirm()
+                          .title('Would you like to delete this card?')
+                          .textContent('This will be permanent and cannot be undone.')
+                          .ariaLabel('Delete Card')
+                          .targetEvent(ev)
+                          .ok('Delete')
+                          .cancel('Cancel');
+                    $mdDialog.show(confirm).then(function () {
+                        //remove card from database
+                        deleteCard(idKey);
+                        addSuccessMsg = 'Card Deleted Successfully';
+                        $scope.showSimpleToast(addSuccessMsg);
+                    }, function () {
+                        addSuccessMsg = 'Card Delete Cancelled';
+                        $scope.showSimpleToast(addSuccessMsg);
+                    });
+                }; //end delete function
 
                 //toast functions
                 var last = {

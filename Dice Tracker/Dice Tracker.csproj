@@ -804,6 +804,8 @@
     <Content Include="node_modules\ng-file-upload\src\validate.js" />
     <Content Include="node_modules\ng-file-upload\test\index.html" />
     <Content Include="node_modules\ng-file-upload\test\spec\test.js" />
+    <Content Include="Samples\modal.html" />
+    <Content Include="Samples\modal.js" />
     <Content Include="Samples\_angular_material.fac.js" />
     <Content Include="Services\app_config.set.js" />
     <Content Include="Services\authentication.fac.js" />
@@ -1026,7 +1028,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55270/</IISUrl>
+          <IISUrl>http://localhost:59282/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

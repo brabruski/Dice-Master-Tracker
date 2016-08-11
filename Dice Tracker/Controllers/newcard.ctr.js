@@ -16,19 +16,60 @@
 
                 //Methods for uploading image using ng-file-upload directive
 
+                //Create an Array of Option Values
+                var maxDice = function (maxDice) {
+                    var maxDiceInSet = [];
+                    for (var i = 0; i < maxDice; i++) {
+                        maxDiceInSet.push(i+1);
+                    }
+                    return maxDiceInSet;
+                };
+
+                //toast functions
+                var last = {
+                    bottom: true,
+                    top: false,
+                    left: false,
+                    right: true
+                };
+
+                $scope.toastPosition = angular.extend({}, last);
+
+                $scope.getToastPosition = function () {
+                    return Object.keys($scope.toastPosition)
+                      .filter(function (pos) { return $scope.toastPosition[pos]; })
+                      .join(' ');
+                };
+
+                $scope.showSimpleToast = function (message) {
+                    var pinTo = $scope.getToastPosition();
+                    $mdToast.show(
+                      $mdToast.simple()
+                        .textContent(message)
+                        .position(pinTo)
+                        .hideDelay(3000)
+                    );
+                };
 
                 //Initialise selection options
                 $scope.cardcost = '1';
+                $scope.energyOptions = ['Fist', 'Lightning', 'Mask', 'Shield', 'Generic'];
                 $scope.cardenergy = 'Fist';
                 $scope.cardaffiliation = 'Marvel';
                 $scope.dicequantity = '1';
                 $scope.cardtype = 'Hero / Villain';
                 $scope.rarity = 'Common';
+                //Maximum Dice Cost
+                $scope.diceMax = maxDice(10);
+                //Maximum Dice Quanitity
+                $scope.diceQty = maxDice(5);
 
                 $scope.$watch('cardtype', function () {
                     if ($scope.cardtype === 'Action') {
                         $scope.isAction = true;
                         $scope.cardversion = "Action";
+                        $scope.dicequantity = 3;
+                        $scope.cardenergy = 'Generic';
                     } else {
                         $scope.isAction = false;
                         $scope.cardversion = "";
@@ -73,8 +114,9 @@
                         $scope.cardcolour = '';
                         rarity: 'Common',
                         $scope.dicequantity = '1';
-                        $scope.successMessage = "Card Added Successfully!";
-                    }
+                        var addSuccessMsg = "Card Added To Collection Successfully!";
+                        $scope.showSimpleToast(addSuccessMsg);
+                        }
                     );
                 };
 

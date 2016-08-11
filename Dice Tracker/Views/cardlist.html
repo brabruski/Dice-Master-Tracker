@@ -22,7 +22,7 @@
                     <md-radio-button name="direction" class="md-primary" checked>Ascending</md-radio-button>
                     <md-radio-button name="direction" value="reverse">Descending</md-radio-button>
                 </md-radio-group>
-                <md-button ng-href="#/addcollection" class="btn">
+                <md-button class="md-primary md-raised" ng-href="#/addcollection">
                     <md-tooltip>Add a Card</md-tooltip>
                     <md-icon md-svg-icon="add" class="icwhite"></md-icon>
                 </md-button>
@@ -49,13 +49,11 @@
                     <span class="md-subhead">({{ die.affiliation }})</span>
                     <span class="md-subhead">Dice Cost: {{ die.cost }}</span>
                     <span class="md-subhead">Energy Type: {{ die.energy }}</span>
+                    <span class="md-subhead">Key: {{ key }}</span>
                 </md-card-title-text>
             </md-card-title>
-            <md-card-content>
-                <p ng-show="die.success">{{ successMessage }}</p>
-            </md-card-content>
             <md-card-actions layout="row" layout-align="end center">
-                <md-button class="deletebtn md-mini" ng-really-click="deleteCard(key)" aria-label="Delete Card">
+                <md-button class="deletebtn md-mini" ng-click="deleteCard($event, die.id)" aria-label="Delete Card">
                     <md-tooltip>Delete Card</md-tooltip>
                     <md-icon md-svg-icon="delete" class="icwhite"></md-icon>
                 </md-button>

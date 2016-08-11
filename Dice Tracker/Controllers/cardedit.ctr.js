@@ -35,10 +35,12 @@
                             $scope.isAction = true;
                             $scope.cardversion = "Action";
                             $scope.dicequantity = 3;
+                            $scope.cardenergy = 'Generic';
                         } else {
                             $scope.isAction = false;
                             $scope.cardversion = collectionDetails[$scope.whichItem].cardversion;
                             $scope.dicequantity = collectionDetails[$scope.whichItem].quantity;
+                            $scope.cardenergy = collectionDetails[$scope.whichItem].energy;
                         }
                     }); //watch for if it's action card or not
 

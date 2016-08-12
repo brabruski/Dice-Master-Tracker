@@ -210,6 +210,7 @@
     <Content Include="fonts\icons\delete.svg" />
     <Content Include="fonts\icons\plus-circle.svg" />
     <Content Include="fonts\icons\spotlight-beam.svg" />
+    <Content Include="images\wood_texture.jpg" />
     <Content Include="index.html" />
     <Content Include="js\app.js" />
     <Content Include="js\bootstrap.js" />

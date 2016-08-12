@@ -7,7 +7,8 @@
     *Styling
     Update badge colours depending on deck card quantities
     Add rarity colours to card details & list
-    Fix Toast Position to always be fixed
+    Deck List to have card counts and dice
+    Toast Position to always be fixed
     Button / Icon Styling to have Colours
 
     Material Update To Do to Pages:
@@ -71,8 +72,15 @@
 
 </head>
 <body>
-    <nav class="cf" ng-include="'Views/nav.html'" ng-cloak></nav>
-    <main ng-view ng-cloak>
-    </main>
+    <div layout="column">
+        <nav ng-include="'Views/nav.html'" ng-cloak></nav>
+
+        <md-content>
+            <main flex ng-view ng-cloak>
+            </main>
+
+            <span flex></span>
+
+    </div>
 </body>
 </html>

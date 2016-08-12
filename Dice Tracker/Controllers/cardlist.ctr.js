@@ -1,9 +1,6 @@
-﻿/// <reference path="C:\Users\Logo_Production\Dropbox\Programming\Study\Dice Tracker\Dice Tracker\Views/addnewcard.html" />
-/// <reference path="C:\Users\Logo_Production\Dropbox\Programming\Study\Dice Tracker\Dice Tracker\Views/addnewcard.html" />
-/// <reference path="C:\Users\Logo_Production\Dropbox\Programming\Study\Dice Tracker\Dice Tracker\Views/addnewcard.html" />
-/*Declare Scope etc. so on minification it doesn't get converted*/
-logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'Config', 'DBServices', '$mdToast', '$mdDialog', '$mdMedia', 'MaterialFunc',
-    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, Config, DBServices, $mdToast, $mdDialog, $mdMedia, MaterialFunc) {
+﻿/*Declare Scope etc. so on minification it doesn't get converted*/
+logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'Config', 'DBServices', '$mdToast', '$mdDialog', '$timeout', '$mdBottomSheet', '$mdMedia', 'MaterialFunc',
+    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, Config, DBServices, $mdToast, $mdDialog, $timeout, $mdBottomSheet, $mdMedia, MaterialFunc) {
 
         var ref = new Firebase(Config.FIREBASE_URL);
         var auth = $firebaseAuth(ref);
@@ -33,6 +30,20 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                     }
                 };
 
+                $scope.getRarity = function (item) {
+                    var rarity = ["common", "uncommon", "rare", "srare"]
+                    switch (item.rarity) {
+                        case "Uncommon":
+                            return rarity[1];
+                        case "Rare":
+                            return rarity[2];
+                        case "Super Rare":
+                            return rarity[3];
+                        default:
+                            return rarity[0];
+                    }
+                }
+
                 //remove card from database
                 var deleteCard = function (idKey) {
                     var deleteKey = 0;
@@ -47,11 +58,6 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                 //show the add to deck components
                 $scope.showAddTo = function (currentItem) {
                     currentItem.show = !currentItem.show;
-                    if (currentItem.currentState === 'expanded') {
-                        currentItem.currentState = '';
-                    } else {
-                        currentItem.currentState = 'expanded';
-                    }
                 };
 
                 //create link to contents of each deck

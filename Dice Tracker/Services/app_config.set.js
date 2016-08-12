@@ -25,4 +25,8 @@ logApp.config(function ($mdIconProvider) {
         .icon('view', '../fonts/icons/eye.svg', 24)
         .icon('search', '../fonts/icons/magnify.svg', 24)
         .icon('cards', '../fonts/icons/cards-playing-outline.svg', 24)
+        .icon('key', '../fonts/icons/key.svg', 24)
+        .icon('email', '../fonts/icons/email.svg', 24)
+        .icon('username', '../fonts/icons/account-settings-variant.svg', 24)
+        .icon('user', '../fonts/icons/account.svg', 24)
 });

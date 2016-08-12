@@ -24,15 +24,6 @@ logApp.config(['$routeProvider', function ($routeProvider) {
         templateUrl: 'Views/home.html',
         controller: 'HomeController'
     }).
-    when('/landing', {
-        templateUrl: 'Views/landing.html',
-        controller: 'LandingController',
-        resolve: {
-            currentAuth: function (Authentication) {
-                return Authentication.requireAuth();
-            }
-        }
-    }).
     when('/collection', {
         templateUrl: 'Views/cardlist.html',
         controller: 'CardListController',

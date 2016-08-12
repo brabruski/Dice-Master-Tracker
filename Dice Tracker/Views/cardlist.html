@@ -43,7 +43,7 @@
                     <span class="md-subhead">{{ die.cardversion }}</span>
                 </md-card-header-text>
             </md-card-header>
-            <md-card-title>
+            <md-card-title ng-class="getRarity(die)">
                 <md-card-title-text>
                     <span class="md-headline">{{die.cardtype}}</span>
                     <span class="md-subhead">({{ die.affiliation }})</span>

@@ -1,11 +1,10 @@
-﻿<!--Fix Password Matching-->
-<div layout="column" layout-align="center center" layout-padding flex>
+﻿<div layout="column" layout-align="center center" layout-padding flex>
     <h1>Dice Master Collection Tracker Registration</h1>
     <p>Please Register to access all features</p>
 </div>
 <div layout="row" class="md-inline-form" flex layout-align="center center">
     <md-content layout-padding>
-        <form name="registerform" ng-submit="register()" novalidate>
+        <form name="registerForm" ng-submit="register()" novalidate>
             <md-dialogue-content>
                 <div layout="column" layout-padding layout-align="center">
                     <div layout-gt-sm="row">
@@ -13,7 +12,7 @@
                             <label>First Name</label>
                             <md-icon md-svg-icon="user" class="icwhite"></md-icon>
                             <input required name="fname" ng-model="user.fname">
-                            <div ng-messages="projectForm.clientName.$error">
+                            <div ng-messages="registerForm.fname.$error">
                                 <div ng-message="required">First Name required.</div>
                             </div>
                         </md-input-container>
@@ -21,7 +20,7 @@
                             <label>Last Name</label>
                             <md-icon md-svg-icon="user" class="icwhite"></md-icon>
                             <input required name="lname" ng-model="user.lname">
-                            <div ng-messages="projectForm.clientName.$error">
+                            <div ng-messages="registerForm.lname.$error">
                                 <div ng-message="required">Last Name required.</div>
                             </div>
                         </md-input-container>
@@ -31,7 +30,7 @@
                             <label>Display Name</label>
                             <md-icon md-svg-icon="username" class="icwhite"></md-icon>
                             <input required name="displayname" ng-model="user.displayname">
-                            <div ng-messages="projectForm.clientName.$error">
+                            <div ng-messages="registerForm.displayname.$error">
                                 <div ng-message="required">Display Name required.</div>
                             </div>
                         </md-input-container>
@@ -39,7 +38,7 @@
                             <label>Email Address</label>
                             <md-icon md-svg-icon="email" class="icwhite"></md-icon>
                             <input required name="email" ng-model="user.email">
-                            <div ng-messages="projectForm.clientName.$error">
+                            <div ng-messages="registerForm.email.$error">
                                 <div ng-message="required">Valid Email Address is required.</div>
                             </div>
                         </md-input-container>
@@ -48,55 +47,26 @@
                         <md-input-container class="md-block" flex>
                             <label>Password</label>
                             <md-icon md-svg-icon="key" class="icwhite"></md-icon>
-                            <input required name="password" ng-model="user.password">
-                            <div ng-messages="projectForm.clientName.$error">
+                            <input type="password" required name="password" ng-model="user.password" pattern=".{4,}">
+                            <div ng-messages="registerForm.password.$error">
                                 <div ng-message="required">Please Enter a Valid Password.</div>
                             </div>
                         </md-input-container>
                         <md-input-container class="md-block" flex-gt-sm>
                             <label>Repeat Password</label>
                             <md-icon md-svg-icon="key" class="icwhite"></md-icon>
-                            <input required name="password2" ng-model="user.password2">
-                            <div ng-messages="projectForm.clientName.$error">
-                                <div ng-message="required">Please Enter a Valid Password.</div>
+                            <input type="password" required name="password2" ng-model="checkPassword"
+                                   passw-validation="checkPassword != user.password ? 'Passwords don\'t match' : ''" >
+                            <div ng-messages="registerForm.password2.$error">
+                                <div ng-message="required">Passwords Don't Match.</div>
                             </div>
                         </md-input-container>
                     </div>
                 </div>
             </md-dialogue-content>
             <md-dialog-actions layout="row" layout-align="end center">
-                <md-button type="submit" class="btn" ng-disabled="registerform.$invalid">Register</md-button>
+                <md-button type="submit" class="md-raised md-primary" ng-disabled="registerForm.$invalid">Register</md-button>
             </md-dialog-actions>
         </form>
     </md-content>
 </div>
-
-
-<!--http://blog.brunoscopelliti.com/angularjs-directive-to-check-that-passwords-match/-->
-
-
-
-<!--Old Layout Form-->
-<form name="registerform" ng-submit="register()" novalidate>
-    <p class="message" ng-show="message"> {{ message }}</p>
-    <fieldset>
-        <input type="text" name="fname" placeholder="First Name" ng-model="user.fname" ng-required="true" />
-        <p class="error validationerror" ng-show="registerform.fname.$invalid && registerform.fname.$touched">First Name Required</p>
-
-        <input type="text" name="lname" placeholder="Last Name" ng-model="user.lname" ng-required="true" />
-        <p class="error validationerror" ng-show="registerform.lname.$invalid && registerform.lname.$touched">Last Name Required</p>
-
-        <input type="text" name="displayname" placeholder="Display Name" ng-model="user.displayname" ng-required="true" />
-        <p class="error validationerror" ng-show="registerform.displayname.$invalid && registerform.displayname.$touched">Display Name Required</p>
-
-        <input type="email" name="email" placeholder="Email" ng-model="user.email" ng-required="true" />
-        <p class="error validationerror" ng-show="registerform.email.$invalid && registerform.email.$touched">Email Address Required</p>
-
-        <input type="password" id="pw1" name="password" placeholder="Password" ng-model="user.password" ng-required="true" />
-        <p class="error validationerror" ng-show="registerform.password.$invalid && registerform.password.$touched">Password Required</p>
-
-        <input type="password" id="pw2" name="password2" placeholder="Confirm Password" ng-model="user.password2" ng-required="true" pw-check="pw1" />
-        <p class="error validationerror" ng-show="registerform.password2.$invalid && registerform.password2.$touched && registerform.pw2.$error.pwmatch">Passwords don't match</p>
-    </fieldset>
-    <md-button type="submit" class="btn" ng-disabled="registerform.$invalid">Register</md-button>
-</form>

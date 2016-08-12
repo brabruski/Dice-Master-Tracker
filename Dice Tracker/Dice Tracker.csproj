@@ -809,11 +809,12 @@
     <Content Include="Samples\_angular_material.fac.js" />
     <Content Include="Services\app_config.set.js" />
     <Content Include="Services\authentication.fac.js" />
-    <Content Include="Services\click_confirmation.fac.js" />
+    <Content Include="Services\click_confirmation.dir.js" />
     <Content Include="Services\collection.fac.js" />
     <Content Include="Services\dbservices.fac.js" />
     <Content Include="Samples\_click_confirmation_idea.html" />
     <Content Include="Samples\_click_confirmation_idea.js" />
+    <Content Include="Services\password_validation.dir.js" />
     <Content Include="Views\addnewdeck.html" />
     <Content Include="Views\addnewcard.html" />
     <Content Include="Views\cardlist.html" />

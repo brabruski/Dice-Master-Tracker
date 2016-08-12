@@ -123,30 +123,30 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                 }); //watch for changes made to collection
 
                 //Delete Card Modal
-                $scope.deleteCard = function (ev, idKey) {
+                $scope.deleteItem = function (ev, idKey) {
                     // Appending dialog to document.body to cover sidenav in docs app
                     var confirm = $mdDialog.confirm()
-                          .title('Would you like to delete this card?')
+                          .title('Would you like to delete this?')
                           .textContent('This will be permanent and cannot be undone.')
-                          .ariaLabel('Delete Card')
+                          .ariaLabel('Delete Item')
                           .targetEvent(ev)
                           .ok('Delete')
                           .cancel('Cancel');
                     $mdDialog.show(confirm).then(function () {
                         //remove card from database
                         deleteCard(idKey);
-                        addSuccessMsg = 'Card Deleted Successfully';
+                        addSuccessMsg = 'Item Deleted Successfully';
                         $scope.showSimpleToast(addSuccessMsg);
                     }, function () {
-                        addSuccessMsg = 'Card Delete Cancelled';
+                        addSuccessMsg = 'Item Delete Cancelled';
                         $scope.showSimpleToast(addSuccessMsg);
                     });
                 }; //end delete function
 
                 //toast functions
                 var last = {
-                    bottom: true,
-                    top: false,
+                    bottom: false,
+                    top: true,
                     left: false,
                     right: true
                 };

@@ -7,7 +7,7 @@
 logApp.config(function ($mdThemingProvider) {
     $mdThemingProvider.theme('default')
       .primaryPalette('pink')
-      .accentPalette('purple');
+      .accentPalette('lime');
 });
 
 //Define icons in theme

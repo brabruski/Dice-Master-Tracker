@@ -8,7 +8,7 @@
     Update badge colours depending on deck card quantities
     Add rarity colours to card details & list
     Fix Toast Position to always be fixed
-    Button Styling to have Colours
+    Button / Icon Styling to have Colours
 
     Material Update To Do to Pages:
     Addnewdeck
@@ -16,8 +16,6 @@
     cardedit
     deckdetails
     decklist
-    login
-    register
 -->
 
 <html lang="en" ng-app="diceApp">
@@ -46,7 +44,6 @@
     <script src="js/app.js"></script>
     <script src="Services/app_config.set.js"></script>
     <script src="Services/authentication.fac.js"></script>
-    <script src="Services/click_confirmation.fac.js"></script>
     <script src="Services/dbservices.fac.js"></script>
     <script src="Services/angular_material_functions.fac.js"></script>
 
@@ -61,6 +58,10 @@
     <script src="Controllers/decklist.ctr.js"></script>
     <script src="Controllers/newdeck.ctr.js"></script>
     <script src="Controllers/deckdetails.ctr.js"></script>
+
+    <!--Custom Directives-->
+    <script src="Services/click_confirmation.dir.js"></script>
+    <script src="Services/password_validation.dir.js"></script>
 
     <!--Stylesheets and Icons-->
     <link href='https://fonts.googleapis.com/css?family=Rubik:400,700' rel='stylesheet' type='text/css'>

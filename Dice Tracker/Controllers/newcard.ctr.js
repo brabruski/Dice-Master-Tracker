@@ -1,5 +1,5 @@
-﻿logApp.controller('AddController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'Config', 'DBServices',
-    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, Config, DBServices) {
+﻿logApp.controller('AddController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'Config', 'DBServices', '$mdToast', '$mdDialog',
+    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, Config, DBServices, $mdToast, $mdDialog) {
         //$rootScope taken from authentication service to gain User ID. $firebaseArray for writing to database
 
         //get details about logged in user to get data assigned to that user
@@ -20,35 +20,9 @@
                 var maxDice = function (maxDice) {
                     var maxDiceInSet = [];
                     for (var i = 0; i < maxDice; i++) {
-                        maxDiceInSet.push(i+1);
+                        maxDiceInSet.push(i + 1);
                     }
                     return maxDiceInSet;
-                };
-
-                //toast functions
-                var last = {
-                    bottom: true,
-                    top: false,
-                    left: false,
-                    right: true
-                };
-
-                $scope.toastPosition = angular.extend({}, last);
-
-                $scope.getToastPosition = function () {
-                    return Object.keys($scope.toastPosition)
-                      .filter(function (pos) { return $scope.toastPosition[pos]; })
-                      .join(' ');
-                };
-
-                $scope.showSimpleToast = function (message) {
-                    var pinTo = $scope.getToastPosition();
-                    $mdToast.show(
-                      $mdToast.simple()
-                        .textContent(message)
-                        .position(pinTo)
-                        .hideDelay(3000)
-                    );
                 };
 
                 //Initialise selection options
@@ -116,7 +90,33 @@
                         $scope.dicequantity = '1';
                         var addSuccessMsg = "Card Added To Collection Successfully!";
                         $scope.showSimpleToast(addSuccessMsg);
-                        }
+                    }
+                    );
+                };
+
+                //toast functions
+                var last = {
+                    bottom: false,
+                    top: true,
+                    left: false,
+                    right: true
+                };
+
+                $scope.toastPosition = angular.extend({}, last);
+
+                $scope.getToastPosition = function () {
+                    return Object.keys($scope.toastPosition)
+                      .filter(function (pos) { return $scope.toastPosition[pos]; })
+                      .join(' ');
+                };
+
+                $scope.showSimpleToast = function (message) {
+                    var pinTo = $scope.getToastPosition();
+                    $mdToast.show(
+                      $mdToast.simple()
+                        .textContent(message)
+                        .position(pinTo)
+                        .hideDelay(3000)
                     );
                 };
 

@@ -1,70 +1,82 @@
-﻿<div class="search">
-    <h1>Dice Masters Dice Tracker</h1>
+﻿<md-content>
+    <div layout="column" layout-align="start center" flex>
+        <h2>Deck Details</h2>
+        <p>Cycle Through Your collection to See Detailed Descriptions for each Card.</p>
+        <h1>{{decks[whichItem].deckname}}</h1>
+        <md-list class="md-warn" layout="row" layout-align="center center" ng-cloak>
+            <md-list-item>
+                Hero / Villain Cards in Deck: <span ng-class="badgeColour" class="badge">{{ howManyHeroes }} / 8 </span>
+            </md-list-item>
+            <md-list-item>
+                Action Cards in Deck: <span class="badge">{{ howManyActions }} / 2 </span>
+            </md-list-item>
+            <md-list-item>
+                Total Hero Dice: <span class="badge">{{ howManyHeroDice }} / 20 </span>
+            </md-list-item>
+        </md-list>
+        <div layout="row">
+            <md-button href="#/deckdetails/{{ prevItem }}" md-no-ink class="md-primary">
+                <md-icon md-svg-icon="aleft" class="icwhite" aria-label="Previous Item"></md-icon>
+            </md-button>
+            <md-button href="#/deckdetails/{{ nextItem }}" md-no-ink class="md-primary">
+                <md-icon md-svg-icon="aright" class="icwhite" aria-label="Next Item"></md-icon>
+            </md-button>
+            <md-button ng-href="#/decks" md-no-ink class="md-primary">
+                <md-icon md-svg-icon="back" class="icwhite"></md-icon>Deck List
+            </md-button>
+        </div>
+        <div layout="row" layout-padding>
+            <label>Filter Cards By:  </label>
+            <md-radio-group ng-model="query" layout="row">
+                <md-radio-button name="query" class="md-primary" checked>Show All</md-radio-button>
+                <md-radio-button name="query" value="Hero / Villain">Hero Cards</md-radio-button>
+                <md-radio-button name="query" value="Action">Action Cards</md-radio-button>
+            </md-radio-group>
+        </div>       
+    </div>
+</md-content>
+
+
+<div ng-model="decks">
+
     <label class="formgroup">
-        <input type="radio" ng-model="query" name="query" checked />
-        Show All
-    </label>
-    <label class="formgroup">
-        <input type="radio" ng-model="query" name="query" value="Hero / Villain" />
-        Hero / Villain Cards
-    </label>
-    <label class="formgroup">
-        <input type="radio" ng-model="query" name="query" value="Action" />
-        Action Cards
+
     </label>
 </div>
 
-<section class="diceinfo">
-    <div class="diceobj cf" ng-model="decks">
-        <md-button href="#/deckdetails/{{ prevItem }}" class="arrowbtn">
-            <md-icon md-svg-icon="aleft" class="icwhite"></md-icon>
-        </md-button>
-        <md-button href="#/deckdetails/{{ nextItem }}" class="arrowbtn">
-            <md-icon md-svg-icon="aright" class="icwhite"></md-icon>
-        </md-button>
-        <md-button href="#/decks" class="btn">
-            <md-icon md-svg-icon="back" class="icwhite"></md-icon>Back to Deck List
-        </md-button>
-        <h1>{{decks[whichItem].deckname}}</h1>
-        <label class="formgroup">
-            Hero / Villain Cards in Deck: <span ng-class="badgeColour" class="badge">{{ howManyHeroes }} / 8 </span>
-            Action Cards in Deck: <span class="badge">{{ howManyActions }} / 2 </span>
-            Total Hero Dice: <span class="badge">{{ howManyHeroDice }} / 20 </span>
-        </label>
-    </div>
 
-    <ul class="dicelist">
-        <li ng-animate="'animate'" class="diceobj cf" ng-repeat="(key, die) in deckDice | filter:query">
-            <div class="info">
-                <a href="#/details/{{ die.navKey }}"><h2>{{die.name}}</h2></a>
-                <h2 ng-hide="hideActionVersion(die.cardtype)">({{ die.cardversion }})</h2>
-                <p>{{ die.description }}</p>
-                <b>Dice Colour:</b> {{die.colour}}
-                <div ng-hide="hideActionVersion(die.cardtype)"><b>Dice Quantity:</b> {{die.diceQuantity}}</div>
-                <p class="greenSuccess" ng-show="die.success">{{ successQuantityMessage }}</p>
-                <md-button class="tooltip deletebtn" ng-click="removeItem(key)">
-                    <md-icon md-svg-icon="delete" class="icwhite"></md-icon>
-                    <span>Remove Card from this Deck</span>
-                </md-button>
-                <md-button class="tooltip showbtn" ng-hide="hideActionVersion(die.cardtype)" ng-click="showAddTo(die)">
-                    <md-icon md-svg-icon="show" class="icwhite"></md-icon>
-                    <span>Increase the Dice Amount for this Card in This Deck</span>
-                </md-button>
+<ul class="dicelist">
+    <li ng-animate="'animate'" class="diceobj cf" ng-repeat="(key, die) in deckDice | filter:query">
+        <div class="info">
+            <a href="#/details/{{ die.navKey }}"><h2>{{die.name}}</h2></a>
+            <h2 ng-hide="hideActionVersion(die.cardtype)">({{ die.cardversion }})</h2>
+            <p>{{ die.description }}</p>
+            <b>Dice Colour:</b> {{die.colour}}
+            <div ng-hide="hideActionVersion(die.cardtype)"><b>Dice Quantity:</b> {{die.diceQuantity}}</div>
+            <p class="greenSuccess" ng-show="die.success">{{ successQuantityMessage }}</p>
+            <md-button class="tooltip deletebtn" ng-click="removeItem(key)">
+                <md-icon md-svg-icon="delete" class="icwhite"></md-icon>
+                <span>Remove Card from this Deck</span>
+            </md-button>
+            <md-button class="tooltip showbtn" ng-hide="hideActionVersion(die.cardtype)" ng-click="showAddTo(die)">
+                <md-icon md-svg-icon="show" class="icwhite"></md-icon>
+                <span>Increase the Dice Amount for this Card in This Deck</span>
+            </md-button>
 
-                <div class="showform" ng-show="die.show">
-                    <form name="incrementDiceQuantity" ng-submit="submitNewQuantity(die, die.diceQuantity)" novalidate>
-                        <b>Dice Quantity in Deck: </b><input type="number" ng-model="die.diceQuantity" name="quantity" ng-value="{{die.diceQuantity}}" min="0" max="5">
-                        <p class="error validationerror" ng-show="incrementDiceQuantity.$invalid">Please input a number between 0 &amp; 5</p>
-                        <md-button type="submit" ng-click="showAddTo(die)" class="tooltip savebtn" ng-disabled="myForm.$invalid">
-                            <md-icon md-svg-icon="add" class="icwhite"></md-icon>Save
-                            <span>Add to Deck</span>
-                        </md-button>
-                    </form>
-                </div>
-
+            <div class="showform" ng-show="die.show">
+                <form name="incrementDiceQuantity" ng-submit="submitNewQuantity(die, die.diceQuantity)" novalidate>
+                    <b>Dice Quantity in Deck: </b><input type="number" ng-model="die.diceQuantity" name="quantity" ng-value="{{die.diceQuantity}}" min="0" max="5">
+                    <p class="error validationerror" ng-show="incrementDiceQuantity.$invalid">Please input a number between 0 &amp; 5</p>
+                    <md-button type="submit" ng-click="showAddTo(die)" class="tooltip savebtn" ng-disabled="myForm.$invalid">
+                        <md-icon md-svg-icon="add" class="icwhite"></md-icon>Save
+                        <span>Add to Deck</span>
+                    </md-button>
+                </form>
             </div>
 
-        </li>
-    </ul>
+        </div>
+
+    </li>
+</ul>
 
 </section>

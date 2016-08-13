@@ -1,24 +1,40 @@
-﻿<section class="dicePage">
-    <div class="search">
-        <h1>Dice Masters Decks</h1>
-        <md-button ng-href="#/adddeck" class="btn">Add a Deck</md-button>
+﻿<div layout="column" layout-align="center center" layout-padding flex>
+    <h1>Dice Masters Decks</h1>
+</div>
+<div layout="row" layout-align="center start" flex layout-padding>
+    <div >
+        <md-content>
+            <md-list flex>
+                <md-subheader class="md-no-sticky">Select a Deck to View</md-subheader>
+                <md-list-item class="md-3-line" ng-repeat="(key, deck) in decks" ng-click="null">
+                    <md-tooltip>Deck: {{ deck.deckname }}</md-tooltip>
+                    <a href="#/deckdetails/{{ decks.indexOf(deck) }}">
+                        <md-icon md-svg-icon="cards" class="md-avatar"></md-icon>
+                    </a>
+                    <div class="md-list-item-text" layout="column">
+                        <h3>{{ deck.deckname }}</h3>
+                        <p>{{ deck.deckdescription }}</p>
+                        <div layout="row">
+                            <md-button href="#/deckdetails/{{ decks.indexOf(deck) }}" class="md-secondary md-icon-button" aria-label="Link to more details">
+                                <md-tooltip>View Deck</md-tooltip>
+                                <md-icon md-svg-icon="view" class="icwhite"></md-icon>
+                            </md-button>
+                            <md-button class="md-secondary md-icon-button" ng-click="deleteItem($event, deck.id)" aria-label="Delete Card">
+                                <md-tooltip>Delete this Deck</md-tooltip>
+                                <md-icon md-svg-icon="delete" class="icwhite"></md-icon>
+                            </md-button>
+                        </div>
+                    </div>
+                </md-list-item>
 
+                <md-divider></md-divider>
+            </md-list>
+        </md-content>
     </div>
-
-    <ul class="dicelist">
-        <li ng-animate="'animate'" class="diceobj cf" ng-repeat="(key, deck) in decks">
-            <div class="info">
-                <a href="#/deckdetails/{{ decks.indexOf(deck) }}">
-                    <h2>{{deck.deckname}}</h2>
-                </a>
-                <h3>{{deck.deckdescription}}</h3>
-                <md-button class="tooltip deletebtn" ng-really-click="deleteDeck(key)">
-                    <md-icon md-svg-icon="delete" class="icwhite"></md-icon>
-                    <span>Delete this Deck</span>
-                </md-button>
-            </div>
-
-        </li>
-    </ul>
-
-</section>
+</div>
+<div layout="row" flex="90" layout-align="end start">
+    <md-button class="md-warn md-raised" ng-href="#/adddeck">
+        <md-tooltip>Add a New Deck</md-tooltip>
+        <md-icon md-svg-icon="add" class="icwhite"></md-icon>
+    </md-button>
+</div>

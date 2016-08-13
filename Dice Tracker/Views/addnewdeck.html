@@ -1,19 +1,30 @@
-﻿<div class="deck">
-        <h1>Build a New Deck</h1>
-        <p>Enter in the Name of your Deck and a Description then click 'Save'</p>
-    <md-button ng-href="#/decks" class="btn">
-        <md-icon md-svg-icon="back" class="icwhite"></md-icon>Back to Deck List
-    </md-button>
-        <p class="greenSuccess">{{ successMessage }}</p>
-    </div>
-    <form class="formgroup addmeeting cf" name="addform" ng-submit="addDeck()" novalidate>
-    <div class="inputwrapper">
-        <input type="text" name="deckname" placeholder="Deck Name." ng-model="deckname" ng-required="true" />
-        <input type="text" name="deckdescription" placeholder="Description." ng-model="deckdescription" ng-required="true" />
-    </div>
-    <md-button type="submit" class="savebtn" ng-disabled="addform.$invalid">
-        <md-icon md-svg-icon="add" class="icwhite"></md-icon>Save
-    </md-button></form>
-    
-    
-
+﻿<div layout="column" layout-align="center center" flex>
+    <h1>Build a New Deck</h1>
+    <p>Enter in the Name of your Deck and a Description then click 'Save'</p>
+</div>
+<div layout="column" class="md-inline-form" flex layout-align="center center">
+    <form name="addform" ng-submit="addDeck()" novalidate>
+        <md-dialogue-content>
+            <div layout="column" layout-padding layout-align="center">
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Deck Name</label>
+                        <input type="text" name="deckname" ng-model="deckname" />
+                    </md-input-container>
+                </div>
+                <md-input-container class="md-block" flex>
+                    <label>Description</label>
+                    <textarea rows="2" name="deckdescription" ng-model="deckdescription" ng-required="true"></textarea>
+                </md-input-container>
+            </div>
+        </md-dialogue-content>
+        <md-dialog-actions layout="row" layout-align="end center">
+            <md-button ng-href="#/decks">
+                <md-icon md-svg-icon="back" class="icwhite"></md-icon>Deck List
+            </md-button>
+            <md-button type="submit" class="md-primary md-raised" ng-disabled="addform.$invalid">
+                Add Deck
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</div>

@@ -1,5 +1,5 @@
-﻿logApp.controller('EditCardController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'Config', '$routeParams', 'DBServices',
-    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, Config, $routeParams, DBServices) {
+﻿logApp.controller('EditCardController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'Config', '$routeParams', 'DBServices', '$mdToast', '$mdDialog',
+    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, Config, $routeParams, DBServices, $mdToast, $mdDialog) {
         //$rootScope taken from authentication service to gain User ID. $firebaseArray for writing to database
 
         //get details about logged in user to get data assigned to that user
@@ -15,6 +15,19 @@
 
                 $scope.dice = collectionDetails;
                 $scope.whichItem = $routeParams.itemId;
+
+                //Create an Array of Option Values
+                var maxDice = function (maxDice) {
+                    var maxDiceInSet = [];
+                    for (var i = 0; i < maxDice; i++) {
+                        maxDiceInSet.push(i + 1);
+                    }
+                    return maxDiceInSet;
+                };
+
+                $scope.diceMax = maxDice(10);
+                $scope.diceQty = maxDice(5);
+                $scope.energyOptions = ['Fist', 'Lightning', 'Mask', 'Shield', 'Generic'];
 
                 //display existing information
                 $scope.dice.$loaded().then(function () {
@@ -44,7 +57,7 @@
                         }
                     }); //watch for if it's action card or not
 
-                });
+                }); //end $scope.loaded
 
                 $scope.editCard = function () {
                     //$save firebase method for saving existing to database
@@ -66,13 +79,39 @@
 
                     collectionDetails.$remove(collectionDetails[$scope.whichItem]).then(function () {
                         collectionDetails.$add(cardSave).then(function () {
-                            $scope.successMessage = "Card Updated Successfully!";
+                            var addSuccessMsg = "Card Saved Successfully!";
+                            $scope.showSimpleToast(addSuccessMsg);
                         });
                     });
 
                     
+                }; //end Edit card
+
+                //toast functions
+                var last = {
+                    bottom: false,
+                    top: true,
+                    left: false,
+                    right: true
                 };
 
+                $scope.toastPosition = angular.extend({}, last);
+
+                $scope.getToastPosition = function () {
+                    return Object.keys($scope.toastPosition)
+                      .filter(function (pos) { return $scope.toastPosition[pos]; })
+                      .join(' ');
+                };
+
+                $scope.showSimpleToast = function (message) {
+                    var pinTo = $scope.getToastPosition();
+                    $mdToast.show(
+                      $mdToast.simple()
+                        .textContent(message)
+                        .position(pinTo)
+                        .hideDelay(3000)
+                    );
+                };
 
             }
         });

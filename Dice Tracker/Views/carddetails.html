@@ -1,37 +1,57 @@
-﻿<div class="search">
-    <h1>Dice Masters Dice Tracker</h1>
-</div>
-<section class="diceinfo">
-    <div class="diceobj" ng-model="dice">
-        <md-button href="#/details/{{ prevItem }}" class="arrowbtn">
-            <md-icon md-svg-icon="aleft" class="icwhite"></md-icon>
-        </md-button>
-        <md-button href="#/details/{{ nextItem }}" class="arrowbtn">
-            <md-icon md-svg-icon="aright" class="icwhite"></md-icon>
-        </md-button>
-        <md-button href="#/collection" class="btn">
-            <md-icon md-svg-icon="back" class="icwhite"></md-icon>Back to Card List
-        </md-button>
-
-        <!--  <img ng-src="{{dice[whichItem].image}}" alt="Card of {{dice[whichItem].name}}"> -->
-        <h1>{{dice[whichItem].name}}</h1>
-        <h2 ng-hide="hideActionVersion(dice[whichItem].cardtype)">({{ dice[whichItem].cardversion }})</h2>
-        <h2>{{dice[whichItem].cardtype}}</h2>
-        <h3>({{dice[whichItem].affiliation}})</h3>
-        <div class="info">
-            <p>{{dice[whichItem].description}}
+﻿<md-content>
+    <div layout="column" layout-align="start center" flex>
+        <h1>Card Details</h1>
+        <p>Cycle Through Your collection to See Detailed Descriptions for each Card.</p>
+        <div layout="row">
+            <md-button href="#/details/{{ prevItem }}" md-no-ink class="md-primary">
+                <md-icon md-svg-icon="aleft" class="icwhite" aria-label="Previous Item"></md-icon>
+            </md-button>
+            <md-button href="#/details/{{ nextItem }}" md-no-ink class="md-primary">
+                <md-icon md-svg-icon="aright" class="icwhite" aria-label="Next Item"></md-icon>
+            </md-button>
         </div>
-        <ul class="listdetails">
-            <li><b>Energy Cost:</b> {{dice[whichItem].cost}} </li>
-            <li><b>Energy type:</b> {{dice[whichItem].energy}}</li>
-            <li><b>Dice Colour:</b> {{dice[whichItem].colour}}</li>
-            <li><b>Card Rarity:</b> {{dice[whichItem].rarity}}</li>
-            <li><b>Card Series:</b> {{dice[whichItem].series}}</li>
-            <li ng-hide="hideActionVersion(dice[whichItem].cardtype)"><b>Dice Quantity:</b> {{dice[whichItem].quantity}}</li>
-        </ul>
     </div>
-
-
-    <md-button href="#/edit/{{ dice.indexOf(dice[whichItem]) }}" class="btn">Edit Card</md-button>
-
-</section>
+    <md-content class="md-padding" layout-align="center center" flex>
+        <div layout="column" layout-align="center center">
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <div layout="column" layout-padding>
+                            <span class="md-headline">{{dice[whichItem].name}}</span>
+                            <span class="md-subhead">({{ dice[whichItem].cardversion }})</span>
+                            <span class="md-subhead">{{ dice[whichItem].affiliation }}</span>
+                        </div>
+                        <div layout="row" layout-padding>
+                            <span class="md-subhead">Dice Cost: {{ dice[whichItem].cost }}</span>
+                            <span class="md-subhead">Energy Type: {{ dice[whichItem].energy }}</span>
+                        </div>
+                        <div layout="row" layout-padding>
+                            <span class="md-subhead" ng-hide="hideActionVersion(dice[whichItem].cardtype)">Dice Quantity: {{ dice[whichItem].quantity }}</span>
+                            <span class="md-subhead">Dice Colour: {{ dice[whichItem].colour }}</span>
+                            <span class="md-subhead">Card Series: {{ dice[whichItem].series }}</span>
+                        </div>
+                    </md-card-title-text>
+                    <md-card-title-media>
+                        <div class="md-media-lg card-media">
+                            <img ng-src="{{ imagePath }}" alt="Card Image">
+                        </div>
+                    </md-card-title-media>
+                </md-card-title>
+                <md-card-title ng-class="getRarity(dice[whichItem])">
+                    <md-card-title-text>
+                        <span class="md-headline">{{dice[whichItem].cardtype}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <p>{{dice[whichItem].description}}</p>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button href="#/collection" class="md-flat md-primary">
+                        <md-icon md-svg-icon="back" class="icwhite"></md-icon>Collection
+                    </md-button>
+                    <md-button href="#/edit/{{ dice.indexOf(dice[whichItem]) }}" class="md-flat md-primary">Edit Card</md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+    </md-content>
+</md-content>

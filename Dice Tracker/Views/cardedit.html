@@ -1,93 +1,91 @@
-﻿<div class="edit">
-    <div class="textintro">
-        <h1>Edit Card Details</h1>
-        <p>Update this Card's details and hit 'Save'</p>
-        <p class="greenSuccess"> {{ successMessage }}</p>
-    </div>
-    <form class="formgroup addcard cf" ng-model="dice" name="editcard" ng-submit="editCard()" novalidate>
-        <div class="inputwrapper">
-            <label class="formgroup">
-                Card Name
-                <input type="text" name="cardname" placeholder="Card Name." ng-model="cardname" ng-required="true" />
-            </label>
-            <label class="formgroup" ng-hide="isAction">
-                Card Version
-                <input type="text" name="cardversion" placeholder="Card Version. E.g. Name: Hulk, Version: Green Goliath" ng-model="cardversion" ng-required="true" />
-            </label>
-            <label class="formgroup">
-                Description
-                <input type="text" name="carddescription" placeholder="Description." ng-model="carddescription" ng-required="true" />
-            </label>
-            <label class="formgroup">
-                Cost to Buy Dice
-                <select ng-model="cardcost">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-            </label>
-            <label class="formgroup">
-                Energy Type
-                <select ng-model="cardenergy">
-                    <option value="Fist">Fist</option>
-                    <option value="Lightning">Lightning</option>
-                    <option value="Mask">Mask</option>
-                    <option value="Shield">Shield</option>
-                    <option value="Generic">Generic</option>
-                </select>
-            </label>
-            <label class="formgroup">
-                Affiliation
-                <select ng-model="cardaffiliation">
-                    <option value="DC">DC</option>
-                    <option value="Marvel">Marvel</option>
-                </select>
-            </label>
-            <label class="formgroup">
-                Card Type
-                <select ng-model="cardtype">
-                    <option value="Action">Action Card</option>
-                    <option value="Hero / Villain">Hero / Villain</option>
-                </select>
-            </label>
-            <label class="formgroup" ng-hide="isAction">
-                Dice Quantity
-                <select ng-model="dicequantity">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-            </label>
-            <label class="formgroup">
-                Dice Colour
-                <input type="text" name="cardcolour" placeholder="Dice Colour." ng-model="cardcolour" ng-required="true" />
-            </label>
-            <label class="formgroup">
-                Rarity
-                <select ng-model="rarity">
-                    <option value="Common">Common (Grey Stripe)</option>
-                    <option value="Uncommon">Uncommon (Green Stripe)</option>
-                    <option value="Rare">Rare (Yellow Stripe)</option>
-                    <option value="Super Rare">Super Rare (Red Stripe)</option>
-                </select>
-            </label>
-            <label class="formgroup">
-                Card Series
-                <input type="text" name="cardseries" placeholder="Card Series. E.g. Avengers vs X-men" ng-model="cardseries" ng-required="true" />
-            </label>
-         <!--   <input type="text" name="cardimage" placeholder="Upload an Image" ng-model="cardimage" /> -->
-        </div>
-        <button type="submit" class="btn" ng-disabled="editform.$invalid">Save</button>
-        <a ng-href="#/collection" class="btn">Back to Collection</a>
-    </form>
-
+﻿<div layout="row" layout-align="center center" layout-padding flex>
+    <h1>Edit Card Details</h1>    
+         <p>Update this Card's details and hit 'Save'</p>
 </div>
+<div layout="row" class="md-inline-form" flex layout-align="center center">
+    <form  name="editcard" ng-model="dice" ng-submit="editCard()" novalidate>
+        <md-dialogue-content>
+            <div layout="column" layout-padding layout-align="center">
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Card Name</label>
+                        <input type="text" name="cardname" ng-model="cardname" ng-required="true" />
+                    </md-input-container>
+                    <md-input-container ng-hide="isAction" class="md-block" flex-gt-sm>
+                        <label>Card Version</label>
+                        <input type="text" name="cardversion" ng-model="cardversion" ng-required="true" />
+                    </md-input-container>
+                </div>
+                <md-input-container class="md-block" flex>
+                    <label>Description</label>
+                    <textarea rows="2" name="carddescription" ng-model="carddescription" ng-required="true"></textarea>
+                </md-input-container>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Cost to Buy Dice</label>
+                        <md-select ng-model="cardcost">
+                            <md-option ng-repeat="diceNum in diceMax" value="{{diceNum}}">{{diceNum}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Energy Type</label>
+                        <md-select ng-model="cardenergy">
+                            <md-option ng-repeat="type in energyOptions" value="{{type}}">{{type}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Affiliation</label>
+                        <md-select ng-model="cardaffiliation">
+                            <md-option value="DC">DC</md-option>
+                            <md-option value="Marvel">Marvel</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex>
+                        <label>Card Type</label>
+                        <md-select ng-model="cardtype">
+                            <md-option value="Action">Action Card</md-option>
+                            <md-option value="Hero / Villain">Hero / Villain</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container ng-hide="isAction" class="md-block" flex-gt-sm>
+                        <label>Dice Quantity</label>
+                        <md-select ng-model="dicequantity">
+                            <md-option ng-repeat="diceQuan in diceQty" value="{{diceQuan}}">{{diceQuan}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Dice Colour</label>
+                        <input type="text" name="cardcolour" ng-model="cardcolour" ng-required="true" />
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex>
+                        <label>Rarity</label>
+                        <md-select ng-model="rarity">
+                            <md-option value="Common">Common (Grey Stripe)</md-option>
+                            <md-option value="Uncommon">Uncommon (Green Stripe)</md-option>
+                            <md-option value="Rare">Rare (Yellow Stripe)</md-option>
+                            <md-option value="Super Rare">Super Rare (Red Stripe)</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Card Series</label>
+                        <input type="text" name="cardseries" ng-model="cardseries" ng-required="true" />
+                    </md-input-container>
+                </div>
+            </div>
+        </md-dialogue-content>
+        <md-dialog-actions layout="row" layout-align="end center">
+            <md-button href="#/collection">
+                <md-icon md-svg-icon="back" class="icwhite"></md-icon>Collection
+            </md-button>
+            <md-button type="submit" class="md-primary md-raised" ng-disabled="editcard.$invalid">
+                Save Card
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</div>
+
+<!--   <input type="text" name="cardimage" placeholder="Upload an Image" ng-model="cardimage" /> -->

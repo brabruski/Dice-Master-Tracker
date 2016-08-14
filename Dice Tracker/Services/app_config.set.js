@@ -122,4 +122,5 @@ logApp.config(function ($mdIconProvider) {
         .icon('email', '../fonts/icons/email.svg', 24)
         .icon('username', '../fonts/icons/account-settings-variant.svg', 24)
         .icon('user', '../fonts/icons/account.svg', 24)
+        .icon('save', '../fonts/icons/harddisk.svg', 24)
 });

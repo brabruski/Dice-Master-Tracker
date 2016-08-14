@@ -2,11 +2,11 @@
     <h1>Dice Masters Decks</h1>
 </div>
 <div layout="row" layout-align="center start" flex layout-padding>
-    <div >
-        <md-content>
-            <md-list flex>
-                <md-subheader class="md-no-sticky">Select a Deck to View</md-subheader>
-                <md-list-item class="md-3-line" ng-repeat="(key, deck) in decks" ng-click="null">
+             <md-list flex layout="row" layout-wrap>
+                <div flex="90">
+                    <md-subheader class="md-no-sticky">Select a Deck to View</md-subheader>
+                </div>
+                <md-list-item flex="50" class="md-3-line" ng-repeat="(key, deck) in decks" ng-click="null">
                     <md-tooltip>Deck: {{ deck.deckname }}</md-tooltip>
                     <a href="#/deckdetails/{{ decks.indexOf(deck) }}">
                         <md-icon md-svg-icon="cards" class="md-avatar"></md-icon>
@@ -26,12 +26,9 @@
                         </div>
                     </div>
                 </md-list-item>
-
                 <md-divider></md-divider>
             </md-list>
-        </md-content>
-    </div>
-</div>
+     </div>
 <div layout="row" flex="90" layout-align="end start">
     <md-button class="md-warn md-raised" ng-href="#/adddeck">
         <md-tooltip>Add a New Deck</md-tooltip>

@@ -4,10 +4,6 @@
 }
 
 /* Base Styles */
-html {
-    
-}
-
 body {
     font-family: 'Rubik', sans-serif;
     color: #4527A0;
@@ -34,49 +30,43 @@ md-toolbar {
 
 /*buttons*/
 
-.md-button.md-mini.showbtn {
-    color: blue;
-}
-
-.md-button.md-mini.deletebtn {
-    color: red;
-}
-
-.md-button.md-mini.savebtn {
-    color: green;
-}
-
-.btn {
-    background-color: orange;
-    color: white;
-}
-
-.arrowbtn {
-    background-color: blue;
-    color: white;
-}
-
 /*Badge Classes*/
-.badgeGreen {
-    background-color: green;
+md-badge.badgeGreen {
+  margin: 0 0 0 8px;
+  background-color: green;
+  color: white;
+  padding: 2px 4px;
+  border-radius: 10px 0 0 10px;   
 }
 
-.badgeRed {
-    background-color: red;
+md-badge.badgeRed {
+  margin: 0 0 0 8px;
+  background-color: red;
+  color: white;
+  padding: 2px 4px;
+  border-radius: 10px 0 0 10px;   
+}
+
+md-badge.badgePrimary {
+  margin: 0 0 0 8px;
+  background-color: dodgerblue;
+  color: white;
+  padding: 2px 4px;
+  border-radius: 10px 0 0 10px;   
 }
 
 /*Rarity Striping*/
 .common {
-    border-top: 5px solid grey;
+    border-top: 3px solid grey;
 }
 .uncommon {
-    border-top: 5px solid green;
+    border-top: 3px solid green;
 }
 
 .rare {
-    border-top: 5px solid yellow;
+    border-top: 3px solid yellow;
 }
 
 .srare {
-    border-top: 5px inset red;
+    border-top: 3px inset red;
 }

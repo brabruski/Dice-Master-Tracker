@@ -1,5 +1,5 @@
-﻿logApp.controller('EditCardController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'Config', '$routeParams', 'DBServices', '$mdToast', '$mdDialog',
-    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, Config, $routeParams, DBServices, $mdToast, $mdDialog) {
+﻿logApp.controller('EditCardController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'Config', '$routeParams', 'DBServices', 'CollectionFactory', 'MaterialFunc',
+    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, Config, $routeParams, DBServices, CollectionFactory, MaterialFunc) {
         //$rootScope taken from authentication service to gain User ID. $firebaseArray for writing to database
 
         //get details about logged in user to get data assigned to that user
@@ -13,21 +13,12 @@
                 //where to store new object when required if firebase sees Authenticated user
                 var collectionDetails = DBServices.cardCollection();
 
+                //Initialise DOM Values
                 $scope.dice = collectionDetails;
                 $scope.whichItem = $routeParams.itemId;
-
-                //Create an Array of Option Values
-                var maxDice = function (maxDice) {
-                    var maxDiceInSet = [];
-                    for (var i = 0; i < maxDice; i++) {
-                        maxDiceInSet.push(i + 1);
-                    }
-                    return maxDiceInSet;
-                };
-
-                $scope.diceMax = maxDice(10);
-                $scope.diceQty = maxDice(5);
-                $scope.energyOptions = ['Fist', 'Lightning', 'Mask', 'Shield', 'Generic'];
+                $scope.diceMax = CollectionFactory.maxDice(10);
+                $scope.diceQty = CollectionFactory.maxDice(5);
+                $scope.energyOptions = CollectionFactory.energyOptions();
 
                 //display existing information
                 $scope.dice.$loaded().then(function () {
@@ -43,6 +34,7 @@
                     $scope.cardseries = collectionDetails[$scope.whichItem].series;
                     $scope.dicequantity = collectionDetails[$scope.whichItem].quantity;
 
+                    //Check if the User switches Card Type to Update Values accordingly
                     $scope.$watch('cardtype', function () {
                         if ($scope.cardtype === 'Action') {
                             $scope.isAction = true;
@@ -63,7 +55,7 @@
                     //$save firebase method for saving existing to database
                     var cardSave = {
                         name: $scope.cardname,
-                        cardversion:  $scope.cardversion,
+                        cardversion: $scope.cardversion,
                         cost: $scope.cardcost,
                         energy: $scope.cardenergy,
                         affiliation: $scope.cardaffiliation,
@@ -84,33 +76,13 @@
                         });
                     });
 
-                    
+
                 }; //end Edit card
 
                 //toast functions
-                var last = {
-                    bottom: false,
-                    top: true,
-                    left: false,
-                    right: true
-                };
-
-                $scope.toastPosition = angular.extend({}, last);
-
-                $scope.getToastPosition = function () {
-                    return Object.keys($scope.toastPosition)
-                      .filter(function (pos) { return $scope.toastPosition[pos]; })
-                      .join(' ');
-                };
-
-                $scope.showSimpleToast = function (message) {
-                    var pinTo = $scope.getToastPosition();
-                    $mdToast.show(
-                      $mdToast.simple()
-                        .textContent(message)
-                        .position(pinTo)
-                        .hideDelay(3000)
-                    );
+                 $scope.showSimpleToast = function (message) {
+                     var showMessage = MaterialFunc.showSimpleToast(message);
+                     return showMessage;
                 };
 
             }

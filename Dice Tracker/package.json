@@ -1,0 +1,31 @@
+{
+  "name": "dice_master_tracker",
+  "version": "1.0.0",
+  "description": "An AngularJs App Designed To Track Dice Aster\u001b[D\u001b[D\u001b[D\u001b[D\u001b[1;2DMa\u001b[2~ster\u001b[2~ Collections",
+  "main": "index.html",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "angular-aria": "^1.5.8",
+    "angular-material": "^1.1.0-rc.5",
+    "angular-route": "^1.5.8",
+    "angularfire": "^2.0.1",
+    "mdi": "^1.6.50",
+    "ng-file-upload": "^12.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\u0016https://github.com/brabruski/Dice-Master-Tracker"
+  },
+  "keywords": [
+    "Dice",
+    "Master",
+    "Tracker"
+  ],
+  "author": "Glen Miller",
+  "license": "ISC"
+}

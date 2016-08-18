@@ -1,6 +1,6 @@
 ﻿logApp.factory('Collection',
-    ['$rootScope', '$firebaseAuth', '$firebaseObject', 'FIREBASE_URL',
-    function ($rootScope, $firebaseAuth, $firebaseObject, FIREBASE_URL) {
+    ['$rootScope', '$firebaseAuth', '$firebaseObject', 'Config',
+    function ($rootScope, $firebaseAuth, $firebaseObject, Config) {
 
 
     }]);

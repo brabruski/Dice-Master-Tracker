@@ -2,26 +2,30 @@
 
 <!--Still to do
     *Functionality
-    Add image links to cards
+    Add image uploads for new cards using Firebase Storage
 
     *Styling
-    Update badge colours depending on deck card quantities
-    Add rarity colours to card details & list
-    Add ng-material / ng-animate and Style entire app
+    Toast Position to always be fixed
+    Button / Icon Styling to have Colours
 -->
 
 <html lang="en" ng-app="diceApp">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Dice Master Dice Tracker</title>
 
-    <!--Frameworks-->
+    <!--Frameworks / Directives-->
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="node_modules/angular-route/angular-route.min.js"></script>
     <script src="node_modules/angular-animate/angular-animate.min.js"></script>
-    <script src="node_modules/angular-material/angular-material.min.js"></script>
+    <script src="node_modules/angular-aria/angular-aria.min.js"></script>
+    <script src="node_modules/angular-material/angular-material.js"></script>
+    <script src="node_modules/angular-material-icons/angular-material-icons.js"></script>
+    <script src="node_modules/angular-messages/angular-messages.min.js"></script>
+    <script src="node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
+    <script src="node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
 
     <!-- Firebase -->
     <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
@@ -29,9 +33,10 @@
 
     <!--Factories-->
     <script src="js/app.js"></script>
+    <script src="Services/app_config.set.js"></script>
     <script src="Services/authentication.fac.js"></script>
-    <script src="Services/click_confirmation.fac.js"></script>
     <script src="Services/dbservices.fac.js"></script>
+    <script src="Services/angular_material_functions.fac.js"></script>
 
     <!--Controllers-->
     <script src="Controllers/registration.ctr.js"></script>
@@ -45,25 +50,27 @@
     <script src="Controllers/newdeck.ctr.js"></script>
     <script src="Controllers/deckdetails.ctr.js"></script>
 
-    <!--Stylesheets-->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!--Custom Directives-->
+    <script src="Services/click_confirmation.dir.js"></script>
+    <script src="Services/password_validation.dir.js"></script>
+
+    <!--Stylesheets and Icons-->
+    <link href='https://fonts.googleapis.com/css?family=Rubik:400,700' rel='stylesheet' type='text/css'>
     <link href="node_modules/angular-material/angular-material.min.css" rel="stylesheet" />
+    <link href="node_modules/angular-material-icons/angular-material-icons.css" rel="stylesheet" />
     <link href="css/dicemain.css" rel="stylesheet" />
 
 </head>
 <body>
-    <header>
-        <nav class="cf" ng-include="'Views/nav.html'"></nav>
-    </header>
+    <div layout="column">
+        <nav ng-include="'Views/nav.html'" ng-cloak></nav>
 
-    <div class="container">
-        <div class="row">
-            <div class="page col-xs-10 col-xs-offset-1">
-                <main class="cf" ng-view>
-                </main>
-            </div>
-        </div>
+        <md-content>
+            <main flex ng-view ng-cloak>
+            </main>
+
+            <span flex></span>
+
     </div>
-
 </body>
 </html>

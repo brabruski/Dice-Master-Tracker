@@ -1,16 +1,44 @@
-﻿<section class="card login">
-    <form name="loginform" ng-submit="login()" novalidate>
-               <h1>Dice Master Collection Tracker</h1>
-                <p>Log In to Access Your Collection</p>
- <p class="message" ng-show="message"> {{ message }}</p>
-                <fieldset>
-                    <input type="email" name="email" placeholder="Email" ng-model="user.email" ng-required="true" />
-                    <p class="error validationerror" ng-show="loginform.email.$invalid && loginform.email.$touched">Please Enter a Valid Email Address</p>
-                    <input type="password" name="password" placeholder="Password" ng-model="user.password" ng-required="true" />
-                    <p class="error validationerror" ng-show="loginform.password.$invalid && loginform.password.$touched">Enter in a Valid Password</p>
-                </fieldset>
-
-            <button type="submit" class="btn" ng-disabled="loginform.$invalid">Login</button>
-            <p> or <a ng-href="#/register">register</a></p>
-    </form>
-</section>
+﻿<div layout="column" layout-align="center center" layout-padding flex>
+    <h1>Dice Master Collection Tracker Registration</h1>
+    <p>Please Login to access your collection</p>
+</div>
+<div layout="column" class="md-inline-form" flex layout-align="center center">
+    <md-content layout-padding>
+        <form name="loginform" ng-submit="login()" novalidate>
+            <md-dialogue-content>
+                <div layout="column" layout-padding layout-align="center">
+                    <div layout-gt-sm="column">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Email</label>
+                            <md-icon md-svg-icon="email" class="icwhite"></md-icon>
+                            <input type="email" name="email" ng-model="user.email" ng-required="true">
+                            <div ng-messages="loginform.email.$error">
+                                <div ng-message="required">Email required to Login.</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+            </md-dialogue-content>
+            <md-dialogue-content>
+                <div layout="column" layout-padding layout-align="center">
+                    <div layout-gt-sm="column">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Password</label>
+                            <md-icon md-svg-icon="key" class="icwhite"></md-icon>
+                            <input type="password" name="password" ng-model="user.password" ng-required="true">
+                            <div ng-messages="loginform.password.$error">
+                                <div ng-message="required">Password required to Login.</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+            </md-dialogue-content>
+            <md-dialog-actions layout="row" layout-align="end center">
+                <md-button type="submit" class="md-raised md-primary" ng-disabled="loginform.$invalid">Login</md-button>
+                <p>
+                    or <md-button class="md-raised" ng-href="#/register">register</md-button>
+                </p>
+            </md-dialog-actions>
+        </form>
+    </md-content>
+</div>

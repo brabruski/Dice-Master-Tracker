@@ -1,0 +1,57 @@
+﻿<div ng-controller="AppCtrl" class="md-padding" id="popupContainer" ng-cloak>
+    <p class="inset">
+        Open a dialog over the app's content. Press escape or click outside to close the dialog and
+        send focus back to the triggering button.
+    </p>
+    <div class="dialog-demo-content" layout="row" layout-wrap layout-margin layout-align="center">
+        <md-button class="md-primary md-raised" ng-click="showAddNewModal($event)">
+            Advanced Dialog
+        </md-button>
+    </div>
+     <div ng-if="status" id="status">
+        <b layout="row" layout-align="center center" class="md-padding">
+            {{status}}
+        </b>
+    </div>
+  </div>
+
+
+<!--Bottom Panel Modal Main PAge-->
+<div ng-controller="BottomSheetExample" class="md-padding" ng-cloak>
+    <h2 class="md-title">Usage</h2>
+    <p>
+        Bottom sheets can be displayed by clicking one of the buttons below.  Once shown, it can be
+        dismissed by either swiping down or clicking in the shaded area.
+    </p>
+    <h2 class="md-title">Actions</h2>
+    <p>Use one of the following buttons to display a bottom sheet.</p>
+    <div class="bottom-sheet-demo inset" layout="row" layout-sm="column" layout-align="center">
+        <md-button flex="50" class="md-primary md-raised" ng-click="showListBottomSheet()">Show as List</md-button>
+        <md-button flex="50" class="md-primary md-raised" ng-click="showGridBottomSheet()">Show as Grid</md-button>
+    </div>
+    <div ng-if="alert">
+        <br />
+        <b layout="row" layout-align="center center" class="md-padding">
+            {{alert}}
+        </b>
+    </div>
+</div>
+
+<!--Bottom Panel Modal Template-->
+<md-bottom-sheet class="md-grid" layout="column" ng-cloak>
+    <div layout="row" layout-align="center center">
+        <h4>Since <code>clickOutsideToClose = false</code>, drag down or press ESC to close</h4>
+    </div>
+    <div>
+        <md-list flex layout="row" layout-align="center center">
+            <md-list-item ng-repeat="item in items">
+                <div>
+                    <md-button class="md-grid-item-content" ng-click="listItemClick($index)">
+                        <md-icon md-svg-src="{{item.icon}}"></md-icon>
+                        <div class="md-grid-text"> {{ item.name }} </div>
+                    </md-button>
+                </div>
+            </md-list-item>
+        </md-list>
+    </div>
+</md-bottom-sheet>

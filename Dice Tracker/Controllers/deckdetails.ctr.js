@@ -1,7 +1,7 @@
-logApp.controller('DeckDetailsController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL', '$routeParams', 'DBServices',
-    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, FIREBASE_URL, $routeParams, DBServices) {
+logApp.controller('DeckDetailsController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'Config', '$routeParams', 'DBServices', '$mdToast', '$mdDialog',
+    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, Config, $routeParams, DBServices, $mdToast, $mdDialog) {
 
-        var ref = new Firebase(FIREBASE_URL);
+        var ref = new Firebase(Config.FIREBASE_URL);
         var auth = $firebaseAuth(ref);
 
         auth.$onAuth(function (authUser) {
@@ -36,7 +36,7 @@ logApp.controller('DeckDetailsController', ['$scope', '$rootScope', '$firebaseAu
 
                         //add in dice quantities to the correct objects
                         for (i = 0; i < deckContentDetails.length; i++) {
-                            for (j = 0; j < deckContentDetails.length; j++) {
+                            for (j = 0; j < $scope.deckDice.length; j++) {
                                 if ($scope.deckDice[j].id === deckContentDetails[i].id) {
                                     $scope.deckDice[j].diceQuantity = deckContentDetails[i].diceQuantity;
                                 }
@@ -65,6 +65,11 @@ logApp.controller('DeckDetailsController', ['$scope', '$rootScope', '$firebaseAu
                                 }
                             }
                         }
+
+                        //show the add to deck components
+                        $scope.showAddTo = function (currentItem) {
+                            currentItem.show = !currentItem.show;
+                        };
 
                         var cardTypeCheckAction = function () {
                             actionCards = [];
@@ -119,26 +124,19 @@ logApp.controller('DeckDetailsController', ['$scope', '$rootScope', '$firebaseAu
                             }
                         };
 
-                        //show the add to deck components
-                        $scope.showAddTo = function (currentItem) {
-                            currentItem.show = !currentItem.show;
-                            if (currentItem.currentState === 'expanded') {
-                                currentItem.currentState = '';
-                            } else {
-                                currentItem.currentState = 'expanded';
+                        $scope.getRarity = function (item) {
+                            var rarity = ["common", "uncommon", "rare", "srare"]
+                            switch (item.rarity) {
+                                case "Uncommon":
+                                    return rarity[1];
+                                case "Rare":
+                                    return rarity[2];
+                                case "Super Rare":
+                                    return rarity[3];
+                                default:
+                                    return rarity[0];
                             }
-                        };
-
-                        //add colour class to badges
-                        var badgeColourChange = function (currentAmount, maxAmount) {
-                            if (currentAmount === maxAmount) {
-                                $scope.badgeColour = 'badgeGreen';
-                            } else if (currentAmount > maxAmount) {
-                                $scope.badgeColour =  'badgeRed';
-                            } else {
-                                $scope.badgeColour = '';
-                            }
-                        };
+                        }
 
                         //Adjust Dice Quantity in Deck
                         $scope.submitNewQuantity = function (cardName, newQuantity) {
@@ -154,7 +152,6 @@ logApp.controller('DeckDetailsController', ['$scope', '$rootScope', '$firebaseAu
                             };
 
                             $scope.deckContents.$loaded().then(function () {
-
                                 //set all success attributes to false
                                 for (k = 0; k < $scope.deckDice.length; k++) {
                                     $scope.deckDice[k].success = false;
@@ -165,7 +162,8 @@ logApp.controller('DeckDetailsController', ['$scope', '$rootScope', '$firebaseAu
                                     if (deckContentDetails[i].id === cardName.id) {
                                         deckContentDetails.$remove(deckContentDetails[i]).then(function () {
                                             deckContentDetails.$add(newContentsData).then(function () {
-                                                $scope.successQuantityMessage = 'Quantity Updated Successfully';
+                                                var addSuccessMsg = 'Quantity Updated Successfully';
+                                                $scope.showSimpleToast(addSuccessMsg);
                                                 $scope.deckDice.success = false;
                                                 cardName.success = true;
                                                 $scope.howManyHeroDice = countHeroDice();
@@ -192,13 +190,21 @@ logApp.controller('DeckDetailsController', ['$scope', '$rootScope', '$firebaseAu
                         }
 
                         //remove card from deck
-                        $scope.removeItem = function (key) {
+                        removeCard = function (idKey) {
+                            var deleteDeckIndex = 0;
                             for (i = 0; i < deckContentDetails.length; i++) {
-                                if ($scope.deckDice[key].id === deckContentDetails[i].id) {
-                                    deckContentDetails.$remove(i);
+                                if (idKey === deckContentDetails[i].id) {
+                                    deleteDeckIndex = i;
                                 }
                             }
-                            $scope.deckDice.splice(key, 1);
+                            var scopeDeckIndex = 0;
+                            for (j = 0; j < $scope.deckDice.length; j++) {
+                                if (idKey === $scope.deckDice[j].id) {
+                                    scopeDeckIndex = j;
+                                }
+                            }
+                            deckContentDetails.$remove(deleteDeckIndex);
+                            $scope.deckDice.splice(scopeDeckIndex, 1);
                             actionCards = cardTypeCheckAction();
                             heroCards = cardTypeCheckHero();
                             $scope.howManyActions = countActionCard();
@@ -206,6 +212,63 @@ logApp.controller('DeckDetailsController', ['$scope', '$rootScope', '$firebaseAu
 
                         }; //End Remove funtion
 
+                        //Delete Card Modal
+                        $scope.removeItem = function (ev, idKey) {
+                            // Appending dialog to document.body to cover sidenav in docs app
+                            var confirm = $mdDialog.confirm()
+                                  .title('Would you like to Remove this?')
+                                  .textContent('You Can Add This Card Back to the Deck in the Card List.')
+                                  .ariaLabel('Delete Item')
+                                  .targetEvent(ev)
+                                  .ok('Delete')
+                                  .cancel('Cancel');
+                            $mdDialog.show(confirm).then(function () {
+                                //remove card from database
+                                removeCard(idKey);
+                                addSuccessMsg = 'Item Removed Successfully';
+                                $scope.showSimpleToast(addSuccessMsg);
+                            }, function () {
+                                addSuccessMsg = 'Item Delete Cancelled';
+                                $scope.showSimpleToast(addSuccessMsg);
+                            });
+                        }; //end delete function
+
+                        //toast functions
+                        var last = {
+                            bottom: false,
+                            top: true,
+                            left: false,
+                            right: true
+                        };
+
+                        $scope.toastPosition = angular.extend({}, last);
+
+                        $scope.getToastPosition = function () {
+                            return Object.keys($scope.toastPosition)
+                              .filter(function (pos) { return $scope.toastPosition[pos]; })
+                              .join(' ');
+                        };
+
+                        $scope.showSimpleToast = function (message) {
+                            var pinTo = $scope.getToastPosition();
+                            $mdToast.show(
+                              $mdToast.simple()
+                                .textContent(message)
+                                .position(pinTo)
+                                .hideDelay(3000)
+                            );
+                        };
+
+                        $scope.diceBadge = function (maxAllow, currentQty) {
+                            var badgeTypes = ["badgePrimary", "badgeGreen", "badgeRed"]
+                            if (maxAllow === currentQty) {
+                                return badgeTypes[1];
+                            } else if (maxAllow < currentQty) {
+                                return badgeTypes[2];
+                            } else {
+                                return badgeTypes[0];
+                            }
+                        };
 
                         //Run type functions
                         actionCards = cardTypeCheckAction();
@@ -217,6 +280,7 @@ logApp.controller('DeckDetailsController', ['$scope', '$rootScope', '$firebaseAu
                     }); //end $scope.diceList.$loaded function
 
                 }); //end $scope.decks.$loaded function
+
 
             } // End auth If Statement
         }); //End Authorisation Function

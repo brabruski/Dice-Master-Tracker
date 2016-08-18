@@ -1,8 +1,8 @@
 ﻿/*Declare Scope etc. so on minification it doesn't get converted*/
-logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL', 'DBServices',
-    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, FIREBASE_URL, DBServices) {
+logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'Config', 'DBServices', '$mdToast', '$mdDialog', '$timeout', '$mdBottomSheet', '$mdMedia', 'MaterialFunc',
+    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, Config, DBServices, $mdToast, $mdDialog, $timeout, $mdBottomSheet, $mdMedia, MaterialFunc) {
 
-        var ref = new Firebase(FIREBASE_URL);
+        var ref = new Firebase(Config.FIREBASE_URL);
         var auth = $firebaseAuth(ref);
 
         auth.$onAuth(function (authUser) {
@@ -13,6 +13,7 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                 //initialising the filters
                 $scope.dice = collectionDetails;
                 $scope.diceOrder = 'name';
+                $scope.imagePath = '../images/dice/placeholder_card.png';
 
                 //Set default Selected option after deck database has downloaded fully
                 deckDetails.$loaded().then(function (data) {
@@ -28,20 +29,35 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                         return false;
                     }
                 };
-                    
+
+                $scope.getRarity = function (item) {
+                    var rarity = ["common", "uncommon", "rare", "srare"]
+                    switch (item.rarity) {
+                        case "Uncommon":
+                            return rarity[1];
+                        case "Rare":
+                            return rarity[2];
+                        case "Super Rare":
+                            return rarity[3];
+                        default:
+                            return rarity[0];
+                    }
+                }
+
                 //remove card from database
-                $scope.deleteCard = function (key) {
-                    collectionDetails.$remove(key);
+                var deleteCard = function (idKey) {
+                    var deleteKey = 0;
+                    for (j = 0; j < collectionDetails.length; j++) {
+                        if (idKey === collectionDetails[j].id) {
+                            deleteKey = j;
+                        }
+                    }
+                    collectionDetails.$remove(deleteKey);
                 };
 
                 //show the add to deck components
                 $scope.showAddTo = function (currentItem) {
                     currentItem.show = !currentItem.show;
-                    if (currentItem.currentState === 'expanded') {
-                        currentItem.currentState = '';
-                    } else {
-                        currentItem.currentState = 'expanded';
-                    }
                 };
 
                 //create link to contents of each deck
@@ -49,7 +65,7 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                     var currentDeck = deckName.$id;
                     var deckContentDetails = DBServices.deckCollectionContents(currentDeck);
                     $scope.deckContents = deckContentDetails;
-                    
+
                     var adjustedQty = 0;
                     if (cardName.cardtype === "Action") {
                         adjustedQty = 3;
@@ -75,7 +91,6 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                         }
 
                         //check if card is already added
-                        $scope.successMessage = 'Card Already Exists in the "' + deckName.deckname + '" Deck!';
                         var isAdded = false;
 
                         for (i = 0; i < deckCardContent.length; i++) {
@@ -84,10 +99,14 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                                 break;
                             }
                         }
-
+                        var addSuccessMsg;
                         if (!isAdded) {
-                            $scope.successMessage = 'Card Added Successfully to ' + deckName.deckname + '!';
+                            addSuccessMsg = 'Card Added Successfully to ' + deckName.deckname + '!';
                             deckContentDetails.$add(contentsData);
+                            $scope.showSimpleToast(addSuccessMsg);
+                        } else {
+                            addSuccessMsg = 'Card Already Exists in the "' + deckName.deckname + '" Deck!';
+                            $scope.showSimpleToast(addSuccessMsg);
                         }
                         $scope.dice.success = false;
                         cardName.success = true;
@@ -102,6 +121,53 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                 $scope.$watch('howManyCards', function () {
                     $scope.howManyCards = collectionDetails.length;
                 }); //watch for changes made to collection
+
+                //Delete Card Modal
+                $scope.deleteItem = function (ev, idKey) {
+                    // Appending dialog to document.body to cover sidenav in docs app
+                    var confirm = $mdDialog.confirm()
+                          .title('Would you like to delete this?')
+                          .textContent('This will be permanent and cannot be undone.')
+                          .ariaLabel('Delete Item')
+                          .targetEvent(ev)
+                          .ok('Delete')
+                          .cancel('Cancel');
+                    $mdDialog.show(confirm).then(function () {
+                        //remove card from database
+                        deleteCard(idKey);
+                        addSuccessMsg = 'Item Deleted Successfully';
+                        $scope.showSimpleToast(addSuccessMsg);
+                    }, function () {
+                        addSuccessMsg = 'Item Delete Cancelled';
+                        $scope.showSimpleToast(addSuccessMsg);
+                    });
+                }; //end delete function
+
+                //toast functions
+                var last = {
+                    bottom: false,
+                    top: true,
+                    left: false,
+                    right: true
+                };
+
+                $scope.toastPosition = angular.extend({}, last);
+
+                $scope.getToastPosition = function () {
+                    return Object.keys($scope.toastPosition)
+                      .filter(function (pos) { return $scope.toastPosition[pos]; })
+                      .join(' ');
+                };
+
+                $scope.showSimpleToast = function (message) {
+                    var pinTo = $scope.getToastPosition();
+                    $mdToast.show(
+                      $mdToast.simple()
+                        .textContent(message)
+                        .position(pinTo)
+                        .hideDelay(3000)
+                    );
+                };
 
             } //End checking if user is logged
         });

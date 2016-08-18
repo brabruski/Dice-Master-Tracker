@@ -1,4 +1,4 @@
-﻿var logApp = angular.module('diceApp', ['ngRoute', 'ngAnimate', 'firebase']).constant('FIREBASE_URL', 'https://dicetracker18052016.firebaseio.com/');
+﻿var logApp = angular.module('diceApp', ['ngRoute', 'ngAnimate', 'ngAria', 'ngMessages', 'ngMaterial', 'ngMdIcons', 'firebase', 'ngFileUpload']);
 
 //If something doesn't resolve in the route (logApp.config.when) then run this.
 logApp.run(['$rootScope', '$location', function ($rootScope, $location) {
@@ -23,15 +23,6 @@ logApp.config(['$routeProvider', function ($routeProvider) {
     when('/home', {
         templateUrl: 'Views/home.html',
         controller: 'HomeController'
-    }).
-    when('/landing', {
-        templateUrl: 'Views/landing.html',
-        controller: 'LandingController',
-        resolve: {
-            currentAuth: function (Authentication) {
-                return Authentication.requireAuth();
-            }
-        }
     }).
     when('/collection', {
         templateUrl: 'Views/cardlist.html',

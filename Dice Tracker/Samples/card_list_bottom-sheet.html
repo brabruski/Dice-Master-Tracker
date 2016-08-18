@@ -1,0 +1,38 @@
+﻿<!--Card List Bottom Sheet-->
+<md-bottom-sheet class="md-grid" layout="column" ng-cloak>
+    <div layout="row" layout-align="center center">
+        <h4>Choose An Option</h4>
+    </div>
+    <div>
+        <md-list flex layout="row" layout-align="center center">
+            <md-list-item>
+                <div>
+                    <md-button class="md-grid-item-content" ng-click="deleteCard($event, die.id)" aria-label="Delete Card">
+                        <md-icon md-svg-icon="delete" class="icwhite"></md-icon>
+                        <div class="md-grid-text"> Delete Card </div>
+                    </md-button>
+                </div>
+            </md-list-item>
+            <md-list-item>
+                <div>
+                    <md-button class="md-grid-item-content" href="#/details/{{ dice.indexOf(die) }}" aria-label="Link to more details">
+                        <md-icon md-svg-icon="view" class="icwhite"></md-icon>
+                        <div class="md-grid-text">View Card Details</div>
+                    </md-button>
+                </div>
+            </md-list-item>
+            <md-list-item>
+                <div>
+                    <form ng-submit="addToDeck(die, deckSelected)" novalidate>
+                        Deck To Add To: <br />
+                        <select name="deckName" ng-options="deck.deckname for deck in decks track by deck.deckname" ng-model="deckSelected"></select>
+                        <md-button type="submit" ng-click="showAddTo(die)" class="savebtn md-mini" ng-disabled="myForm.$invalid" aria-label="Add Card to Deck">
+                            <md-tooltip>Save</md-tooltip>
+                            <md-icon md-svg-icon="add" class="icwhite"></md-icon>
+                        </md-button>
+                    </form>
+                </div>
+            </md-list-item>
+        </md-list>
+    </div>
+</md-bottom-sheet>

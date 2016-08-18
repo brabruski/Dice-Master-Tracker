@@ -1,9 +1,9 @@
-﻿logApp.controller('AddController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL', 'DBServices',
-    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, FIREBASE_URL, DBServices) {
+﻿logApp.controller('AddController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'Config', 'DBServices', '$mdToast', '$mdDialog',
+    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, Config, DBServices, $mdToast, $mdDialog) {
         //$rootScope taken from authentication service to gain User ID. $firebaseArray for writing to database
 
         //get details about logged in user to get data assigned to that user
-        var ref = new Firebase(FIREBASE_URL);
+        var ref = new Firebase(Config.FIREBASE_URL);
         var auth = $firebaseAuth(ref);
 
         //ensures whatever is done, user is authenticated
@@ -12,18 +12,38 @@
             if (authUser) {
 
                 var collectionDetails = DBServices.cardCollection();
+                var collectionImageDetails = DBServices.collectionImages();
+
+                //Methods for uploading image using ng-file-upload directive
+
+                //Create an Array of Option Values
+                var maxDice = function (maxDice) {
+                    var maxDiceInSet = [];
+                    for (var i = 0; i < maxDice; i++) {
+                        maxDiceInSet.push(i + 1);
+                    }
+                    return maxDiceInSet;
+                };
 
                 //Initialise selection options
+                $scope.cardcost = '1';
+                $scope.energyOptions = ['Fist', 'Lightning', 'Mask', 'Shield', 'Generic'];
                 $scope.cardenergy = 'Fist';
                 $scope.cardaffiliation = 'Marvel';
                 $scope.dicequantity = '1';
                 $scope.cardtype = 'Hero / Villain';
                 $scope.rarity = 'Common';
+                //Maximum Dice Cost
+                $scope.diceMax = maxDice(10);
+                //Maximum Dice Quanitity
+                $scope.diceQty = maxDice(5);
 
                 $scope.$watch('cardtype', function () {
                     if ($scope.cardtype === 'Action') {
                         $scope.isAction = true;
                         $scope.cardversion = "Action";
+                        $scope.dicequantity = 3;
+                        $scope.cardenergy = 'Generic';
                     } else {
                         $scope.isAction = false;
                         $scope.cardversion = "";
@@ -50,7 +70,6 @@
                         cardversion: $scope.cardversion,
                         cost: $scope.cardcost,
                         energy: $scope.cardenergy,
-                        image: $scope.cardimage,
                         affiliation: $scope.cardaffiliation,
                         cardtype: $scope.cardtype,
                         description: $scope.carddescription,
@@ -64,14 +83,40 @@
                         $scope.cardname = '';
                         $scope.cardversion = '';
                         $scope.cardcost = '';
-                        $scope.cardimage = '';
                         $scope.cardseries = '';
                         $scope.carddescription = '';
                         $scope.cardcolour = '';
                         rarity: 'Common',
                         $scope.dicequantity = '1';
-                        $scope.successMessage = "Card Added Successfully!";
+                        var addSuccessMsg = "Card Added To Collection Successfully!";
+                        $scope.showSimpleToast(addSuccessMsg);
                     }
+                    );
+                };
+
+                //toast functions
+                var last = {
+                    bottom: false,
+                    top: true,
+                    left: false,
+                    right: true
+                };
+
+                $scope.toastPosition = angular.extend({}, last);
+
+                $scope.getToastPosition = function () {
+                    return Object.keys($scope.toastPosition)
+                      .filter(function (pos) { return $scope.toastPosition[pos]; })
+                      .join(' ');
+                };
+
+                $scope.showSimpleToast = function (message) {
+                    var pinTo = $scope.getToastPosition();
+                    $mdToast.show(
+                      $mdToast.simple()
+                        .textContent(message)
+                        .position(pinTo)
+                        .hideDelay(3000)
                     );
                 };
 

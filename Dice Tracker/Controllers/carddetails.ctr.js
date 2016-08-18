@@ -1,7 +1,7 @@
-﻿logApp.controller('CardDetailsController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL', '$routeParams', 'DBServices',
-    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, FIREBASE_URL, $routeParams, DBServices) {
+﻿logApp.controller('CardDetailsController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'Config', '$routeParams', 'DBServices',
+    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, Config, $routeParams, DBServices) {
 
-        var ref = new Firebase(FIREBASE_URL);
+        var ref = new Firebase(Config.FIREBASE_URL);
         var auth = $firebaseAuth(ref);
 
         auth.$onAuth(function (authUser) {
@@ -10,6 +10,7 @@
 
                 $scope.dice = collectionDetails;
                 $scope.whichItem = $routeParams.itemId;
+                $scope.imagePath = '../images/dice/placeholder_card.png';
 
                 //Hide card version headings if they are action cards
                 $scope.hideActionVersion = function (typeOfCard) {
@@ -20,8 +21,23 @@
                     }
                 };
 
-                //create an anon function which works after database has loaded
+               //create an anon function which works after database has loaded
                 $scope.dice.$loaded().then(function () {
+                    //rarity stripe
+                    $scope.getRarity = function (item) {
+                        var rarity = ["common", "uncommon", "rare", "srare"]
+                        switch (item.rarity) {
+                            case "Uncommon":
+                                return rarity[1];
+                            case "Rare":
+                                return rarity[2];
+                            case "Super Rare":
+                                return rarity[3];
+                            default:
+                                return rarity[0];
+                        }
+                    }
+
                     if ($routeParams.itemId > 0) {
                         $scope.prevItem = Number($routeParams.itemId) - 1;
                     } else {

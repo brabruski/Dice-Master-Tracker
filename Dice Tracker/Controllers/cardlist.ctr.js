@@ -1,6 +1,6 @@
 ﻿/*Declare Scope etc. so on minification it doesn't get converted*/
-logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'Config', 'DBServices', '$mdToast', '$mdDialog', '$timeout', '$mdBottomSheet', '$mdMedia', 'MaterialFunc',
-    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, Config, DBServices, $mdToast, $mdDialog, $timeout, $mdBottomSheet, $mdMedia, MaterialFunc) {
+logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'Config', 'DBServices', 'CollectionFactory', '$mdDialog', '$timeout', '$mdMedia', 'MaterialFunc',
+    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, Config, DBServices, CollectionFactory, $mdDialog, $timeout, $mdMedia, MaterialFunc) {
 
         var ref = new Firebase(Config.FIREBASE_URL);
         var auth = $firebaseAuth(ref);
@@ -23,35 +23,18 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
 
                 //Hide card version headings if they are action cards
                 $scope.hideActionVersion = function (typeOfCard) {
-                    if (typeOfCard === 'Action') {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    var isAction = CollectionFactory.hideActionVersion(typeOfCard);
+                    return isAction;
                 };
 
                 $scope.getRarity = function (item) {
-                    var rarity = ["common", "uncommon", "rare", "srare"]
-                    switch (item.rarity) {
-                        case "Uncommon":
-                            return rarity[1];
-                        case "Rare":
-                            return rarity[2];
-                        case "Super Rare":
-                            return rarity[3];
-                        default:
-                            return rarity[0];
-                    }
+                    var rarity = CollectionFactory.getRarity(item);
+                    return rarity;
                 }
 
                 //remove card from database
                 var deleteCard = function (idKey) {
-                    var deleteKey = 0;
-                    for (j = 0; j < collectionDetails.length; j++) {
-                        if (idKey === collectionDetails[j].id) {
-                            deleteKey = j;
-                        }
-                    }
+                    var deleteKey = CollectionFactory.checkItemKey(collectionDetails, idKey);
                     collectionDetails.$remove(deleteKey);
                 };
 
@@ -144,29 +127,15 @@ logApp.controller('CardListController', ['$scope', '$rootScope', '$firebaseAuth'
                 }; //end delete function
 
                 //toast functions
-                var last = {
-                    bottom: false,
-                    top: true,
-                    left: false,
-                    right: true
-                };
-
-                $scope.toastPosition = angular.extend({}, last);
+                $scope.toastPosition = MaterialFunc.toastDetails();
 
                 $scope.getToastPosition = function () {
-                    return Object.keys($scope.toastPosition)
-                      .filter(function (pos) { return $scope.toastPosition[pos]; })
-                      .join(' ');
+                    return MaterialFunc.getToastPos(MaterialFunc.toastDetails());
                 };
 
                 $scope.showSimpleToast = function (message) {
                     var pinTo = $scope.getToastPosition();
-                    $mdToast.show(
-                      $mdToast.simple()
-                        .textContent(message)
-                        .position(pinTo)
-                        .hideDelay(3000)
-                    );
+                    return MaterialFunc.showToast(pinTo, message);
                 };
 
             } //End checking if user is logged

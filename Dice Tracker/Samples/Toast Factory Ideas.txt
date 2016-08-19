@@ -1,0 +1,1 @@
+http://stackoverflow.com/questions/35999959/reusable-angular-material-dialog-and-toast-for-information-helper-and-alert

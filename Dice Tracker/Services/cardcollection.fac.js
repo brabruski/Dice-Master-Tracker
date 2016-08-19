@@ -2,8 +2,19 @@
     ['$rootScope', '$firebaseAuth', '$firebaseObject', 'Config',
     function ($rootScope, $firebaseAuth, $firebaseObject, Config) {
         var cmObj = {
-            //Controller Working From Currently: cardedit.ctr.js
-            //Controller Still to Do: cardedit, cardlist, deckdetails, decklist, newcard, newdeck
+            //Controller Working From Currently: cardlist
+            //Controller Still to Do: deckdetails, decklist, newcard, newdeck, cardedit.ctr.js
+
+            //Check the ID of Item to Delete
+            checkItemKey: function (dbArrayName, idKey) {
+                var deleteKey = 0;
+                for (j = 0; j < dbArrayName.length; j++) {
+                    if (idKey === dbArrayName[j].id) {
+                        deleteKey = j;
+                    }
+                }
+                return deleteKey;
+            },
 
             //Add rarity stripe CSS class to cards
             getRarity: function (item) {

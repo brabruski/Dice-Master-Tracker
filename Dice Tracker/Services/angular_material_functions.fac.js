@@ -3,7 +3,7 @@
 function ($mdToast, $mdDialog) {
     var matObj = {
         //Toast Position on Screen
-        showSimpleToast: function (message) {
+        toastDetails: function () {
             var last = {
                 bottom: false,
                 top: true,
@@ -12,24 +12,35 @@ function ($mdToast, $mdDialog) {
             };
             var toastPosition = angular.extend({}, last);
 
-            var getToastPosition = function () {
-                return Object.keys(toastPosition)
-                      .filter(function (pos) { return toastPosition[pos]; })
+            return toastPosition;
+        },
+
+        getToastPos: function (details) {
+            return Object.keys(details)
+                      .filter(function (pos) { return details[pos]; })
                       .join(' ');
-            }
+        },
 
-            var showSimpleToast = function (message) {
-                var pinTo = getToastPosition();
-                $mdToast.show(
-                  $mdToast.simple()
-                    .textContent(message)
-                    .position(pinTo)
-                    .hideDelay(3000)
-                );                
-            }
+        showToast: function (pinTo, message) {
+            $mdToast.show(
+                      $mdToast.simple()
+                        .textContent(message)
+                        .position(pinTo)
+                        .hideDelay(3000)
+                    );
+        },
 
-            return showSimpleToast;
-        } //End entire Function
+        confirmDelete: function (ev, idKey) {
+            var confirm = $mdDialog.confirm()
+          .title('Would you like to delete this?')
+          .textContent('This will be permanent and cannot be undone.')
+          .ariaLabel('Delete Item')
+          .targetEvent(ev)
+          .ok('Delete')
+          .cancel('Cancel');
+
+            return confirm;
+        }
     }
     return matObj;
 }]); //end factory

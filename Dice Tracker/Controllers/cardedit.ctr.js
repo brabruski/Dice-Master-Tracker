@@ -80,9 +80,15 @@
                 }; //end Edit card
 
                 //toast functions
-                 $scope.showSimpleToast = function (message) {
-                     var showMessage = MaterialFunc.showSimpleToast(message);
-                     return showMessage;
+                $scope.toastPosition = MaterialFunc.toastDetails();
+
+                $scope.getToastPosition = function () {
+                    return MaterialFunc.getToastPos(MaterialFunc.toastDetails());
+                };
+
+                $scope.showSimpleToast = function (message) {
+                    var pinTo = $scope.getToastPosition();
+                    return MaterialFunc.showToast(pinTo, message);
                 };
 
             }

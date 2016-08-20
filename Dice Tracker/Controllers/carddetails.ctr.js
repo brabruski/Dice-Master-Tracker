@@ -1,11 +1,12 @@
 ﻿logApp.controller('CardDetailsController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'Config', '$routeParams', 'DBServices', 'CollectionFactory',
-    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, Config, $routeParams, DBServices, CollectionFactory) {
+    function ($scope, $rootScope, $firebaseArray, $firebaseAuth, Config, $routeParams, DBServices, CollectionFactory) {
 
         var ref = new Firebase(Config.FIREBASE_URL);
         var auth = $firebaseAuth(ref);
 
         auth.$onAuth(function (authUser) {
             if (authUser) {
+
                 var collectionDetails = DBServices.cardCollection();
                 $scope.dice = collectionDetails;
 
@@ -21,7 +22,7 @@
                     return isAction;
                 };
 
-               //create an anon function which works after database has loaded
+                //create an anon function which works after database has loaded
                 $scope.dice.$loaded().then(function () {
 
                     //Set Rarity Stripe CSS Class
@@ -31,11 +32,11 @@
                     }
 
                     //Navigation Buttons
-                    $scope.prevItem =  CollectionFactory.prevBtn($routeParams.itemId, $scope.dice);
+                    $scope.prevItem = CollectionFactory.prevBtn($routeParams.itemId, $scope.dice);
                     $scope.nextItem = CollectionFactory.nextBtn($routeParams.itemId, $scope.dice);
 
                 }); //end loaded function
-            }
-        });
 
+            } // End auth If Statement
+        }); //End Authorisation Function
     }]);

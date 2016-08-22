@@ -1,5 +1,5 @@
 ﻿logApp.controller('CardDetailsController', ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'Config', '$routeParams', 'DBServices', 'CollectionFactory',
-    function ($scope, $rootScope, $firebaseArray, $firebaseAuth, Config, $routeParams, DBServices, CollectionFactory) {
+    function ($scope, $rootScope, $firebaseAuth, $firebaseArray, Config, $routeParams, DBServices, CollectionFactory) {
 
         var ref = new Firebase(Config.FIREBASE_URL);
         var auth = $firebaseAuth(ref);

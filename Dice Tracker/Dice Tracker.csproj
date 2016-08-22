@@ -980,6 +980,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Views\footer.html" />
     <Content Include="Views\home.html" />
     <Content Include="Views\login.html" />
     <Content Include="Views\nav.html" />

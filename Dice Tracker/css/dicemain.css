@@ -3,26 +3,49 @@
     display: none !important;
 }
 
+html {
+    
+    
+}
+
 /* Base Styles */
 body {
     font-family: 'Rubik', sans-serif;
-    color: #4527A0;
+}
+
+
+.md-content {
+    color: rgb(96, 96, 108);
 }
 
 main {
-  overflow-y: auto;
+    overflow-y: auto;
 }
 
+h1, h2, h3, h4 {
+    color: #795548;
+}
+
+p {
+    color: rgb(96, 96, 108);
+}
 
 /* Navigation Toolbar */
 md-toolbar {
-    padding: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
+/* Custom styles */
+
+.copyright {
+    color: #795548;
+    font-size: 0.8em;
+}
+
+/* List Item Styles*/
 
 /* Input Styling*/
-
-
 .error {
     color: red;
     padding-bottom: 10px;
@@ -32,33 +55,34 @@ md-toolbar {
 
 /*Badge Classes*/
 md-badge.badgeGreen {
-  margin: 0 0 0 8px;
-  background-color: green;
-  color: white;
-  padding: 2px 4px;
-  border-radius: 10px 0 0 10px;   
+    margin: 0 0 0 8px;
+    background-color: green;
+    color: white;
+    padding: 2px 4px;
+    border-radius: 10px 0 0 10px;
 }
 
 md-badge.badgeRed {
-  margin: 0 0 0 8px;
-  background-color: red;
-  color: white;
-  padding: 2px 4px;
-  border-radius: 10px 0 0 10px;   
+    margin: 0 0 0 8px;
+    background-color: red;
+    color: white;
+    padding: 2px 4px;
+    border-radius: 10px 0 0 10px;
 }
 
 md-badge.badgePrimary {
-  margin: 0 0 0 8px;
-  background-color: dodgerblue;
-  color: white;
-  padding: 2px 4px;
-  border-radius: 10px 0 0 10px;   
+    margin: 0 0 0 8px;
+    background-color: dodgerblue;
+    color: white;
+    padding: 2px 4px;
+    border-radius: 10px 0 0 10px;
 }
 
 /*Rarity Striping*/
 .common {
     border-top: 3px solid grey;
 }
+
 .uncommon {
     border-top: 3px solid green;
 }

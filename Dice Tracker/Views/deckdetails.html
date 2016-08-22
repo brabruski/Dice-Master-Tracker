@@ -1,20 +1,19 @@
 ﻿<md-content>
-    <div layout="column" layout-align="start center" flex>
-        <h2>Deck Details</h2>
-        <p>Cycle Through Your collection to See Detailed Descriptions for each Card.</p>
-        <div layout="row">
-            <md-button href="#/deckdetails/{{ prevItem }}" md-no-ink class="md-primary">
-                <md-icon md-svg-icon="aleft" class="icwhite" aria-label="Previous Item"></md-icon>
+    <div layout="column" layout-align="center center" flex>
+        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+            <md-button href="#/deckdetails/{{ prevItem }}" class="md-icon-button md-primary" aria-label="Previous Deck">
+                <md-icon md-svg-icon="aleft"></md-icon>
             </md-button>
-            <md-button href="#/deckdetails/{{ nextItem }}" md-no-ink class="md-primary">
-                <md-icon md-svg-icon="aright" class="icwhite" aria-label="Next Item"></md-icon>
+            <md-button ng-href="#/decks" class="md-icon-button md-primary" aria-label="Back to Deck List">
+                <md-icon md-svg-icon="back"></md-icon>
             </md-button>
-            <md-button ng-href="#/decks" md-no-ink class="md-primary">
-                <md-icon md-svg-icon="back" class="icwhite"></md-icon>Deck List
+            <md-button href="#/deckdetails/{{ nextItem }}" class="md-icon-button md-primary" aria-label="Next Deck">
+                <md-icon md-svg-icon="aright"></md-icon>
             </md-button>
-        </div>
-        <h1>{{decks[whichItem].deckname}}</h1>
-        <md-list class="md-warn" layout="row" layout-align="center center" ng-cloak>
+        </section>
+        <md-divider></md-divider>
+        <h2>{{decks[whichItem].deckname}}</h2>
+        <md-list class="badgelist" layout="row" layout-align="center center" ng-cloak>
             <md-list-item>
                 Hero / Villain Cards in Deck: <md-badge ng-class="diceBadge(8, howManyHeroes)">{{ howManyHeroes }} / 8 </md-badge>
             </md-list-item>
@@ -38,41 +37,49 @@
 
 <div layout="row" layout-align="center start" layout-padding flex>
     <md-list layout="row" layout-sm="column" layout-wrap flex>
-        <md-list-item class="md-3-line" ng-repeat="(key, die) in deckDice | filter:query" ng-click="null" flex="50">
+        <md-list-item class="md-3-line list-item" ng-repeat="(key, die) in deckDice | filter:query" ng-click="null" flex="50">
             <div class="md-list-item-text" layout="column">
-                <h3>{{ die.name }}</h3>
-                <h3>({{ die.cardversion }})</h3>
-                <h4>Dice Quantity: {{ die.quantity }}</h4>
-                <h4>Dice in Deck: {{ die.diceQuantity }}</h4>
-                <h4>Dice Colour: {{ die.colour }}</h4>
-                <div layout="row" ng-class="getRarity(die)">
-                    <md-button class="md-secondary md-icon-button" ng-click="showAddTo(die)" ng-hide="hideActionVersion(die.cardtype)" aria-label="Show Options">
+                <div class="list-heading" flex>
+                    <h3>{{ die.name }}</h3>
+                    <h3>({{ die.cardversion }})</h3>
+                </div>
+                <div layout="row" layout-wrap layout-padding>
+                    <h4>Dice Quantity: {{ die.quantity }}</h4>
+                    <h4>Dice in Deck: {{ die.diceQuantity }}</h4>
+                </div>
+                <div layout="row" layout-wrap layout-padding>
+                    <h4>Dice Colour: {{ die.colour }}</h4>
+                </div>
+                <div layout="row">
+                    <md-button class="md-secondary md-icon-button md-primary" ng-click="showAddTo(die)" ng-hide="hideActionVersion(die.cardtype)" aria-label="Show Options">
                         <md-tooltip>Increase Dice Amount</md-tooltip>
                         <md-icon md-svg-icon="add" class="icwhite"></md-icon>
                     </md-button>
-                    <md-button href="#/details/{{ die.navKey }}" class="md-secondary md-icon-button" aria-label="Link to more details">
+                    <md-button href="#/details/{{ die.navKey }}" class="md-secondary md-icon-button md-accent" aria-label="Link to more details">
                         <md-tooltip>View Card Details</md-tooltip>
                         <md-icon md-svg-icon="view" class="icwhite"></md-icon>
                     </md-button>
-                    <md-button class="md-secondary md-icon-button" ng-click="removeItem($event, die.id)" aria-label="Delete Card">
+                    <md-button class="md-secondary md-icon-button md-warn" ng-click="removeItem($event, die.id)" aria-label="Delete Card">
                         <md-tooltip>Remove Card</md-tooltip>
                         <md-icon md-svg-icon="delete" class="icwhite"></md-icon>
                     </md-button>
                 </div>
-                <div layout="row" layout-padding>
+                <div layout="row" layout-padding ng-class="getRarity(die)">
                     <p>{{ die.description }}</p>
                 </div>
                 <div ng-show="die.show">
                     <form name="incrementDiceQuantity" ng-submit="submitNewQuantity(die, die.diceQuantity)" novalidate>
-                        <div layout="row" layout-align="end start">
-                            <md-input-container class="md-icon-float md-icon-right md-block">
-                                <label>Dice Quantity for Deck:</label>
+                        <div layout="row" layout-align="center center" layout-wrap>
+                            <md-input-container flex>
+                                <label>Dice in Deck:</label>
                                 <input ng-model="die.diceQuantity" name="quantity" type="number" ng-value="{{die.diceQuantity}}" min="0" max="{{die.quantity}}" step="1">
                             </md-input-container>
-                            <md-button type="submit" ng-click="showAddTo(die)" class="md-mini md-icon-button" ng-disabled="incrementDiceQuantity.$invalid" aria-label="Increase Dice Quantity">
-                                <md-tooltip>Save</md-tooltip>
-                                <md-icon md-svg-icon="save" class="icwhite"></md-icon>
-                            </md-button>
+                            <md-input-container flex>
+                                <md-button type="submit" ng-click="showAddTo(die)" class="md-accent md-fab" aria-label="Increase Dice Quantity">
+                                    <md-tooltip>Save</md-tooltip>
+                                    <md-icon md-svg-icon="save" class="icwhite"></md-icon>
+                                </md-button>
+                            </md-input-container>
                         </div>
                     </form>
                 </div>

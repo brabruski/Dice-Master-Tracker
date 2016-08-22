@@ -66,13 +66,10 @@
 <body>
     <div layout="column">
         <nav ng-include="'Views/nav.html'" ng-cloak></nav>
-
-        <md-content>
             <main flex ng-view ng-cloak>
             </main>
-
             <span flex></span>
-
+        <footer flex="none" ng-include="'Views/footer.html'" ng-cloak></footer>
     </div>
 </body>
 </html>
